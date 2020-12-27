@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <img src="https://allea.org/wp-content/uploads/2019/06/shutterstock_520698799small-1500x430.jpg" class="card-img-top" alt="...">
+    <img src="https://allea.org/wp-content/uploads/2019/06/shutterstock_520698799small-1500x430.jpg" class="card-img-top" alt="..." style="height: 200px;">
     <div class="card-body">
         <h2 class="card-title" style="font-weight: bold;">Daftar Siswa</h2>
         <a class="btn btn-sm btn-info active" href="{{ route('students.create') }}" style="float:right;">Tambah Data</a>
@@ -7,8 +7,9 @@
     <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">NIK</th>
-            <th scope="col" class="col-md-2">Nama</th>
+            <th scope="col">NISN</th>
+            <th scope="col" class="col-md-4">Nama</th>
+            <th scope="col">JK</th>
             <th scope="col">Handphone</th>
             <th scope="col">Jurusan</th>
             <th scope="col">Status</th>
@@ -18,8 +19,9 @@
     <tbody>
         @foreach($students as $student)
         <tr>
-            <td> {{ $student->nik }} </td>
+            <td> {{ $student->nisn }} </td>
             <td> {{ $student->fullname }} </td>
+            <td> {{ $student->gender }} </td>
             <td> {{ $student->phone }} </td>
             <td> {{ $student->speciality }} </td>
             @if($student->status == 1)

@@ -11,16 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('landing-page.index');
-});
+Route::resource('/', 'PageController');
 
 Auth::routes();
 
-Route::get('/administrator/home', 'HomeController@index')->name('home');
+Route::resource('/forum', 'ThreadController');
+Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy']]);
 
-Route::resource('administrator/students', 'StudentController');
-// Route::get('/administrator/edit/profil/{id}', 'ProfileController@edit');
-// Route::post('/administrator/update/{id}', 'ProfileController@update');
-Route::resource('administrator/profil', 'ProfileController');
+Route::post('/comment/create/{thread}', 'CommentController@addThreadComments')->name('threadcomment.store');
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::group(['prefix' => 'administrator','middleware' => 'auth'], function() {
+	
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::resource('/students', 'StudentController');
+	Route::resource('/profil', 'ProfileController');
+	Route::resource('/setting/front-end', 'FrontEndController');
+	
+});
+
+Route::get('google', 'GoogleController@redirect');
+Route::get('google/callback', 'GoogleController@callback');

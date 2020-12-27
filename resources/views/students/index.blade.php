@@ -5,7 +5,7 @@
 @if($layout == 'index')
     <div class="row header-container justify-content-center">
         <div class="header">
-            <h1 style="font-family: 'Gill Sans', sans-serif;">Manajemen Siswa</h1>
+            <h2 style="font-family: 'Gill Sans', sans-serif;">Manajemen Siswa</h2>
         </div>
     </div>
     <div class="container-fluid mt-4">
@@ -13,7 +13,7 @@
             <section class="col-md-12">
                 @include('students/studentlist')
             </section>
-            <section class="col-md-5">
+            <section class="col-md-4">
                 
             </section>
         </div>
@@ -23,7 +23,7 @@
         <div class="alert alert-danger"  style="text-align: center;">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>Data NIK tidak boleh sama.</li>
+                    <li>Data NISN tidak boleh sama.</li>
                 @endforeach
             </ul>
         </div>
@@ -42,12 +42,23 @@
                         <form role="form" action="{{ route('students.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label>Nomor Induk Siswa</label>
-                                <input name="nik" type="text" class="form-control" placeholder="NIK" required>
+                                <label>Nomor Induk Siswa Nasional</label>
+                                <input name="nisn" type="text" class="form-control" placeholder="NISN" required>
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
                                 <input name="fullname" type="text" class="form-control" placeholder="Nama" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Agama</label>
+                                <input name="religion" type="text" class="form-control" placeholder="Agama" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Kelamin</label>
+                                <select class="form-control" name="gender" id="active">
+                                    <option value="Laki-Laki" @if (old('active') == 'Laki-Laki') selected @endif>Laki-Laki</option>
+                                    <option value="Perempuan" @if (old('active') == 'Perempuan') selected @endif>Perempuan</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
@@ -64,6 +75,14 @@
                             <div class="form-group">
                                 <label>Alamat</label>
                                 <input name="address" type="text" class="form-control" placeholder="Alamat" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tahun Masuk</label>
+                                <input name="start_year" type="date" class="form-control" placeholder="Tahun Masuk" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tahun Lulus</label>
+                                <input name="end_year" type="date" class="form-control" placeholder="Tahun Lulus" required>
                             </div>
                             <input type="submit" class="btn btn-info" value="Save">
                             <input type="reset" class="btn btn-danger" value="Reset">
@@ -96,11 +115,19 @@
                 <form>
                     <div class="form-group">
                         <label>Nomor Induk Siswa</label>
-                        <input value="{{ $student->nik }}" name="nik" type="text" class="form-control" placeholder="NIK" readonly>
+                        <input value="{{ $student->nisn }}" name="nisn" type="text" class="form-control" placeholder="nisn" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
                         <input value="{{ $student->fullname }}" name="fullname" type="text" class="form-control" placeholder="Nama" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Agama</label>
+                        <input value="{{ $student->religion }}" name="religion" type="text" class="form-control" placeholder="Agama" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <input value="{{ $student->gender }}" name="gender" type="text" class="form-control" placeholder="Jenis Kelamin" readonly>
                     </div>
                     <div class="form-group">
                         <label>Tanggal Lahir</label>
@@ -126,6 +153,14 @@
                         <label>Alamat</label>
                         <input value="{{ $student->address }}" name="status" type="text" class="form-control" placeholder="Alamat" readonly>
                     </div>
+                    <div class="form-group">
+                        <label>Tahun Masuk</label>
+                        <input value="{{ $student->start_year }}" name="start_year" type="text" class="form-control" placeholder="Tahun Masuk" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Tahun Lulus</label>
+                        <input value="{{ $student->end_year }}" name="start_year" type="text" class="form-control" placeholder="Tahun Lulus" readonly>
+                    </div>
                 </form>
             </section>
         </div>
@@ -147,11 +182,19 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label>Nomor Induk Siswa</label>
-                                <input value="{{ $student->nik }}" name="nik" type="text" class="form-control" placeholder="NIK">
+                                <input value="{{ $student->nisn }}" name="nisn" type="text" class="form-control" placeholder="nisn">
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
                                 <input value="{{ $student->fullname }}" name="fullname" type="text" class="form-control" placeholder="Nama">
+                            </div>
+                             <div class="form-group">
+                                <label>Agama</label>
+                                <input value="{{ $student->religion }}" name="religion" type="text" class="form-control" placeholder="Agama">
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Kelamin</label>
+                                <input value="{{ $student->gender }}" name="gender" type="text" class="form-control" placeholder="Jenis Kelamin">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
@@ -176,6 +219,14 @@
                             <div class="form-group">
                                 <label>Alamat</label>
                                 <input value="{{ $student->address }}" name="address" type="text" class="form-control" placeholder="Alamat">
+                            </div>
+                            <div class="form-group">
+                                <label>Tahun Masuk</label>
+                                <input value="{{ $student->start_year }}" name="start_year" type="date" class="form-control" placeholder="Tahun Masuk">
+                            </div>
+                            <div class="form-group">
+                                <label>Tahun Lulus</label>
+                                <input value="{{ $student->end_year }}" name="end_year" type="date" class="form-control" placeholder="Tahun Lulus">
                             </div>
                             <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Apakah data sudah valid?')">
                             <input type="reset" class="btn btn-danger" value="Reset">

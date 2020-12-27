@@ -44,22 +44,32 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nik' => 'required|unique:students|min:8|max:10',
+            'nisn' => 'required|unique:students|min:8|max:10',
             'fullname' => 'required|max:150',
+            'religion' => 'required',
+            'gender' => 'required',
             'birth' => 'required',
             'phone' => 'required|min:10|max:14',
             'speciality' => 'required|max:38',
             'address' => 'required',
+            'start_year' => 'required',
+            'end_year' => 'required',
         ]);
 
         $student = Student::create([
-            'nik' => $request['nik'],
+            'nisn' => $request['nisn'],
             'fullname' => $request['fullname'],
+            'religion' => $request['religion'],
+            'gender' => $request['gender'],
             'birth' => $request['birth'],
             'phone' => $request['phone'],
             'speciality' => $request['speciality'],
             'address' => $request['address'],
+            'start_year' => $request['start_year'],
+            'end_year' => $request['end_year'],
         ]);
+
+        // dd($student);
 
         return redirect('/administrator/students')->with(['success' => 'Data was successfully created.']);
     }
@@ -104,13 +114,16 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::where('id', $id)->update([
-            'nik' => $request['nik'],
+            'nisn' => $request['nisn'],
             'fullname' => $request['fullname'],
+            'religion' => $request['religion'],
+            'gender' => $request['gender'],
             'birth' => $request['birth'],
             'phone' => $request['phone'],
             'speciality' => $request['speciality'],
-            'status' => $request['status'],
             'address' => $request['address'],
+            'start_year' => $request['start_year'],
+            'end_year' => $request['end_year'],
         ]);
 
         return redirect('/administrator/students')->with(['success' => 'Student data was successfully updated.']);

@@ -23,6 +23,7 @@ header.masthead {
   background-color: #343a40;
   background: url("../img/bg-masthead.jpg") no-repeat center center;
   background-size: cover;
+  opacity: 0.3;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
@@ -39,6 +40,10 @@ header.masthead .overlay {
 
 header.masthead h1 {
   font-size: 2rem;
+}
+
+.article {
+    background-color: white;
 }
 
 @media (min-width: 768px) {
