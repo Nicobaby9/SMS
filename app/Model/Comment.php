@@ -4,10 +4,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Model\Comment;
 
 class Comment extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['body', 'user_id'];
 
     public function user() {
     	return $this->belongsTo(User::class);
@@ -17,5 +18,7 @@ class Comment extends Model
     	return $this->morphTo();
     }
 
-
+    public function comments() {
+    	return $this->morphMany(Comment::class, 'commentable');
+    }
 }

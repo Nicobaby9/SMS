@@ -2,15 +2,12 @@
 
 @section('content')
 
-@include('thread.partial.error')
-@include('thread.partial.success')
-
 <div class="container-fluid mt-4">
     <div class="row">
         <section class="col">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Post something</h5>
+                    <h5 class="card-title">Apa yang anda ingin tanyakan?</h5>
                     <br>
                     <form role="form" action="{{ route('forum.store') }}" method="post">
                         @csrf

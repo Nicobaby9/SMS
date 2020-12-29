@@ -16,9 +16,11 @@ Route::resource('/', 'PageController');
 Auth::routes();
 
 Route::resource('/forum', 'ThreadController');
-Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy']]);
+Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
 
 Route::post('/comment/create/{thread}', 'CommentController@addThreadComments')->name('threadcomment.store');
+Route::post('/reply/create/{comment}', 'CommentController@addReplyComments')->name('replycomment.store');
+// Route::get('/comment/{id}/edit', 'CommentController@edit');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 

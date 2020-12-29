@@ -1,13 +1,12 @@
 
 <nav class="main-header navbar navbar-expand bg-info navbar-light">
-    <a class="navbar-brand" href="#">SMAN 1 PATIANROWO</a>
-		<a href="/" title="" class="btn btn-info float-right">Home</a>
+    <a class="navbar-brand" href="/">SMAN 1 PATIANROWO</a>
 		
 </nav>
 @if (Route::has('login'))
-<nav class=" float-right">
+<div class=" float-right">
 	@auth
-        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+        <a class="dropdown-item btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" style="float: right; border-radius: 7px;">
         {{ __('Logout') }}
 	    </a>
 
@@ -17,5 +16,5 @@
     @else
         <a class="dropdown-item" href="{{ route('login') }}">Login</a>
 	@endauth
-</nav>
+</div>
 @endif

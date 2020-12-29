@@ -2,8 +2,8 @@
 	@forelse($threads as $thread)
 
 	<a href="{{ route('forum.show', $thread->id) }}" class="list-group-item">
-		<h4 class="list-group-item-heading">{{ $thread->subject }}</h4>
-		<p class="list-group-item-text" style="border-bottom: 1px solid black;">{{ \Illuminate\Support\Str::limit($thread->thread, 120) }}</p>
+		<h3 class="list-group-item-heading" style="font-weight: bold;">{{ $thread->subject }}</h3>
+		<p class="list-group-item-text">{{ \Illuminate\Support\Str::limit($thread->thread, 120) }}</p>
 	</a>
 	
 	@empty
