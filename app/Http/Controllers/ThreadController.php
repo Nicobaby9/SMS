@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Thread;
 use Illuminate\Http\Request;
 
+
 class ThreadController extends Controller
 {
     function __construct() {
@@ -58,7 +59,7 @@ class ThreadController extends Controller
 
         // dd($thread);
 
-        return redirect('/forum')->with(['success' => 'Berhasil Mmebuat Postingan.']);
+        return redirect('/forum')->withMessage('Berhasil Mmebuat Postingan.');
     }
 
     /**
@@ -67,7 +68,7 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show( $thread)
+    public function show($thread)
     {
         $thread = Thread::where('id', $thread)->first();
 
@@ -117,7 +118,7 @@ class ThreadController extends Controller
             'type' => $request['type'],
         ]);
 
-        return redirect()->route('forum.show', $thread)->with(['success' => 'Berhasil Mengupdate Postingan']);
+        return redirect()->route('forum.show', $thread)->withMessage('Berhasil Mengupdate Postingan');
     }
 
     /**
@@ -134,6 +135,21 @@ class ThreadController extends Controller
 
         Thread::where('id', $thread)->delete();
 
-        return redirect('/forum')->with(['success' => 'Post Berhasil Didelete.']);
+        return redirect('/forum')->withMessage('Post Berhasil Didelete.');
+    }
+
+    public function markAsSolution(Request $request) {
+        // dd($request->all());
+        $solutionId = $request->get('solutionId');
+        $threadId = $request->get('threadId');
+        $thread = Thread::findOrFail($threadId);
+        $thread->solution = $solutionId;
+
+        if($thread->save()) {
+            if(request()->ajax()) {
+                return response()->json(['status' => 'success', 'message' => 'Berhasil Memilih Jawaban']);
+            }
+            return redirect()->back()->withMessage('Berhasil Memilih Jawaban');
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Comment;
 use App\Thread;
+use App\Traits\CommentableTrait;
 
 class CommentController extends Controller
 {
@@ -17,22 +18,26 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->body = $request->body;
         $comment->user_id = auth()->user()->id;
-
         $thread->comments()->save($comment);
+
+        // $thread->addComment($request->body);
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
     }
 
-    public function addReplyComments(Request $request, Coment $cooment) {
+    public function addReplyComments(Request $request, Comment $comment) {
         $this->validate($request, [
             'body' => 'required',
         ]);
 
-        $comment = new Comment;
-        $comment->body = $request->body;
-        $comment->user_id = auth()->user()->id;
+        $reply = new Comment;
+        $reply->body = $request->body;
+        $reply->user_id = auth()->user()->id;
 
-        $comment->comments()->save($comment);
+        $comment->comments()->save($reply);
+
+        // $comment->addComment($request->body);
+
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Reply');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Frontend;
+use App\Thread;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('thread.index');
+        $threads = Thread::paginate(15);
+
+        return view('thread.index', compact('threads'));
     }
 }

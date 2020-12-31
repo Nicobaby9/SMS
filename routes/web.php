@@ -20,7 +20,8 @@ Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy'
 
 Route::post('/comment/create/{thread}', 'CommentController@addThreadComments')->name('threadcomment.store');
 Route::post('/reply/create/{comment}', 'CommentController@addReplyComments')->name('replycomment.store');
-// Route::get('/comment/{id}/edit', 'CommentController@edit');
+Route::post('/forum/mark-as-solution', 'ThreadController@markAsSolution')->name('markAsSolution');
+Route::post('/comment/like', 'LikeController@toggleLike')->name('toggleLike');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
