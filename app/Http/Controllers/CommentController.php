@@ -15,12 +15,12 @@ class CommentController extends Controller
             'body' => 'required',
         ]);
 
-        $comment = new Comment;
-        $comment->body = $request->body;
-        $comment->user_id = auth()->user()->id;
-        $thread->comments()->save($comment);
+        // $comment = new Comment;
+        // $comment->body = $request->body;
+        // $comment->user_id = auth()->user()->id;
+        // $thread->comments()->save($comment);
 
-        // $thread->addComment($request->body);
+        $thread->addComment($request->body);
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
     }
@@ -30,13 +30,13 @@ class CommentController extends Controller
             'body' => 'required',
         ]);
 
-        $reply = new Comment;
-        $reply->body = $request->body;
-        $reply->user_id = auth()->user()->id;
+        // $reply = new Comment;
+        // $reply->body = $request->body;
+        // $reply->user_id = auth()->user()->id;
 
-        $comment->comments()->save($reply);
+        // $comment->comments()->save($reply);
 
-        // $comment->addComment($request->body);
+        $comment->addComment($request->body);
 
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Reply');
@@ -75,7 +75,9 @@ class CommentController extends Controller
         if ($comment->user_id !== auth()->user()->id) {
             abort(401);
         }
+        $reply = Comment::where('commentable_id', $comment->id);
 
+        $reply->delete();
         $comment->delete();
 
         return redirect()->back()->withMessage('Berhasil Menghapus Komentar');

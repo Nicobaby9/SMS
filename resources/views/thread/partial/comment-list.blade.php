@@ -5,26 +5,32 @@
 			<button class="btn btn-success pull-right">Jawaban Terpilih</button>
 		@endif
 	@else
-		@if(auth()->check())
-			@if(auth()->user()->id == $thread->user_id)
+		<!-- @if(auth()->check())
+			@if(auth()->user()->id == $thread->user_id) -->
 			<!-- <form action="{{ route('markAsSolution') }}" method="post" accept-charset="utf-8">
 				@csrf
 				<input type="hidden" name="threadId" value="{{ $thread->id }}">
 				<input type="hidden" name="solutionId" value="{{ $comment->id }}">
 				<input type="submit" class="btn btn-primary pull-right" id="{{ $comment->id }}" value="Pilih Jawaban Tepat"></input>
 			</form>	 -->
+			@can('update', $thread)
 			<div class="btn btn-primary pull-right" onclick="markAsSolution('{{ $thread->id }}', '{{ $comment->id }}', this)"> Pilih Jawaban Tepat</div>
-
-			@endif
-		@endif
+			@endcan
+			<!-- @endif
+		@endif -->
 	@endif
 	<h5 style="margin-top: -10px; font-weight: bold;">{{ $comment->user->fullname }}</h5>
 	<lead>{{ $comment->body }}</lead>
 	<br>
-	<button class="btn btn-default btn-xs">{{ $comment->likes()->count() }}</button>
-	<button class="btn btn-default btn-xs" onclick="likeIt('{{$comment->id}}', this)">
-		<span class="fas fa-heart {{ $comment->isLiked()? 'liked':'' }}"></span>
-	</button>
+	<button class="btn btn-default btn-xs" id="{{$comment->id}}-count">{{ $comment->likes()->count() }}</button>
+	<span  class="btn btn-default btn-xs" onclick="likeIt('{{$comment->id}}',this)">
+	@if(!$comment->isLiked())
+		<span class="glyphicon glyphicon-heart"></span>
+	@else
+		<span class="glyphicon glyphicon-heart" style="color: red;"></span>
+	@endif
+	</span>
+
 	@if(auth()->user()->id == $comment->user_id)
     <form action="{{route('comment.destroy',$comment->id)}}" method="POST" class="inline-it">
         @csrf
@@ -41,25 +47,33 @@
 
 <script>
 	function markAsSolution(threadId, solutionId, elem) {
-        var csrfToken='{{csrf_token()}}';
+        var csrfToken = '{{csrf_token()}}';
         $.post('{{route('markAsSolution')}}', {solutionId: solutionId, threadId: threadId,_token:csrfToken}, function (data) {
             $(elem).text('Jawaban Terpilih');
         });
     }
 
-    function likeIt(commentId, elem) {
-        var csrfToken='{{csrf_token()}}';
-		$.post('{{route('toggleLike')}}', {commentId: commentId, _token:csrfToken}, function (data) {
-            if(data.message==='liked') {
-               $(elem).addClass('liked');
-               $('#'+commentId+"-count").text(likesCount+1);
-               $(elem).css({colod: 'red'});
-            }else {
-               $('#'+commentId+"-count").text(likesCount-1);
-               $(elem).removeClass('liked');
-            }
+    function likeIt(commentId,elem){
+        var csrfToken = '{{csrf_token()}}';
+        var likesCount = parseInt($('#'+commentId+"-count").text());
+        $.post('{{route('toggleLike')}}', {commentId: commentId,_token:csrfToken}, function (data) {
+            console.log(data);
+           if(data.message === 'liked'){
+           		$(elem).addClass('liked');
+           		$('#'+commentId+"-count").text(likesCount+1);
+				$(elem).css({color:'red'});
+           }else{
+            	$(elem).css({color:'black'});
+           		$('#'+commentId+"-count").text(likesCount-1);
+           		$(elem).removeClass('liked');
+           }
         });
     }
+
+    function toggleReply(commentId){
+        $('.reply-form-'+commentId).toggleClass('hidden');
+    }
+
 </script>
 
 @endsection

@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="content-wrap well" style="border-radius: 15px;">
-	<p class="float-right inline-it">{{ $thread->user->fullname }}</p>
+<div class="content-wrap well" style="border-radius: 15px; background-color: #ebebe0;">
+	<h4 class="pull-right inline-it">{{ $thread->user->fullname }}</h4>
 	<h4 style="font-weight: bold;">{{ $thread->subject }}</h4>
 	<div class="thread-details" style="margin-left: 20px; border-radius: 5px;"> {!! \Michelf\Markdown::defaultTransform($thread->thread) !!}
 	</div>
@@ -30,7 +30,8 @@
 	<div class="comment-list well well-lg" style="margin-left: 20px;">
 		@include('thread.partial.comment-list')
 
-		@if(auth()->user()->id == $comment->user_id)
+		<!-- @if(auth()->user()->id == $comment->user_id) -->
+		@can('update', $thread)
 		<div class="action">
             <!-- Modal -->
 			<div class="app modal fade" id="exampleModal{{ $comment->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,12 +56,12 @@
 				</div>
 			</div>
 		</div>
-		@endif
+		@endcan
+		<!-- @endif -->
 
 		<br>
 
 		<!-- Reply/Answers -->
-		<br>
 
 		@foreach($comment->comments as $reply)
 		<div class="small text-info reply-list" style="margin-left: 40px;">
@@ -145,6 +146,7 @@
     function toggleReply(commentId){
         $('.reply-form-'+commentId).toggleClass('hidden');
     }
+
 </script>
 
 @endsection

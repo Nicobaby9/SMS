@@ -62,7 +62,6 @@
 				<div class="col-md-3"><h4> Kategori </h4></div>
 				<div class="col-md-9">
 					<div class="col-md-4"><h4 class="main-content-heading">@yield('heading')</h4></div>
-						
 				</div>
 			</div>
 		</div>
@@ -86,7 +85,7 @@
 			</div>
 
 			<div class="col-md-9">
-				<div class="content-wrap col-md-12" style="background-color: #eaeae2; border-radius: 20px; height: 100%;"> 
+				<div class="content-wrap col-md-12" style="background-color: #ebebe0; border-radius: 20px; height: 100%;"> 
 					<br>
 					@yield('content')
 					

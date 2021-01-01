@@ -21,14 +21,15 @@
                         </div>
                         <div class="form-group">
                             <label>Isi Post</label>
-                            <textarea name="thread" type="text" class="form-control" placeholder="Isi Post" value="{{ old('thread') }}" rows="5" required> </textarea>
+                            <textarea name="thread" type="text" class="form-control" placeholder="Isi Post"rows="5" required>{{ old('thread') }}</textarea>
                         </div>
-                        <div class="form-group"> 
+                        <div class="form-group" required> 
                             {!! NoCaptcha::renderJs() !!}
                             {!! app('captcha')->display(['data-theme' => 'dark']) !!}
                         </div>
 
                         <input type="submit" class="btn btn-info" value="Save">
+                        <br><br>
                     </form>
                 </div>
             </div>

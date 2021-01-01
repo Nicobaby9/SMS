@@ -14,7 +14,7 @@
 	        @csrf
 	    </form>
     @else
-        <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+        <a class="dropdown-item btn btn-default pull-right" href="{{ route('login') }}">Login</a>
 	@endauth
 </div>
 @endif

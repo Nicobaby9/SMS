@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Thread;
 use Illuminate\Http\Request;
+use App\Model\Comment;
+use App\Thread;
 
 
 class ThreadController extends Controller
@@ -43,7 +44,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subject' => 'required|min:10',
+            'subject' => 'required|min:1',
             'thread' => 'required|min:10',
             'type' => 'required',
             'g-recaptcha-response' => 'required|captcha',
@@ -97,21 +98,18 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $thread)
+    public function update(Request $request,$thread)
     {
         $thread = Thread::where('id', $thread)->first();
 
-        if (auth()->user()->id !== $thread->user_id) {
-            abort(401, "Unauthorized");
-        }
+        $this->authorize('update', $thread);
 
         $this->validate($request, [
-            'subject' => 'required|min:10',
+            'subject' => 'required|min:1',
             'thread' => 'required|min:10',
             'type' => 'required',
         ]);
 
-        // $thread->update($request->all());
         $thread->update([
             'subject' => $request['subject'],
             'thread' => $request['thread'],
@@ -129,11 +127,12 @@ class ThreadController extends Controller
      */
     public function destroy($thread)
     {
-        if (auth()->user()->id !== $thread->user_id) {
-            abort(401, message('Unauthorized'));
-        }
+        $thread = Thread::where('id', $thread)->first();
+        $comment = Comment::where('commentable_id', $thread->id);
+        $this->authorize('update', $thread);
 
-        Thread::where('id', $thread)->delete();
+        $comment->delete();
+        $thread->delete();
 
         return redirect('/forum')->withMessage('Post Berhasil Didelete.');
     }

@@ -5,9 +5,11 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Model\{Comment, Like};
+use App\Traits\{CommentableTrait, LikeableTrait};
 
 class Comment extends Model
 {   
+    use CommentableTrait, LikeableTrait;
 
     protected $fillable = ['body', 'user_id'];
 
@@ -17,18 +19,6 @@ class Comment extends Model
 
     public function commentable() {
     	return $this->morphTo();
-    }
-
-    public function comments() {
-        return $this->morphMany(Comment::class, 'commentable')->latest();
-    }
-
-    public function likes() {
-        return $this->morphMany(Like::class, 'likeable');
-    }
-    
-    public function isLiked() {
-        return !!$this->likes()->where('user_id', auth()->id())->count();
     }
 
 }
