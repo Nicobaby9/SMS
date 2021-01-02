@@ -22,3 +22,7 @@
 	max-width: 250px;
  max-height: 250px;
 }
+
+.thread-list a:hover {
+	background-color: red;
+}

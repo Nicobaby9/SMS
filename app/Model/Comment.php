@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Model\{Comment, Like};
 use App\Traits\{CommentableTrait, LikeableTrait};
 
 class Comment extends Model

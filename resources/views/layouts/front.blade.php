@@ -56,40 +56,18 @@
 
 	<br>
 	<div class="container">
-		<a href="{{ route('forum.create') }}" class="btn btn-info float-right">Apa yang anda ingin tanyakan?</a>
+		<a href="{{ route('forum.create') }}" class="btn btn-info float-right">Buat Postingan</a>
 		<div class="row">
 			<div class="row content-heading">
-				<div class="col-md-3"><h4> Kategori </h4></div>
-				<div class="col-md-9">
-					<div class="col-md-4"><h4 class="main-content-heading">@yield('heading')</h4></div>
-				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-3">
-				<ul class="list-group">
-					<a href="{{ route('forum.index') }}" class="list-group-item" style="border-bottom: solid 2px black; margin-bottom: 1px; border-radius: 4px;">
-						Semua Postingan
-						<span class="badge" style="float:right;">14</span>
-					</a>
-					<a href="#" class="list-group-item">
-						PHP
-						<span class="badge" style="float:right;">14</span>
-					</a>
-					<a href="#" class="list-group-item">
-						Javascript
-						<span class="badge" style="float:right;">14</span>
-					</a>
-				</ul>
-			</div>
-
+			@section('category')
+				@include('layouts.partials.categories')
+			@show
 			<div class="col-md-9">
-				<div class="content-wrap col-md-12" style="background-color: #ebebe0; border-radius: 20px; height: 100%;"> 
-					<br>
-					@yield('content')
-					
-				</div>
+				@yield('content')
 			</div>
 		</div>
 	</div>

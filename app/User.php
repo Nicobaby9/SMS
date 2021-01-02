@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function getRouteKeyName() {
+        return 'username';
+    }
 }

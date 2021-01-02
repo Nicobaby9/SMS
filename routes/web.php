@@ -18,10 +18,15 @@ Auth::routes();
 Route::resource('/forum', 'ThreadController');
 Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
 
-Route::post('/comment/create/{thread}', 'CommentController@addThreadComments')->name('threadcomment.store');
-Route::post('/reply/create/{comment}', 'CommentController@addReplyComments')->name('replycomment.store');
-Route::post('/forum/mark-as-solution', 'ThreadController@markAsSolution')->name('markAsSolution');
-Route::post('/comment/like', 'LikeController@toggleLike')->name('toggleLike');
+Route::group(['middleware' => 'auth'], function() {
+
+	Route::post('/comment/create/{thread}', 'CommentController@addThreadComments')->name('threadcomment.store');
+	Route::post('/reply/create/{comment}', 'CommentController@addReplyComments')->name('replycomment.store');
+	Route::post('/forum/mark-as-solution', 'ThreadController@markAsSolution')->name('markAsSolution');
+	Route::post('/comment/like', 'LikeController@toggleLike')->name('toggleLike');
+	Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile');
+
+});
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
