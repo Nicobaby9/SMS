@@ -61,7 +61,6 @@
 			<div class="row content-heading">
 			</div>
 		</div>
-
 		<div class="row">
 			@section('category')
 				@include('layouts.partials.categories')

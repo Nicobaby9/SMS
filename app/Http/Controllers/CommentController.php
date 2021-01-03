@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Comment;
 use App\Thread;
 use App\Traits\CommentableTrait;
+use App\Notifications\RepliedToThread;
 
 class CommentController extends Controller
 {
@@ -21,6 +22,7 @@ class CommentController extends Controller
         // $thread->comments()->save($comment);
 
         $thread->addComment($request->body);
+        $thread->user->notify(new RepliedToThread($thread));
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
     }

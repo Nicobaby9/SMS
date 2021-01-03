@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('/forum/mark-as-solution', 'ThreadController@markAsSolution')->name('markAsSolution');
 	Route::post('/comment/like', 'LikeController@toggleLike')->name('toggleLike');
 	Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile');
+	Route::get('/markAsRead', function () {
+		auth()->user()->unreadNotifications->markAsRead();
+	});
 
 });
 
