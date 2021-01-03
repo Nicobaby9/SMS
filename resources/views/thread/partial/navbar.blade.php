@@ -28,7 +28,7 @@
 
             <!-- NOTIFICATIONS -->
             
-            <li class="dropdown pull-right" id="markasread" onclick="markNotificationAsRead()">
+            <li class="dropdown pull-right" id="markasread" onclick="markNotificationAsRead('{{ count(auth()->user()->unreadNotifications) }}')">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 		          <i class="far fa-bell"></i>
 		          <span class="badge badge-warning navbar-badge">{{ count(auth()->user()->unreadNotifications) }}</span>
