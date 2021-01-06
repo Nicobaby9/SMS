@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Model\Comment;
+use App\Feed;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,10 @@ class User extends Authenticatable
     }
 
     public function getRouteKeyName() {
-        return 'fullname';
+        return 'username';
+    }
+
+    public function feeds() {
+        return $this->hasMany(Feed::class);
     }
 }

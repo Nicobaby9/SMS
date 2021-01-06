@@ -19,21 +19,35 @@
 	<div>
 		<h3>{{ $user->fullname }}'s latest threads</h3>
 
-		@forelse($threads as $thread)
-			<h5><a href="{{ route('forum.show', $thread->id) }}">{{ $thread->subject }}</a> <p class="pull-right">{{ $thread->created_at->diffForHumans() }} </p></h5>
-		@empty
-			<h5>Belum pernah membuat postingan</h5>
-		@endforelse
-		
-		<br>
+		@forelse($feeds as $feed)
 
-		<h3>{{ $user->fullname }}'s latest comments</h3>
+			@if($feed->feedable_type == 'App\Thread')
+				@if($feed->feedable['thread'] != null)
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">{{ $feed->type }}</h4>
+						</div>
+						<div class="panel-body">
+							{{ $user->fullname }} created new thread : <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }}</a>
+						</div>
+					</div>
+				@endif
+			@elseif($feed->feedable_type == 'App\Model\Comment')
+				@if($feed->feedable['body'] != null)
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">{{ $feed->type }}</h4>
+						</div>
+						<div class="panel-body">
+							{{ $user->fullname }} created new comment :  {{ $feed->feedable['body'] }} on <a href="{{route('forum.show', $feed->id )}}" title=""> {{ $feed->subject }} </a>
+						</div>
+					</div>
+				@endif
+			@endif
 
-		@forelse($comments as $comment)
-			<h5>{{ $user->fullname }} commented on <a href="{{ route('forum.show', $comment->commentable['id']) }}" title="">{{ $comment->commentable['subject'] }}</a>  <p class="pull-right">{{ $comment->created_at->diffForHumans() }} </p> </h5>
 		@empty
-			<h5>Belum pernah berkomentar</h5>
+			There is no feed activity.
+
 		@endforelse
-		<br>
 	</div>
 @endsection

@@ -20,8 +20,17 @@
                             <input name="subject" type="text" class="form-control" placeholder="Judul Post" value="{{ $thread->subject }}" required>
                         </div>
                         <div class="form-group">
-                            <label>Tipe</label>
-                            <input name="type" type="text" class="form-control" placeholder="Tipe"  value="{{ $thread->type }}" required>
+                            <label>Tags</label>
+                            @foreach($thread->tags as $tag)
+                                <a class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
+                            @endforeach
+                        </div>
+                        <div class="form-group" >
+                            <select name="tags[]" id="tag" type="text" multiple>
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}"> {{ $tag->name }}
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Isi Post</label>
@@ -36,4 +45,13 @@
     </div>
 </div>
 	
+@endsection
+
+@section('js')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.0/js/standalone/selectize.min.js"></script>
+    <script>
+        $(function() {
+            $('#tag').selectize();
+        })
+    </script>
 @endsection

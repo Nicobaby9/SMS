@@ -12,11 +12,11 @@
 
                 <ul class="dropdown-menu" role="menu">
                     <li>
+                        <a href="{{ route('user_profile', auth()->user()) }}">
+                            My Profile
+                        </a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
-                        </a>
-                        <a href="{{ route('user_profile',auth()->user()) }}">
-                            My Profile
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                               style="display: none;">
@@ -44,9 +44,11 @@
 			        @endforelse
 		        </div>
             </li>
+
     	@else
 	        <a class="navbar-brand pull-right" href="{{ route('login') }}">Login</a>
 		@endauth
 	</ul>
 	@endif
+    <a class="navbar-brand" href="/forum"> Forum </a> 
 </nav>

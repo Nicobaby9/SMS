@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Comment;
 use App\Thread;
 use App\Model\Tag;
-
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
@@ -22,7 +22,7 @@ class ThreadController extends Controller
     public function index(Request $request)
     {
         if($request->has('tags')) {
-            $tag = Tag::findOrFail($request->tags);
+            $tag = Tag::where('name', $request->tags)->first();
             $threads = $tag->threads;
         }else {
             $threads = Thread::paginate(15);
@@ -91,9 +91,21 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit($thread)
+    public function edit($thread, Request $request)
     {
         $thread = Thread::where('id', $thread)->first();
+        $tag_thread = DB::table('tag_thread')->where('thread_id', $thread->id)->get();
+        // $tags = Tag::where('id', $tag_thread->tag_id)->first();
+        // $taz = DB::table('tag_thread')->find($tag_thread[0]);
+        // $tagx = Tag::where('id', DB::table('tag_thread')->select('tag_id'));
+        // $tagz = DB::table('tag_thread')->where('thread_id', $thread->id)->first();
+        // $taz = $tagx->threads();
+
+        // dd($tag_thread->);         
+
+        // foreach($tag_thread as $a) {
+        //     dd($a);
+        // }
 
         return view('thread.edit', compact('thread'));
     }
@@ -114,13 +126,14 @@ class ThreadController extends Controller
         $this->validate($request, [
             'subject' => 'required|min:1',
             'thread' => 'required|min:10',
-            'type' => 'required',
+            'tags' => 'required',
         ]);
+
 
         $thread->update([
             'subject' => $request['subject'],
             'thread' => $request['thread'],
-            'type' => $request['type'],
+            'tags' => $request['tags'],
         ]);
 
         return redirect()->route('forum.show', $thread)->withMessage('Berhasil Mengupdate Postingan');
@@ -136,8 +149,10 @@ class ThreadController extends Controller
     {
         $thread = Thread::where('id', $thread)->first();
         $comment = Comment::where('commentable_id', $thread->id);
+        $tags = DB::table('tag_thread')->where('thread_id', $thread->id);
         $this->authorize('update', $thread);
 
+        $tags->delete();
         $comment->delete();
         $thread->delete();
 

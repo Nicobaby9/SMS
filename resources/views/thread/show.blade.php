@@ -8,6 +8,11 @@
 	<div class="thread-details" style="margin-left: 20px; border-radius: 5px;"> {!! \Michelf\Markdown::defaultTransform($thread->thread) !!}
 	</div>
 	<br>
+	Tags :
+        @foreach($thread->tags as $tag)
+    		<a href="{{ route('forum.index', ['tags' => $tag->name]) }}" class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
+    	@endforeach
+    <br><br>
 
 	@if(auth()->user()->id == $thread->user_id)
 	<div class="action">
@@ -18,8 +23,8 @@
 			<input class="btn btn-danger btn-sm" type="submit" value="Delete">
 		</form>
 	</div>
-	<br>
 	@endif
+
 </div>
 <hr>
 

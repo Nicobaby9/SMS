@@ -56,7 +56,6 @@
 
 	<br>
 	<div class="container">
-		<a href="{{ route('forum.create') }}" class="btn btn-info float-right">Buat Postingan</a>
 		<div class="row">
 			<div class="row content-heading">
 			</div>

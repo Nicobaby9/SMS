@@ -44,3 +44,4 @@ Route::group(['prefix' => 'administrator','middleware' => 'auth'], function() {
 
 Route::get('google', 'GoogleController@redirect');
 Route::get('google/callback', 'GoogleController@callback');
+

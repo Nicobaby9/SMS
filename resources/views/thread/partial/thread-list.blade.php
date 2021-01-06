@@ -13,13 +13,18 @@
 
 	<div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><a href="{{route('forum.show',$thread->id)}}" style="font-weight: bold;"> {{$thread->subject}}</a></h3>
-            <p class="pull-right" style="margin-top: -16px; font-size: 11px;">{{$thread->created_at->diffForHumans()}}</p>
+            <h3 class="panel-title"><a href="{{route('forum.show', $thread->id)}}" style="font-weight: bold;"> {{$thread->subject}}</a></h3>
+            <p class="pull-right" style="margin: -16px 10px 0px 0px; font-size: 11px;">{{$thread->created_at->diffForHumans()}}</p>
         </div>
         <div class="panel-body">
             <p>{{ \Illuminate\Support\Str::limit($thread->thread,100) }}
-                <br>
-                <a href="{{route('user_profile',$thread->user->username)}}" class="pull-right"> {{$thread->user->fullname}}</a> 
+        	<a href="{{route('user_profile', $thread->user->username)}}" class=" pull-right"> {{$thread->user->fullname}}</a> 
+            	<br>
+                <br><br>
+                Tags :
+                @foreach($thread->tags as $tag)
+            		<a href="{{ route('forum.index', ['tags' => $tag->name]) }}" class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
+            	@endforeach
             </p>
         </div>
     </div>

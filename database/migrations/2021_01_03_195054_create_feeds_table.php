@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsThreadTable extends Migration
+class CreateFeedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTagsThreadTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_thread', function (Blueprint $table) {
+        Schema::create('feeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('thread_id');
-            $table->integer('tag_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('type');
+            $table->unsignedBigInteger('feedable_id');
+            $table->string('feedable_type');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTagsThreadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag_thread');
+        Schema::dropIfExists('feeds');
     }
 }
