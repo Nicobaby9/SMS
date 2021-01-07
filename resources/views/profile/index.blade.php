@@ -17,7 +17,7 @@
 
 @section('content')
 	<div>
-		<h3>{{ $user->fullname }}'s latest threads</h3>
+		<h3>{{ $user->fullname }}'s latest activity</h3>
 
 		@forelse($feeds as $feed)
 

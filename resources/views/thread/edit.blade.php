@@ -19,16 +19,17 @@
                             <label>Judul Post</label>
                             <input name="subject" type="text" class="form-control" placeholder="Judul Post" value="{{ $thread->subject }}" required>
                         </div>
-                        <div class="form-group">
-                            <label>Tags</label>
-                            @foreach($thread->tags as $tag)
-                                <a class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
-                            @endforeach
-                        </div>
                         <div class="form-group" >
                             <select name="tags[]" id="tag" type="text" multiple>
                                 @foreach($tags as $tag)
-                                    <option value="{{ $tag->id }}"> {{ $tag->name }}
+                                    <option value="{{ $tag->id }}" 
+                                        @foreach($thread->tags as $value)
+                                            @if($tag->id == $value->id)
+                                                selected
+                                            @endif
+                                        @endforeach
+                                    >
+                                    {{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </div>

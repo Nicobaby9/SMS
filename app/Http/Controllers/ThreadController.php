@@ -95,17 +95,6 @@ class ThreadController extends Controller
     {
         $thread = Thread::where('id', $thread)->first();
         $tag_thread = DB::table('tag_thread')->where('thread_id', $thread->id)->get();
-        // $tags = Tag::where('id', $tag_thread->tag_id)->first();
-        // $taz = DB::table('tag_thread')->find($tag_thread[0]);
-        // $tagx = Tag::where('id', DB::table('tag_thread')->select('tag_id'));
-        // $tagz = DB::table('tag_thread')->where('thread_id', $thread->id)->first();
-        // $taz = $tagx->threads();
-
-        // dd($tag_thread->);         
-
-        // foreach($tag_thread as $a) {
-        //     dd($a);
-        // }
 
         return view('thread.edit', compact('thread'));
     }
@@ -126,15 +115,15 @@ class ThreadController extends Controller
         $this->validate($request, [
             'subject' => 'required|min:1',
             'thread' => 'required|min:10',
-            'tags' => 'required',
         ]);
 
 
         $thread->update([
             'subject' => $request['subject'],
             'thread' => $request['thread'],
-            'tags' => $request['tags'],
         ]);
+
+        $thread->tags()->sync($request->tags);
 
         return redirect()->route('forum.show', $thread)->withMessage('Berhasil Mengupdate Postingan');
     }
