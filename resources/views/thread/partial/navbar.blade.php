@@ -3,11 +3,11 @@
     <a class="navbar-brand" href="/">SMAN 1 PATIANROWO</a>
 		
 	@if (Route::has('login'))
-	<ul class="nav navbar-nav navbar-right">
+	<ul class="nav navbar-nav pull-right">
 		@auth
 			<li class="dropdown pull-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    {{ Auth::user()->fullname }} <span class="caret"></span>
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                   <span class="caret"></span> {{ Auth::user()->fullname }} 
                 </a>
 
                 <ul class="dropdown-menu" role="menu">

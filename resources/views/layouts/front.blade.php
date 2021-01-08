@@ -50,15 +50,16 @@
 <body>
 
 	@include('thread.partial.navbar')
-	<br><br>
+
 	@include('thread.partial.error')
 	@include('thread.partial.success')
 
 	<br>
 	<div class="container">
 		<div class="row">
-			<div class="row content-heading">
-			</div>
+		  <div class="row justify-content-center" style="text-align: center;">
+        @yield('head')
+      </div>
 		</div>
 		<div class="row">
 			@section('category')

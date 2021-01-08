@@ -15,6 +15,10 @@ Route::resource('/', 'PageController');
 
 Auth::routes();
 
+Route::get('/photo', 'UserProfileController@photo');
+Route::get('/photo/{id}', 'UserProfileController@photoShow')->name('photo');
+Route::post('/photo.store/{id}', 'UserProfileController@photoStore')->name('photo.store');
+
 Route::resource('/forum', 'ThreadController');
 Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
 
@@ -28,6 +32,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/markAsRead', function () {
 		auth()->user()->unreadNotifications->markAsRead();
 	});
+	Route::get('/user/profile/{user}/edit', 'UserProfileController@show')->name('user_profile_edit');
+	Route::patch('/user/profile/{id}/update', 'UserProfileController@update')->name('user_profile_update');
 
 });
 
