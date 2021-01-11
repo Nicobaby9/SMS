@@ -6,6 +6,9 @@
 
 @section('content')
 
+@if($profile->username != auth()->user()->username)
+	<a href="{{ route('user_profile', $profile->username) }}" class="btn btn-info btn-sm" >Kembali</a>
+@else
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title" style="font-weight: bold;">Edit User Form</h3>
@@ -33,26 +36,32 @@
             <input type="submit" class="btn btn-info" value="Save">
             <br><br>
         </form>
-        <form role="form" action="{{ route('photo.store', auth()->user()->id) }}" method="post" enctype="multipart/form-dat">
-            @csrf
-            @method('PATCH')
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <!-- <a href="{{ route('user_profile_update', $profile->id) }}" title="">Update Photo</a> -->
-                        <input name="photo" type="file" class="custom-file-input" id="exampleInputFile" onchange="loadPreview(this);" required>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group" style="text-align: center;">
-                <img id="preview_img" src="{{ asset('profile_images/'. $profile->photo) }}" class="" width="200" height="150"/>
-            </div>
-            <input type="submit" class="btn btn-info" value="Save">
-            <br><br>
-        </form>
+        <br>
+        <div class="form-group">
+        <form method="post" action="{{ route('photo.store', auth()->user()->id) }}" enctype="multipart/form-data">
+	        @csrf
+			<div class="card-body">
+			    <div class="form-group">
+			        <label for="exampleInputFile">File input</label>
+			        <div class="input-group">
+			            <div class="custom-file">
+			                <input name="photo" type="file" class="form-control" id="exampleInputFile" onchange="loadPreview(this);">
+			                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="form-group" style="text-align: center;">
+			        <img id="preview_img" src="{{ asset('profile_images/'. $profile->photo) }}" class="" width="200" height="150"/>
+			    </div>
+			</div>
+			<div class="card-footer">
+			  <button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</form>
+		</div>
     </div>
 </div>
+@endif
 
 @endsection
 

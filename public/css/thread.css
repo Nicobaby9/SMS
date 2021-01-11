@@ -98,6 +98,16 @@ sup {
   vertical-align: baseline;
 }
 
+
+.custom-file-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: calc(1.6em + 0.75rem + 2px);
+  margin: 0;
+  opacity: 0;
+}
+
 sup {
   top: -0.5em;
 }

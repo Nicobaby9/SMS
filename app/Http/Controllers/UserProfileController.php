@@ -13,9 +13,10 @@ class UserProfileController extends Controller
         $threads = Thread::where('user_id', $user->id)->latest()->get();
         $comments = Comment::where('user_id', $user->id)->where('commentable_type', 'App\Thread')->get();
         $feeds = $user->feeds;
-        // dd($feeds);
+        $profile = User::where('id', auth()->user()->id)->first();
+        // dd($profile->id);
 
-        return view('profile.index', compact('feeds', 'threads', 'comments', 'user'));
+        return view('profile.index', compact('feeds', 'threads', 'comments', 'user', 'profile'));
     }
 
     public function photo() {
@@ -78,7 +79,7 @@ class UserProfileController extends Controller
 
 
         $profile = User::findOrFail($id);
-        $filename = $profile->photo;
+        // $filename = $profile->photo;
         // dd($filename);
 
         // if ($request->hasFile('photo')) {

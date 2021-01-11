@@ -47,6 +47,9 @@
       </li>
     </ul>
 
+    @include('thread.partial.error')
+    @include('thread.partial.success')
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
@@ -114,7 +117,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{ route('gallery.index')}}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery

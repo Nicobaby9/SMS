@@ -8,6 +8,7 @@
             <h3 style="text-align: center;">Halaman Terlarang!!</h3>
             <br>
             <a href="{{ url()->previous() }}" class="btn btn-info btn-sm" >Kembali</a>
+            <!-- <a href="{{ url()->previous() }}" class="btn btn-info btn-sm" >Home</a> -->
         </div>
     </div>
         

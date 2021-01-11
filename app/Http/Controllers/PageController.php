@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Frontend;
+use App\Model\{Frontend, Gallery};
 
 class PageController extends Controller
 {
@@ -16,7 +16,13 @@ class PageController extends Controller
     {
         $frontend = Frontend::all()->first();
 
-        return view('landing-page.index', compact('frontend'));
+        return view('landing-page.home', compact('frontend'));
+    }
+
+    public function gallery() {
+        $galleries = Gallery::all();
+
+        return view('frontend.gallery.index', compact('galleries'));
     }
 
     /**

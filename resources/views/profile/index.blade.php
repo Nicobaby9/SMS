@@ -30,8 +30,12 @@
 		    <td> {{ $user->phone }}</td>
 		  </tr>
 		</table>
-		<br>
-		<a href="{{ route('user_profile_edit', $user->username) }}" class="btn btn-sm btn-warning">Edit Profile</a>
+		<br> 
+		@if($user->username != auth()->user()->username)
+		
+		@else
+			<a href="{{ route('user_profile_edit', $user->username) }}" class="btn btn-sm btn-warning">Edit Profile</a>
+		@endif
 	</div>
 @endsection
 

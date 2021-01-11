@@ -32,12 +32,6 @@ class CommentController extends Controller
             'body' => 'required',
         ]);
 
-        // $reply = new Comment;
-        // $reply->body = $request->body;
-        // $reply->user_id = auth()->user()->id;
-
-        // $comment->comments()->save($reply);
-
         $comment->addComment($request->body);
 
 

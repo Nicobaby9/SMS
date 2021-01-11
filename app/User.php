@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Model\Comment;
+use App\Model\{Comment, Gallery};
 use App\Feed;
 
 class User extends Authenticatable
@@ -53,5 +53,9 @@ class User extends Authenticatable
 
     public function feeds() {
         return $this->hasMany(Feed::class);
+    }
+
+    public function gallery() {
+        return $this->hasMany(Gallery::class);
     }
 }
