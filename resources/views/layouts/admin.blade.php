@@ -27,9 +27,16 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- Glyphicon -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
   @yield('css') 
+  @yield('jav')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
+  @include('thread.partial.error')
+  @include('thread.partial.success')
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -46,10 +53,6 @@
         <a href="/forum" class="nav-link">Forum</a>
       </li>
     </ul>
-
-    @include('thread.partial.error')
-    @include('thread.partial.success')
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
@@ -62,12 +65,15 @@
   </nav>
   <!-- /.navbar -->
 
+    
+
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ asset('dist/img/smapat.png') }}" alt="..." class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">SMAN 1 Patianrowo</span>
+      <img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="..." class="brand-image img-circle elevation-3" style="opacity: .8;">
+      <span class="brand-text font-weight-bold" style="font-size: 18px;">SMAN 1 Montreal</span>
+      <br>
     </a>
 
     <!-- Sidebar -->
@@ -75,7 +81,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://avatars1.githubusercontent.com/u/47657144?s=460&u=35db7ca926eee51b7e2bd2b048b4f4a457d035d1&v=4" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('profile_images/'.auth()->user()->photo) }}" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->fullname }}</a>
@@ -85,34 +91,23 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link ">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               Dashboard
             </a>
           </li>
-          <li class="nav-link active">
-            <a href="{{ url('/administrator/students') }}" class="nav-link">
+          <li class="nav-item">
+            <a href="{{ url('/administrator/students') }}" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               Student
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('/administrator/setting/front-end')}}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
                 Front-End Setting
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right"></span>
               </p>
             </a>
           </li>
@@ -124,7 +119,24 @@
               </p>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-item">
+            <a href="{{ route('article.index')}}" class="nav-link">
+              <i class="nav-icon far fa-edit"></i>
+              <p>
+                Article
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('category.index')}}" class="nav-link">
+              <i class="nav-icon far fa-object-group"></i>
+              <p>
+                Category
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon far fa-circle text-danger"></i>
                 {{ __('Logout') }}
@@ -145,12 +157,9 @@
    @yield('content')
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <footer class="main-footer float-left">
     <strong>Copyright &copy; 2020 <a href="https://adminlte.io">SMAN 1 PATIANROWO</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0-rc
-    </div>
   </footer>
 
   <!-- Control Sidebar -->
@@ -161,14 +170,14 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.j') }}s"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.j') }}s"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->

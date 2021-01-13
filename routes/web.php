@@ -13,6 +13,7 @@
 
 Route::resource('/', 'PageController', ['only' => 'index']);
 Route::get('/galery', 'PageController@gallery');
+Route::get('/article/{slug}', 'PageController@show')->name('front.article.show');
 
 Auth::routes();
 
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'administrator','middleware' => 'auth'], function() {
 	Route::resource('/profil', 'ProfileController');
 	Route::resource('/setting/front-end', 'FrontEndController');
 	Route::resource('/gallery', 'GalleryController');
+	Route::resource('/article', 'ArticleController');
+	Route::resource('/category', 'CategoryController');
 	
 });
 

@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <a href="https://www.sman1patianrowo.sch.id/" class="logo mr-auto"><img src="https://www.sman1patianrowo.sch.id/media_library/images/499122c64d7a4a9439ca3d09cb269770.png" alt="" class="img-fluid"></a>
+          <a href="https://www.sman1patianrowo.sch.id/" class="logo mr-auto"><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="" class="img-fluid"></a>
           <br>
           <h1 class="mb-5" style="font-size: 54px;">SMA NEGERI 1 MONTREAL</h1>
         </div>
@@ -113,7 +113,7 @@
             <p class="font-weight-light mb-0">{{ $frontend->profile2_body }}</p>
         </div>
         <div class="col-lg-4">
-            <img class="img-fluid rounded-circle mb-3" src="{{ asset('dist/img/smapat.png') }}" alt="" style="height: 200px; width: 200px;">
+            <img class="img-fluid rounded-circle mb-3" src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="" style="height: 200px; width: 200px;">
             <h5>{{ $frontend->profile3_title }}</h5>
             <p class="font-weight-light mb-0">{{ $frontend->profile3_body }}</p>
         </div>
@@ -129,63 +129,24 @@
      <h1 class="text-center">Blog</h1>
       <div class="row">
 
+      @foreach($articles as $article)
        <div class="col-md-4 col-lg-4 col-sm-12">
-        <div class="card"  style="height: 450px; border-radius: 10px;">
+        <div class="card" style="height: 450px; border-radius: 10px;">
          <div class="card-img">
-          <img src="https://www.elsevier.com/__data/assets/image/0009/899451/RA-review-articles-banner-1200-x-600.jpg" class="img-fluid col-md-12" style="height: 180px; margin-top: 16px;">
+          <img src="{{ asset('article/'.$article->image) }}" class="img-fluid col-md-12" style="height: 180px; margin-top: 16px;">
          </div>
-         
          <div class="card-body">
-         <h4 class="card-title">Post Title</h4>
-         <br>
-          <p class="card-text">
-           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+           <h4 class="card-title" style="height: 60px;">{{ $article->title }}</h4>
+            <p class="card-text">
+              {!! Illuminate\Support\Str::limit($article->content, 230) !!}
+            </p>
          </div>
          <div class="card-footer">
-          <a href="" class="card-link">Read more</a>
+          <a href="{{ route('front.article.show', $article->id) }}" class="card-link">Read more</a>
          </div>
         </div>
        </div>
-
-      <div class="col-md-4 col-lg-4 col-sm-12">
-        <div class="card"  style="height: 450px; border-radius: 10px;">
-         <div class="card-img">
-          <img src="https://www.elsevier.com/__data/assets/image/0009/899451/RA-review-articles-banner-1200-x-600.jpg" class="img-fluid col-md-12" style="height: 180px; margin-top: 16px;">
-         </div>
-         
-         <div class="card-body">
-         <h4 class="card-title">Post Title</h4>
-         <br>
-          <p class="card-text">
-           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-         </div>
-         <div class="card-footer">
-          <a href="" class="card-link">Read more</a>
-         </div>
-        </div>
-       </div>
-
-       <div class="col-md-4 col-lg-4 col-sm-12">
-        <div class="card" style="height: 450px;  border-radius: 10px;">
-         <div class="card-img">
-          <img src="https://previews.123rf.com/images/onblast/onblast1612/onblast161200009/69111660-exam-test-results-paper-sheet-vector-illustration-survey-form-checklist-filled-quiz-document-isolate.jpg" class="img-fluid col-md-12" style="height: 180px;  margin-top: 16px;">
-         </div>
-         
-         <div class="card-body">
-         <h4 class="card-title">Post Title</h4>
-         <br>
-          <p class="card-text">            
-           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-         </div>
-         <div class="card-footer">
-          <a href="" class="card-link">Read more</a>
-         </div>
-        </div>
-       </div>
-      </div>
+       @endforeach
      </div>
     </div>
   </section>

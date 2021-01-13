@@ -41,7 +41,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <a href="nabar-brand" title=""><img src="https://image.shutterstock.com/image-vector/vector-logo-school-260nw-427910128.jpg" alt="..." style="width: 50px; height: 50px;"></a>
+      <a href="/" title=""><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="..." style="width: 50px; height: 50px;"></a>
       <a class="navbar-brand" href="/forum">Forum</a>
       <a class="navbar-brand" href="/gallery">Galery</a>
       <a class="navbar-brand" href="#article">Article</a>

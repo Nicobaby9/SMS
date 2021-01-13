@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-2">
+<div class="container">
 	<a href="{{ route('gallery.create') }}" class="btn btn-sm btn-info">Create New Photo</a>
 	 <div class="row">
 	 	@forelse($galleries as $gallery)
@@ -15,7 +15,7 @@
 		 			<form action="{{ route('gallery.destroy', $gallery->id) }}" method="post" accept-charset="utf-8" class=" float-left">
 		 				@csrf
 		 				@method('DELETE')
-		 				<input type="submit" value="Delete" class="btn btn-sm btn-danger">
+		 				<input type="submit" value="Delete" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
 		 			</form>
 		 			<p class="float-right">{{ \Carbon\Carbon::parse($gallery->created_at)->format('d-M-Y') }}</p>
 		 		</div>

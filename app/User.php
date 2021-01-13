@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Model\{Comment, Gallery};
-use App\Feed;
+use App\{Feed, Article};
 
 class User extends Authenticatable
 {
@@ -57,5 +57,9 @@ class User extends Authenticatable
 
     public function gallery() {
         return $this->hasMany(Gallery::class);
+    }
+
+    public function articles() {
+        return $this->hasMany(Article::class);
     }
 }

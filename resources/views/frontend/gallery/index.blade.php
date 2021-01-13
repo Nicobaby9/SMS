@@ -34,7 +34,6 @@
         </video>
     </div>
 
-
     <div class="grid-portfolio" id="portfolio">
         <div class="container">
             <div class="row">
@@ -66,24 +65,16 @@
                     </div>
                 </div>
             </div> -->
-            
         </div>
     </div>
-
 
     <footer>
         <div class="container-fluid">
             <div class="col-md-12">
-                <p>Copyright &copy; 2018 Company Name 
-    
-    | Designed by TemplateMo</p>
+                <p>Copyright &copy; 2018 Company Name | Designed by TemplateMo</p>
             </div>
         </div>
     </footer>
-
-
-    <!-- Modal button -->
-    
 
     <!-- Modal -->
     <div id="modal" class="modal">
@@ -126,8 +117,6 @@
       </div>
     </div>
 
-    
-
     <section class="overlay-menu">
       <div class="container">
         <div class="row">
@@ -157,7 +146,6 @@
         </div>
       </div>
     </section>
-
 @endsection
 
 @section('js')

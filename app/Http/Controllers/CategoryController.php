@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Frontend, Gallery};
-use App\Article;
+use App\Model\Category;
+use Illuminate\Support\Str;
 
-class PageController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        $frontend = Frontend::all()->first();
-        $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+        $categories = Category::all();
 
-        return view('landing-page.home', compact('frontend', 'articles'));
-    }
-
-    public function gallery() {
-        $galleries = Gallery::all();
-
-        return view('frontend.gallery.index', compact('galleries'));
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -34,7 +27,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -45,7 +38,17 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:70',
+            'slug' => 'required',
+        ]);
+
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . $request->slug,
+        ]);
+
+        return redirect(route('category.index'))->with(['success' => 'Product was created.']);
     }
 
     /**
@@ -54,11 +57,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $article = Article::where('slug', $slug)->first();
-
-        return view('landing-page.show', compact('article'));
+        //
     }
 
     /**
@@ -69,7 +70,12 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+
+        $category = Category::where('id', $id)->first();
+        // dd($category);
+
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -81,7 +87,14 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . $request->slug,
+        ]);
+
+        return redirect(route('category.index'))->with(['success' => 'data was updated.']);
     }
 
     /**
@@ -92,6 +105,10 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect()->back()->withMessage('Data was deleted');
     }
 }
