@@ -30,7 +30,7 @@
                         <img src="{{ asset('article/'.$article->image) }}" class="img-fluid">
                     </div>
                     <!--/.Featured Image-->
-                	<p class="float-right">Created : {{ \Carbon\Carbon::parse($article->created_at)->format('d-M-Y') }} &nbsp;</p>
+                	<p class="float-right">Created : {{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</p>
                     <br><hr>
                     <!--Card-->
                     <div class="card mb-4 wow fadeIn">
@@ -45,6 +45,55 @@
                             <h5 class="my-4 float-right">
                                 <strong>Created by : {{ $article->user->fullname }}</strong>
                             </h5>
+
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+
+                    <!--Card-->
+                    <div class="card mb-4 wow fadeIn">
+
+                        <div class="card-header font-weight-bold">
+                            <span>About author</span>
+                            <span class="pull-right">
+                                <a href="">
+                                    <i class="fab fa-facebook-f mr-2"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fab fa-twitter mr-2"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fab fa-instagram mr-2"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fab fa-linkedin-in mr-2"></i>
+                                </a>
+                            </span>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <div class="media d-block d-md-flex mt-3">
+                                <img class="d-flex mb-3 mx-auto z-depth-1 rounded-circle" src="{{ asset('profile_images/'.$article->user->photo) }}" alt="Generic placeholder image"
+                                    style="width: 100px;">
+                                <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                    <a class="mt-0 font-weight-bold h4" href="{{ route('user_profile', $article->user->username) }}"> {{ \Illuminate\Support\Str::title($article->user->fullname) }} </a>
+                                    <table>
+                                        <tr>
+                                            <th>Email </th>
+                                            <th>&nbsp; : &nbsp;</th>
+                                            <td> {{ $article->user->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>&nbsp; : &nbsp;</th>
+                                            <td> {{ '@'.$article->user->username }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -112,72 +161,21 @@
 
                         <!--Card content-->
                         <div class="card-body">
+                            
+                            <p class="mb-0">Latest Article</p>
+                            <lead class="float-right">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</lead>
+                            <p class="h3 my-4">{{ \Illuminate\Support\Str::title($latest_article->title) }}</p>
 
-                            <p class="h5 my-4">That's a very long heading </p>
+                                <img src="{{ asset('article/'.$latest_article->image) }}" class="card-img-top" height="320" style="border-radius: 4px;">
 
+                            <p class="h5 my-4">
+                                @foreach($latest_article->categories as $category)
+                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-info" style="width: 10%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
+                                @endforeach
+                                <a href="" class="btn btn-xs btn-primary float-right">Read More...</a>
+                            </p>
 
-                            <blockquote class="blockquote">
-                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                <footer class="blockquote-footer">Someone famous in
-                                    <cite title="Source Title">Source Title</cite>
-                                </footer>
-                            </blockquote>
-
-                            <p class="h5 my-4">That's a very long heading </p>
-
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, ut rerum deserunt corporis
-                                ducimus at, deleniti ea alias dolor reprehenderit sit vel. Incidunt id illum doloribus,
-                                consequuntur maiores sed eligendi.</p>
-
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, ut rerum deserunt corporis
-                                ducimus at, deleniti ea alias dolor reprehenderit sit vel. Incidunt id illum doloribus,
-                                consequuntur maiores sed eligendi.</p>
-
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, ut rerum deserunt corporis
-                                ducimus at, deleniti ea alias dolor reprehenderit sit vel. Incidunt id illum doloribus,
-                                consequuntur maiores sed eligendi.</p>
-
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                    <!--Card-->
-                    <div class="card mb-4 wow fadeIn">
-
-                        <div class="card-header font-weight-bold">
-                            <span>About author</span>
-                            <span class="pull-right">
-                                <a href="">
-                                    <i class="fab fa-facebook-f mr-2"></i>
-                                </a>
-                                <a href="">
-                                    <i class="fab fa-twitter mr-2"></i>
-                                </a>
-                                <a href="">
-                                    <i class="fab fa-instagram mr-2"></i>
-                                </a>
-                                <a href="">
-                                    <i class="fab fa-linkedin-in mr-2"></i>
-                                </a>
-                            </span>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-
-                            <div class="media d-block d-md-flex mt-3">
-                                <img class="d-flex mb-3 mx-auto z-depth-1" src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image"
-                                    style="width: 100px;">
-                                <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                    <h5 class="mt-0 font-weight-bold">Caroline Horwitz
-                                    </h5>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
-                                    quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                    similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
-                                    fuga.
-                                </div>
-                            </div>
+                            <p>{!! Illuminate\Support\Str::words($article->content, 70) !!}</p>
 
                         </div>
 

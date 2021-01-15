@@ -72,11 +72,12 @@ class PageController extends Controller
         $article = Article::where('slug', $slug)->first();
         $galleries = Gallery::all();
         $categories = Category::all();
+        $latest_article = Article::latest()->first();
 
         $articles = Article::whereNotIn('id', array($article->id))->get();
-        // dd($articles);
+        // dd($latest_article);
 
-        return view('frontend.article.show', compact('article', 'galleries', 'articles'));
+        return view('frontend.article.show', compact('article', 'galleries', 'articles', 'latest_article'));
     }
 
     /**

@@ -56,7 +56,7 @@
                 <a href="https://mdbootstrap.com/education/tech-marketing/automated-app-introduction/" target="_blank">
                   <div class="mask rgba-white-slight"></div>
                 </a>
-                <lead class="float-left">{{ \Carbon\Carbon::parse($article->created_at)->format('d-M-Y') }} &nbsp;</lead>
+                <lead class="float-left">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</lead>
               </div>
                 <h4 class="card-title" style="height: 26px;">{{ \Illuminate\Support\Str::title($article->title) }}</h4>
 
