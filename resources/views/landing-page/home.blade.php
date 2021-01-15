@@ -130,7 +130,7 @@
       <div class="row">
 
       @foreach($articles as $article)
-       <div class="col-md-4 col-lg-4 col-sm-12">
+      <div class="col-md-4 col-lg-4 col-sm-12">
         <div class="card" style="height: 450px; border-radius: 10px;">
          <div class="card-img">
           <img src="{{ asset('article/'.$article->image) }}" class="img-fluid col-md-12" style="height: 180px; margin-top: 16px;">
@@ -142,11 +142,11 @@
             </p>
          </div>
          <div class="card-footer">
-          <a href="{{ route('front.article.show', $article->id) }}" class="card-link">Read more</a>
+          <a href="{{ route('front.article.show', $article->slug) }}" class="card-link">Read more</a>
          </div>
         </div>
-       </div>
-       @endforeach
+      </div>
+      @endforeach
      </div>
     </div>
   </section>

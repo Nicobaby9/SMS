@@ -8,10 +8,10 @@ use App\User;
 
 class Article extends Model
 {
-    protected $fillable = ['title', 'content', 'user_id', 'image', 'category_id', 'slug'];
+    protected $fillable = ['title', 'content', 'user_id', 'image', 'slug'];
 
-    public function category() {
-    	return $this->belongsTo(Category::class);
+    public function categories() {
+    	return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function user() {

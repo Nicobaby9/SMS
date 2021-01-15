@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::orderBy('created_at', 'desc')->paginate(6);
 
         return view('article.index', compact('articles'));
     }
@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
 
-        return view('article.create', compact('categories'));
+        return view('article.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class ArticleController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
-            'category_id' => 'required',
+            'categories' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -61,10 +61,11 @@ class ArticleController extends Controller
                 'user_id' => auth()->user()->id,
                 'title' => $request->title,
                 'content' => $request->content,
-                'category_id' => $request->category_id,
                 'image' => $filename,
                 'slug' => \Str::slug(request('title', '-')),
             ]);
+
+            $article->categories()->attach($request->categories);
 
             // dd($article);
 
@@ -104,9 +105,9 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
-            if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('/article/');
@@ -116,17 +117,34 @@ class ArticleController extends Controller
 
             $user = auth()->user();
 
+            $article = Article::findOrFail($id);
+
             $article->update([
                 'user_id' => auth()->user()->id,
                 'title' => $request->title,
                 'content' => $request->content,
-                'category_id' => $request->category_id,
                 'image' => $filename,
                 'slug' => \Str::slug(request('title', '-')),
             ]);
 
+            $article->categories()->sync($request->categories);
+
             return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
-        }//
+
+        }else {
+            $article = Article::findOrFail($id);
+
+            $article->update([
+                'user_id' => auth()->user()->id,
+                'title' => $request->title,
+                'content' => $request->content,
+                'slug' => \Str::slug(request('title', '-')),
+            ]);
+
+            $article->categories()->sync($request->categories);
+
+            return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
+        }
     }
 
     /**

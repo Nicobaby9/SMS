@@ -29,11 +29,22 @@
                         </div>
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea class="form-control" rows="4" disabled>{{ $article->content }}</textarea>
+                            <textarea class="form-control" rows="4" disabled>{!! $article->content !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <input name="category" type="text" class="form-control" placeholder="Category" value="{{ $article->category->name }}" disabled>
+                            <select name="categories[]" id="tag" type="text" multiple disabled>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" 
+                                        @foreach($article->categories as $value)
+                                            @if($category->id == $value->id)
+                                                selected
+                                            @endif
+                                        @endforeach
+                                    disabled>
+                                    {{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Slug</label>
@@ -60,14 +71,20 @@
                         </div>
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea name="content" value="{{ $article->content }}" class="form-control" rows="4">{{ $article->content }}</textarea>
+                            <textarea name="content" value="{{ $article->content }}" class="form-control" rows="4">{!! $article->content !!}</textarea>
                         </div>
-                        <div class="form-group" >
-                            <label for="category">Category</label>
-                            <select class="form-control" name="category_id" id="category" >
-                                <option value="{{ $article->category_id }}" holder>{{ $article->category->name }}</option>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="categories[]" id="tags" type="text" multiple>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" 
+                                        @foreach($article->categories as $value)
+                                            @if($category->id == $value->id)
+                                                selected
+                                            @endif
+                                        @endforeach
+                                    >
+                                    {{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -81,9 +98,7 @@
                             <img id="preview_img" src="{{ asset('article/'.$article->image) }}" class="" width="400" height="200"/>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" value="post">Submit</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary col-md-12" value="post" >Update</button> 
                         </div>
                     </form>
                 </div>
@@ -100,7 +115,16 @@
 
 @section('js')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 <script>
+    $(function() {
+        $('#tag').selectize();
+    });
+
+    $(function() {
+        $('#tags').selectize();
+    });
+
     function loadPreview(input, id) {
         id = id || '#preview_img';
         if (input.files && input.files[0]) {

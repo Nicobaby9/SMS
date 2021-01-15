@@ -14,6 +14,8 @@
 Route::resource('/', 'PageController', ['only' => 'index']);
 Route::get('/galery', 'PageController@gallery');
 Route::get('/article/{slug}', 'PageController@show')->name('front.article.show');
+Route::get('/articles', 'PageController@article')->name('articles.index');
+Route::get('/articles/category', 'PageController@article')->name('categories.article.index');
 
 Auth::routes();
 

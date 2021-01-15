@@ -27,8 +27,6 @@ class UserProfileController extends Controller
     public function photoShow($id) {
     	$id = User::where('id', $id)->first();
 
-    	// dd($id->id);
-
     	return view('auth.photo', compact('id'));
     }
 
@@ -77,37 +75,14 @@ class UserProfileController extends Controller
             'username' => 'required',
         ]);
 
-
         $profile = User::findOrFail($id);
-        // $filename = $profile->photo;
-        // dd($filename);
 
-        // if ($request->hasFile('photo')) {
-        	// $photo = $request->file('photo');
-        	// $photo = $request->photo;
-        	// $filename = time(). $photo->getClientOriginalExtension();
-        	// dd($filename);
-        	// $photo->move('public/profil_images/', $filename);
-            // $file->storeAs('public/', $filename);
-        	
-        	// $post_data = [
-	        // 	'fullname' => $request->fullname,
-	        //     'email' => $request->email,
-	        //     'phone' => $request->phone,
-	        //     'username' => $request->username,
-	        //     'photo' => 'public/profil_images/'.$new_photo,
-	        // ];
-	        // $profile->update($post_data);
-        
-            // File::delete(public_path('/profile_images/' . $profile->photo)); 
-        // }
     	$profile->update([
         	'fullname' => $request->fullname,
             'email' => $request->email,
             'phone' => $request->phone,
             'username' => $request->username,
         ]);
-	        
 
     	return redirect(route('user_profile', auth()->user()))->withMessage('Berhasil mengupdate data profile');
     }

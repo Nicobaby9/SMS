@@ -27,13 +27,11 @@
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Publish</button>
                 </div>
-                <div class="form-group">
-                  <label for="category_id">Category</label>
-                  <div class="checkbox">
-                    <select class="form-control" name="category_id" id="category" required>
-                        <option value="" holder>Choose Category</option>
+                <div class="form-group" >
+                    <label for="category">Categories</label>
+                    <select name="categories[]" id="tag" multiple required>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -62,7 +60,13 @@
 
 @section('js')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+
 <script>
+    $(function() {
+        $('#tag').selectize();
+    });
+
     function loadPreview(input, id) {
         id = id || '#preview_img';
         if (input.files && input.files[0]) {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Frontend, Gallery};
+use App\Model\{Frontend, Gallery, Category};
 use App\Article;
 
 class PageController extends Controller
@@ -25,6 +25,19 @@ class PageController extends Controller
         $galleries = Gallery::all();
 
         return view('frontend.gallery.index', compact('galleries'));
+    }
+
+    public function article(Request $request) {
+
+        if($request->has('categories')) {
+            $category = Category::where('name', $request->categories)->first();
+            $articles = $category->articles;
+            return view('frontend.article.categories', compact('articles'));
+        }else {
+            $articles = Article::orderBy('created_at', 'desc')->paginate(6);
+            return view('frontend.article.index', compact('articles'));
+        }
+
     }
 
     /**
@@ -57,8 +70,13 @@ class PageController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
+        $galleries = Gallery::all();
+        $categories = Category::all();
 
-        return view('landing-page.show', compact('article'));
+        $articles = Article::whereNotIn('id', array($article->id))->get();
+        // dd($articles);
+
+        return view('frontend.article.show', compact('article', 'galleries', 'articles'));
     }
 
     /**

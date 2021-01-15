@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}">
   <link rel="stylesheet" href="{{ asset('css/fontAwesome.css')}}">
   <link rel="stylesheet" href="{{ asset('css/light-box.css')}}">
-  <link rel="stylesheet" href="{{ asset('css/templatemo-style.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/templatemo.css')}}">
 
   <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -44,19 +44,20 @@
       <a href="/" title=""><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="..." style="width: 50px; height: 50px;"></a>
       <a class="navbar-brand" href="/forum">Forum</a>
       <a class="navbar-brand" href="/gallery">Galery</a>
-      <a class="navbar-brand" href="#article">Article</a>
+      <a class="navbar-brand" href="/articles">Article</a>
       <a class="navbar-brand" href="#">Contact Us</a>
       <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
     </div>
   </nav>
-
 
   @yield('content')
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('landing-page/vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
   @yield('js')
+
 </body>
 
 </html>
