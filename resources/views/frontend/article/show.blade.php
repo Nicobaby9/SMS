@@ -184,105 +184,153 @@
 
                     <!--Comments-->
                     <div class="card card-comments mb-3 wow fadeIn">
-                        <div class="card-header font-weight-bold">3 comments</div>
+                        <div class="card-header font-weight-bold">All comments</div>
                         <div class="card-body">
 
+                            @forelse($article->comments as $comment)    
                             <div class="media d-block d-md-flex mt-4">
-                                <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (20).jpg" alt="Generic placeholder image">
+                                <img class="d-flex mb-3 mx-auto rounded-circle" src="{{ asset('profile_images/'.$comment->user->photo) }}" alt="Generic placeholder image" width="35" height="35">
                                 <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                    <h5 class="mt-0 font-weight-bold">Miley Steward
+                                    <h5 class="mt-0 font-weight-bold"> {{ $comment->user->fullname }}
                                         <a href="" class="pull-right">
                                             <i class="fas fa-reply"></i>
                                         </a>
+                                         <p class="float-right">{{ \Carbon\Carbon::parse($comment->created_at)->diffForhumans() }}</p>
                                     </h5>
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    {{ $comment->body }}
+                                    <br>
+                                    <!-- Button delete or edit -->
+                                    @if(auth()->user()->id == $comment->user_id)
+                                    <a href="#{{$comment->id}}" class="btn btn-primary btn-sm btn-xs" data-toggle="modal" data-target="#exampleModal{{ $comment->id }}">
+                                        <i class="nav-icon far fa-edit"></i>
+                                    </a>
+                                    <form action="{{route('comment.destroy',$comment->id)}}" method="POST" class="float-left" style="margin-right: 4px;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input class="btn btn-sm btn-danger btn-xs" type="submit" value="Delete">
+                                    </form>
+                                    @endif
+                                    <!--END Button delete or edit -->
 
+                                    <button class="btn btn-xs btn-info float-right" onclick="toggleReply('{{ $comment->id }}')">Reply</button>
+                                    <br>
+                                    <!-- Reply FORM -->
+                                    <div class="reply-form-{{ $comment->id }} hidden" style="margin-left: 40px;">
+                                        <br>
+                                        <form action="{{ route('replycomment.store', $comment->id) }}" method="post" accept-charset="utf-8" role="form">
+                                            @csrf
+                                            <div class="form-group-append">
+                                                <label for="">Reply Comment</label>
+                                                <input type="text" class="form-control" name="body" style="height: 30px; background-color: transparent;">
+                                            </div>
+                                            <button type="submit" class="btn btn-success" style="margin: 10px 0px 20px 0px;">Reply</button>
+                                        </form>
+                                    </div>
+                                    <hr>
+                                    @foreach($comment->comments as $reply)
                                     <div class="media d-block d-md-flex mt-3">
-                                        <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="Generic placeholder image">
+                                        <img class="d-flex mb-3 mx-auto rounded-circle" src="{{ asset('profile_images/'.$reply->user->photo) }}" alt="Generic placeholder image" width="25" height="25">
                                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                            <h5 class="mt-0 font-weight-bold">Tommy Smith
+                                            <h5 class="mt-0 font-weight-bold">{{ $reply->user->fullname }}
                                                 <a href="" class="pull-right">
                                                     <i class="fas fa-reply"></i>
                                                 </a>
                                             </h5>
-                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                                            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
-                                            sunt explicabo.
+                                            {{ $reply->body }}
+                                            <!-- Button delete or edit -->
+                                            @if(auth()->user()->id == $comment->user_id)
+                                            <a href="#{{$reply->id}}" class="btn btn-primary btn-xs float-right" data-toggle="modal" data-target="#exampleModal{{ $reply->id }}">
+                                                <i class="nav-icon far fa-edit"></i>
+                                            </a>
+                                            <form action="{{route('comment.destroy',$comment->id)}}" method="POST" class="float-right" style="margin-right: 4px;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input class="btn btn-sm btn-danger btn-xs" type="submit" value="Delete">
+                                            </form>
+                                            @endif
+                                            <!--END Button delete or edit -->
+                                        </div>
+                                    </div>
+                                    <!-- REPLY FORM -->
+                                    @endif@if(auth()->user()->id == $reply->user_id)
+                                    <div class="action">
+                                        <!-- Modal -->
+                                        <div class="modal text-dark" id="exampleModal{{ $reply->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-dark text-white">
+                                                        <h4 class="modal-title" id="userCrudModal">Edit Komentar</h4>
+                                                    </div>
+                                                    <div class="modal-body col-md-12">
+                                                        <form action="{{ route('comment.update', $reply->id) }}" method="post" accept-charset="utf-8" role="form">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="form-group" class="col-md-12">
+                                                                <textarea class="form-control text-dark " name="body" style="width: 100%; border: 1px solid black;">{{ $reply->body }}</textarea>
+                                                            </div>
+                                                            <button type="submit" style="background-color: blue; border-radius: 5px; color: black;">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Quick Reply -->
-                                    <div class="form-group mt-4">
-                                        <label for="quickReplyFormComment">Your comment</label>
-                                        <textarea class="form-control" id="quickReplyFormComment" rows="5"></textarea>
-
-                                        <div class="text-center">
-                                            <button class="btn btn-info btn-sm" type="submit">Post</button>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="media d-block d-md-flex mt-3">
-                                        <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg" alt="Generic placeholder image">
-                                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                            <h5 class="mt-0 font-weight-bold">Sylvester the Cat
-                                                <a href="" class="pull-right">
-                                                    <i class="fas fa-reply"></i>
-                                                </a>
-                                            </h5>
-                                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi
-                                            tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                                    @endforeach
+                                </div>
+                            </div>
+                                <!--/.Comments-->
+                                @if(auth()->user()->id == $comment->user_id)
+                                <div class="action">
+                                    <!-- Modal -->
+                                    <div class="modal text-dark" id="exampleModal{{ $comment->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-dark text-white">
+                                                    <h4 class="modal-title" id="userCrudModal">Edit Komentar</h4>
+                                                </div>
+                                                <div class="modal-body col-md-12">
+                                                    <form action="{{ route('comment.update', $comment->id) }}" method="post" accept-charset="utf-8" role="form">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group" class="col-md-12">
+                                                            <textarea class="form-control text-dark " name="body" style="width: 100%; border: 1px solid black;">{{ $comment->body }}</textarea>
+                                                        </div>
+                                                        <button type="submit" style="background-color: blue; border-radius: 5px; color: black;">Simpan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="media d-block d-md-flex mt-3">
-                                <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image">
-                                <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                    <h5 class="mt-0 font-weight-bold">Caroline Horwitz
-                                        <a href="" class="pull-right">
-                                            <i class="fas fa-reply"></i>
-                                        </a>
-                                    </h5>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
-                                    quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                    similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
-                                    fuga.
-                                </div>
-                            </div>
+                                @endif
 
+                                <!--/.Reply-->
+                                
+                            @empty
+                            <p class="text-center">Belum ada komentar.</p>
+                                
+                            @endforelse
                         </div>
                     </div>
-                    <!--/.Comments-->
+
 
                     <!--Reply-->
                     <div class="card mb-3 wow fadeIn">
-                        <div class="card-header font-weight-bold">Leave a reply</div>
+                        <div class="card-header font-weight-bold">Beri komentar</div>
                         <div class="card-body">
 
                             <!-- Default form reply -->
-                            <form>
-
+                            <form action="{{ route('articlecomment.store', $article->slug) }}" method="post" accept-charset="utf-8" role="form">
+                                @csrf
                                 <!-- Comment -->
                                 <div class="form-group">
-                                    <label for="replyFormComment">Your comment</label>
-                                    <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
+                                    <label for="replyFormComment">Komentar anda</label>
+                                    <textarea class="form-control" id="replyFormComment" rows="5" name="body" placeholder="Isi Komentar ..."></textarea>
                                 </div>
 
-                                <!-- Name -->
-                                <label for="replyFormName">Your name</label>
-                                <input type="email" id="replyFormName" class="form-control">
-
-                                <br>
-
-                                <!-- Email -->
-                                <label for="replyFormEmail">Your e-mail</label>
-                                <input type="email" id="replyFormEmail" class="form-control">
-
-
                                 <div class="text-center mt-4">
-                                    <button class="btn btn-info btn-md" type="submit">Post</button>
+                                    <button class="btn btn-info btn-md col-md-12" type="submit">Post</button>
                                 </div>
                             </form>
                             <!-- Default form reply -->
@@ -334,7 +382,7 @@
 
                             <ul class="list-unstyled">
                             	@foreach($article->categories as $category)
-                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-info" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
+                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-primary" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
                                 @endforeach
                             </ul>
 
@@ -357,7 +405,23 @@
 @endsection
 
 @section('js')
+  <!-- Glyphicon -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 	new WOW().init();
+
+    let id;
+    $(this).data('id');
+
+    $('#id').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus').show();
+    })
+
+    function toggleReply(commentId){
+        $('.reply-form-'+commentId).toggleClass('hidden');
+    }
 </script>
 @endsection

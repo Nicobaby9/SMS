@@ -156,7 +156,11 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
+        $tags = DB::table('artcle_category')->where('thread_id', $id);
+        $comment = Comment::where('commentable_id', $id);
 
+        $tags->delete();
+        $comment->delete();
         $article->delete();
 
         return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);

@@ -8,6 +8,8 @@ use App\User;
 
 class Article extends Model
 {
+    use Traits\CommentableTrait;
+
     protected $fillable = ['title', 'content', 'user_id', 'image', 'slug'];
 
     public function categories() {
@@ -21,4 +23,5 @@ class Article extends Model
     public function getRouteKeyName() {
     	return 'slug';
     }
+
 }

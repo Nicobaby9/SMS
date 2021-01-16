@@ -138,7 +138,6 @@
 @endsection
 
 @section('js')
-
 <script>
 
 	let id;
@@ -153,5 +152,4 @@
     }
 
 </script>
-
 @endsection

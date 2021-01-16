@@ -4,12 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Comment;
-use App\Thread;
+use App\{Thread, Article};
 use App\Traits\CommentableTrait;
 use App\Notifications\RepliedToThread;
 
 class CommentController extends Controller
 {
+    public function addArticleComments(Request $request, $slug) {
+        $this->validate($request, [
+            'body' => 'required',
+        ]);
+
+        $article = Article::where('slug', $slug)->first();
+        // dd($article);
+
+        $article->addComment($request->body);
+        // $article->user->notify(new RepliedToThread($article));
+
+        return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
+    }
 
     public function addThreadComments(Request $request, Thread $thread) {
         $this->validate($request, [

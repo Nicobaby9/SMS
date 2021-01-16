@@ -5,19 +5,9 @@
 			<button class="btn btn-success pull-right">Jawaban Terpilih</button>
 		@endif
 	@else
-		<!-- @if(auth()->check())
-			@if(auth()->user()->id == $thread->user_id) -->
-			<!-- <form action="{{ route('markAsSolution') }}" method="post" accept-charset="utf-8">
-				@csrf
-				<input type="hidden" name="threadId" value="{{ $thread->id }}">
-				<input type="hidden" name="solutionId" value="{{ $comment->id }}">
-				<input type="submit" class="btn btn-primary pull-right" id="{{ $comment->id }}" value="Pilih Jawaban Tepat"></input>
-			</form>	 -->
-			@can('update', $thread)
-			<div class="btn btn-primary pull-right" onclick="markAsSolution('{{ $thread->id }}', '{{ $comment->id }}', this)"> Pilih Jawaban Tepat</div>
-			@endcan
-			<!-- @endif
-		@endif -->
+		@can('update', $thread)
+		<div class="btn btn-primary pull-right" onclick="markAsSolution('{{ $thread->id }}', '{{ $comment->id }}', this)"> Pilih Jawaban Tepat</div>
+		@endcan
 	@endif
 	<h5 style="margin-top: -10px; font-weight: bold;">{{ $comment->user->fullname }}</h5>
 	<lead>{{ $comment->body }}</lead>

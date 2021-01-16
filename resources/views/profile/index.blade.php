@@ -6,8 +6,9 @@
 	
 </div>
 	<div class="col-md-3">
-		<div class="dp">
-			<img src="{{ asset('profile_images/'. $user->photo) }}" style="border-radius: 6px;">
+		<div class="dp text-center">
+			<img src="{{ asset('profile_images/'. $user->photo) }}" style="border-radius: 49%;" width="200" height="200">
+			<br><br>
 			<p style="font-size: 9px; float: "> *User created since : {{ $user->created_at->diffForHumans() }} / {{ \Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }} </p>
 		</div>
 		<h3>
