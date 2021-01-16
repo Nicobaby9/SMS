@@ -20,6 +20,9 @@ class ThreadController extends Controller
      */
     public function index(Request $request)
     {
+        $tag_thread = DB::table('tag_thread')->get();
+        $all_thread = Thread::all();
+
         if($request->has('tags')) {
             $tag = Tag::where('name', $request->tags)->first();
             $threads = $tag->threads;
@@ -27,7 +30,7 @@ class ThreadController extends Controller
             $threads = Thread::paginate(15);
         }
 
-        return view('thread.index', compact('threads'));
+        return view('thread.index', compact('threads', 'tag_thread', 'all_thread'));
     }
 
     /**

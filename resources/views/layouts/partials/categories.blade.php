@@ -12,12 +12,12 @@
 		<h4> Tags </h4>
 		<a href="{{ route('forum.index') }}" class="list-group-item" style="border-bottom: solid 2px black; margin-bottom: 1px; border-radius: 4px;">
 			Semua Postingan
-			<span class="badge" style="float:right;">14</span>
+			<span class="badge" style="float:right;">{{ $all_thread->count() }}</span>
 		</a>
 		@foreach($tags as $tag)
 		<a href="{{ route('forum.index', ['tags' => $tag->name]) }}" class="list-group-item">
 			{{ \Illuminate\Support\Str::title($tag->name) }}
-			<span class="badge" style="float:right;">14</span>
+			<span class="badge" style="float:right;">0</span>
 		</a>
 		@endforeach
 	</ul>

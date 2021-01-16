@@ -121,28 +121,41 @@
 
                                             @foreach($galleries as $gallery)
                                             <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                                                <img src="{{ asset('gallery/'.$gallery->photo) }}" class="img-fluid px-6" style="height:100px; width: 120px;">
+                                                <img src="{{ asset('gallery/'.$gallery->photo) }}" class="img-fluid px-6" style="height:100px; width: 120px; border-radius: 7px;">
                                             </div>
                                             @endforeach
 
                                         </div>
                                         <!--/Grid row-->
                                     </div>
+
                                     <!-- First slide -->
 
                                     <!-- Third slide -->
-                                    <div class="carousel-item carousel-item-next carousel-item-left">
-                                        <!--Grid row-->
+                                    <div class="carousel-item carousel-item-next carousel-item-right">
                                         <div class="row">
 
                                             @foreach($galleries as $gallery)
                                             <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                                                <img src="{{ asset('gallery/'.$gallery->photo) }}" class="img-fluid px-6" style="height:100px; width: 120px;">
+                                                <img src="{{ asset('gallery/'.$gallery->photo) }}" class="img-fluid px-6" style="height:100px; width: 120px; border-radius: 7px;">
                                             </div>
                                             @endforeach
 
                                         </div>
-                                        <!--/Grid row-->
+                                    </div>
+                                    <!-- Third slide -->
+
+                                    <!-- Third slide -->
+                                    <div class="carousel-item carousel-item-next carousel-item-left">
+                                        <div class="row">
+
+                                            @foreach($galleries as $gallery)
+                                            <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                                                <img src="{{ asset('gallery/'.$gallery->photo) }}" class="img-fluid px-6" style="height:100px; width: 120px; border-radius: 7px;">
+                                            </div>
+                                            @endforeach
+
+                                        </div>
                                     </div>
                                     <!-- Third slide -->
                                 </div>
@@ -150,32 +163,6 @@
                             <!-- Logo carousel -->
 
                             <hr>
-
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                    <!--Card-->
-                    <div class="card mb-4 wow fadeIn">
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            
-                            <p class="mb-0">Latest Article</p>
-                            <lead class="float-right">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</lead>
-                            <p class="h3 my-4">{{ \Illuminate\Support\Str::title($latest_article->title) }}</p>
-
-                                <img src="{{ asset('article/'.$latest_article->image) }}" class="card-img-top" height="320" style="border-radius: 4px;">
-
-                            <p class="h5 my-4">
-                                @foreach($latest_article->categories as $category)
-                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-info" style="width: 10%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
-                                @endforeach
-                                <a href="" class="btn btn-xs btn-primary float-right">Read More...</a>
-                            </p>
-
-                            <p>{!! Illuminate\Support\Str::words($article->content, 70) !!}</p>
 
                         </div>
 
@@ -229,7 +216,7 @@
                                     <hr>
                                     @foreach($comment->comments as $reply)
                                     <div class="media d-block d-md-flex mt-3">
-                                        <img class="d-flex mb-3 mx-auto rounded-circle" src="{{ asset('profile_images/'.$reply->user->photo) }}" alt="Generic placeholder image" width="25" height="25">
+                                        <img class="d-flex mb-3 mx-auto rounded-circle" src="{{ asset('profile_images/'.$reply->user->photo) }}" alt="Generic placeholder image" style="width: 25px; height: 25px;">
                                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
                                             <h5 class="mt-0 font-weight-bold">{{ $reply->user->fullname }}
                                                 <a href="" class="pull-right">
@@ -252,7 +239,7 @@
                                         </div>
                                     </div>
                                     <!-- REPLY FORM -->
-                                    @endif@if(auth()->user()->id == $reply->user_id)
+                                    @if(auth()->user()->id == $reply->user_id)
                                     <div class="action">
                                         <!-- Modal -->
                                         <div class="modal text-dark" id="exampleModal{{ $reply->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -275,6 +262,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
 
                                     @endforeach
                                 </div>
@@ -315,7 +303,9 @@
                     </div>
 
 
-                    <!--Reply-->
+
+
+                    <!--Comment-->
                     <div class="card mb-3 wow fadeIn">
                         <div class="card-header font-weight-bold">Beri komentar</div>
                         <div class="card-body">
@@ -333,11 +323,38 @@
                                     <button class="btn btn-info btn-md col-md-12" type="submit">Post</button>
                                 </div>
                             </form>
-                            <!-- Default form reply -->
+                            <!-- Default form Comment -->
 
                         </div>
                     </div>
-                    <!--/.Reply-->
+                    <!--/.Comment-->
+
+
+                    <!--Card-->
+                    <div class="card mb-4 wow fadeIn">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            
+                            <p class="mb-0">Latest Article</p>
+                            <lead class="float-right">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</lead>
+                            <p class="h3 my-4">{{ \Illuminate\Support\Str::title($latest_article->title) }}</p>
+
+                                <img src="{{ asset('article/'.$latest_article->image) }}" class="card-img-top" height="320" style="border-radius: 4px;">
+
+                            <p class="h5 my-4">
+                                @foreach($latest_article->categories as $category)
+                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-info" style="width: 10%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
+                                @endforeach
+                                <a href="" class="btn btn-xs btn-primary float-right">Read More...</a>
+                            </p>
+
+                            <p>{!! Illuminate\Support\Str::words($article->content, 70) !!}</p>
+
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
 
                 </div>
                 <!--Grid column-->
