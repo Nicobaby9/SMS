@@ -12,14 +12,11 @@
         <div class="card-body text-white text-center py-5 px-5 my-5">
 
           <h1 class="mb-4">
-            <strong>Learn Bootstrap 4 with MDB</strong>
+            <strong>Kumpulan Artikel Sekolah</strong>
           </h1>
           <p>
-            <strong>Best & free guide of responsive web design</strong>
-          </p>
-          <p class="mb-4">
-            <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and written
-              versions available. Create your own, stunning website.</strong>
+            <strong>Apa itu Blog? Blog adalah sebuah aplikasi website yang berisi konten-konten tertentu. Dikutip dari Wikipedia, blog atau web log adalah bentuk aplikasi web yang berbentuk tulisan-tulisan atau biasa disebut posting pada sebuah sebuah halaman website. Situs website atau blog ini biasanya dapat diakses oleh semua pengguna internet sesuai dengan topik dan tujuan pengguna blog tersebut. 
+            </strong>
           </p>
           <a href="/articles" class="btn btn-outline-white btn-lg">
             <i class="fas fa-arrow-left ml-2"> Back To Article</i>

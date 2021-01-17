@@ -14,11 +14,12 @@
 			Semua Postingan
 			<span class="badge" style="float:right;">{{ $all_thread->count() }}</span>
 		</a>
-		@foreach($tags as $tag)
+		@foreach($tag_thread as $tag)
 		<a href="{{ route('forum.index', ['tags' => $tag->name]) }}" class="list-group-item">
 			{{ \Illuminate\Support\Str::title($tag->name) }}
-			<span class="badge" style="float:right;">0</span>
+			<span class="badge" style="float:right;">{{ $tag->threads_count }}</span>
 		</a>
 		@endforeach
 	</ul>
 </div>
+

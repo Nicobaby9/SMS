@@ -20,8 +20,9 @@ class ThreadController extends Controller
      */
     public function index(Request $request)
     {
-        $tag_thread = DB::table('tag_thread')->get();
+        $tag_thread = Tag::withCount('threads')->get();
         $all_thread = Thread::all();
+        // dd($tag_thread);
 
         if($request->has('tags')) {
             $tag = Tag::where('name', $request->tags)->first();
