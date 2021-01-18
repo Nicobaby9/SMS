@@ -4,9 +4,10 @@
 
 <div class="content-wrap well" style="border-radius: 15px; background-color: #ebebe0;">
 	<h4 class="pull-right inline-it">{{ $thread->user->fullname }}</h4>
-	<h4 style="font-weight: bold;">{{ $thread->subject }}</h4>
-	<div class="thread-details" style="margin-left: 20px; border-radius: 5px;"> {!! \Michelf\Markdown::defaultTransform($thread->thread) !!}
-	</div>
+
+	<img src="{{ asset('profile_images/'.$thread->user->photo) }}" style="border-radius: 50%; float: right; margin-right: 10px;" width="40" height="40">
+	<h4 style="font-weight: bold;">{{ $thread->subject }} </h4>
+	<div class="thread-details" style="margin-left: 20px; border-radius: 5px;"> {!! \Michelf\Markdown::defaultTransform($thread->thread) !!} </div>
 	<br>
 	Tags :
         @foreach($thread->tags as $tag)
@@ -15,19 +16,19 @@
     <br><br>
 
 	@if(auth()->user()->id == $thread->user_id)
-	<div class="action">
-		<a href="{{ route('forum.edit', $thread->id) }}" class="btn btn-info btn-sm" style="float: left; margin-right: 5px;">Edit</a>
-		<form action="{{ route('forum.destroy', $thread->id) }}" method="post" class="inline-it">
+	<div class="action" >
+		<form action="{{ route('forum.destroy', $thread->id) }}" method="post" class="inline-it pull-right">
 			@csrf
 			@method('DELETE')
-			<input class="btn btn-danger btn-sm" type="submit" value="Delete">
+			<input class="btn btn-danger btn-sm pull-right" type="submit" value="Delete">
 		</form>
+		<a href="{{ route('forum.edit', $thread->id) }}" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">Edit</a>
 	</div>
 	@endif
+    <hr>
 
 </div>
 <hr>
-
 	<h4>Komentar</h4>
 	<!-- Comment/Answers -->
 
@@ -67,9 +68,9 @@
 		<br>
 
 		<!-- Reply/Answers -->
-
 		@foreach($comment->comments as $reply)
-		<div class="small text-info reply-list" style="margin-left: 40px;">
+		<div class="small text-info reply-list" style="margin-left: 40px;">	
+			<h4>Replies</h4>
 			@include('thread.partial.reply-list')
 		</div>
 
@@ -118,7 +119,6 @@
 			</form>
 		</div>
 	</div>
-
 	
 	@endforeach
 	<!-- //COMMENT-FORM -->

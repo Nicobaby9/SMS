@@ -19,7 +19,7 @@ class StudentController extends Controller
 
         // dd($studentst)
 
-        return view('students.index', compact('students', 'layout'));
+        return view('admin.students.index', compact('students', 'layout'));
     }
 
     /**
@@ -32,7 +32,7 @@ class StudentController extends Controller
         $students = Student::all();
         $layout = 'create';
 
-        return view('students.index', compact('students', 'layout'));
+        return view('admin.students.index', compact('students', 'layout'));
     }
 
     /**
@@ -86,7 +86,7 @@ class StudentController extends Controller
         $students = Student::all();
         $layout = 'show';
 
-        return view('students.index', compact('student', 'students', 'layout'));
+        return view('admin.students.index', compact('student', 'students', 'layout'));
     }
 
     /**
@@ -101,7 +101,7 @@ class StudentController extends Controller
         $students = Student::all();
         $layout = 'edit';
 
-        return view('students.index', compact('student', 'students', 'layout'));
+        return view('admin.students.index', compact('student', 'students', 'layout'));
     }
 
     /**

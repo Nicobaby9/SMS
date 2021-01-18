@@ -18,7 +18,7 @@ class ArticleController extends Controller
     {
         $articles = Article::orderBy('created_at', 'desc')->paginate(6);
 
-        return view('article.index', compact('articles'));
+        return view('admin.article.index', compact('articles'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
 
-        return view('article.create');
+        return view('admin.article.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class ArticleController extends Controller
                 'title' => $request->title,
                 'content' => $request->content,
                 'image' => $filename,
-                'slug' => \Str::slug(request('title', '-')),
+                'slug' => \Str::slug(request('title', '-')).'-'.time(),
             ]);
 
             $article->categories()->attach($request->categories);
@@ -84,7 +84,7 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $categories = Category::all();
 
-        return view('article.show', compact('article', 'categories'));
+        return view('admin.article.show', compact('article', 'categories'));
     }
 
     /**

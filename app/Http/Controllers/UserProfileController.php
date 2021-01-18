@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Comment;
+use App\Model\{Comment, Tag};
 use App\{User, Thread, Feed};
 use File;
 
 class UserProfileController extends Controller
 {
     public function index(User $user) {   
-        $threads = Thread::where('user_id', $user->id)->latest()->get();
-        $comments = Comment::where('user_id', $user->id)->where('commentable_type', 'App\Thread')->get();
         $feeds = $user->feeds;
         $profile = User::where('id', auth()->user()->id)->first();
-        // dd($profile->id);
 
-        return view('profile.index', compact('feeds', 'threads', 'comments', 'user', 'profile'));
+        return view('profile.index', compact('feeds', 'user', 'profile'));
     }
 
     public function photo() {
@@ -36,7 +33,6 @@ class UserProfileController extends Controller
        	]);
 
        	$profile = User::find($id);
-       	// dd($profile->photo);
 
        	if ($files = $request->file('photo')) {
        		// Define upload path
@@ -53,7 +49,6 @@ class UserProfileController extends Controller
 			$imagemodel->save();
 
             $a = File::delete($destinationPath . $profile->photo); 
-            // dd($a);
         }
 
         return redirect(route('user_profile', auth()->user()))->withMessage('Berhasil mengupdate data profile');

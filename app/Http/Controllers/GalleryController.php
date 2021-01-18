@@ -17,7 +17,7 @@ class GalleryController extends Controller
     {
         $galleries = Gallery::all();
 
-        return view('gallery.index', compact('galleries'));
+        return view('admin.gallery.index', compact('galleries'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('gallery.create');
+        return view('admin.gallery.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class GalleryController extends Controller
                 'size' => $imageSize,
             ]);
 
-            return redirect(route('gallery.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('admin.gallery.index'))->with(['success' => 'Data was successfully created.']);
         }
     }
 
@@ -85,7 +85,7 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::where('id', $id)->first();
 
-        return view('gallery.edit', compact('gallery'));
+        return view('admin.gallery.edit', compact('gallery'));
     }
 
     /**
@@ -124,7 +124,7 @@ class GalleryController extends Controller
             ]);
 
 
-            return redirect(route('gallery.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('admin.gallery.index'))->with(['success' => 'Data was successfully created.']);
         }else {
             $gallery->update([
                 'title' => $request->title,
@@ -145,6 +145,6 @@ class GalleryController extends Controller
 
         $gallery->delete();
 
-        return redirect(route('gallery.index'))->with(['success' => 'Data was successfully deleted.']);
+        return redirect(route('admin.gallery.index'))->with(['success' => 'Data was successfully deleted.']);
     }
 }

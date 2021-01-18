@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Frontend;
-use App\Thread;
+use App\{Thread, Article};
 
 class HomeController extends Controller
 {
@@ -26,7 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         $threads = Thread::paginate(15);
+        $articles = Article::all();
+        $latest_thread = Thread::orderBy('created_at', 'desc')->first();
 
-        return view('thread.index', compact('threads'));
+        // dd($latest_article);
+
+        return view('admin.dashboard', compact('threads', 'articles', 'latest_thread'));
     }
 }

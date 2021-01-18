@@ -29,7 +29,10 @@
             <strong>Apa itu Blog? Blog adalah sebuah aplikasi website yang berisi konten-konten tertentu. Dikutip dari Wikipedia, blog atau web log adalah bentuk aplikasi web yang berbentuk tulisan-tulisan atau biasa disebut posting pada sebuah sebuah halaman website. Situs website atau blog ini biasanya dapat diakses oleh semua pengguna internet sesuai dengan topik dan tujuan pengguna blog tersebut. 
             </strong>
           </p>
-
+          <br>
+          @foreach($categories as $category)
+            <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-sm btn-primary"> {{ $category->name }} </a>
+          @endforeach
         </div>
         <!-- Content -->
       </section>
@@ -56,7 +59,7 @@
                 <a href="https://mdbootstrap.com/education/tech-marketing/automated-app-introduction/" target="_blank">
                   <div class="mask rgba-white-slight"></div>
                 </a>
-                <lead class="float-left">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</lead>
+                <p class="float-left" style="margin-left: 6px; font-size: 11px;">{{ \Carbon\Carbon::parse($article->created_at)->format('D, d-M-Y') }} &nbsp;</p>
               </div>
                 <h4 class="card-title" style="height: 26px;">{{ \Illuminate\Support\Str::title($article->title) }}</h4>
 
@@ -65,7 +68,7 @@
                 <!--Text-->
                 <p class="card-text" style="font-size: 12px;">{!! Illuminate\Support\Str::words($article->content, 21) !!}</p>
               </div>
-                <a href="{{ route('front.article.show', $article->slug) }}" class="btn btn-info col-md-12">Read more...</a>
+                <a href="{{ route('front.article.show', $article->slug) }}" class="btn btn-info col-md-12">Lanjukan baca...</a>
 
             </div>
             <!--/.Card-->

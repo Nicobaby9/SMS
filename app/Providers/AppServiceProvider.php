@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Model\{Tag, Category};
+use App\Thread;
 use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('tags', Tag::all());
         View::share('categories', Category::all());
+        View::share('tag_thread', Tag::withCount('threads')->get());
+        View::share('all_thread', Thread::all());
     }
 }

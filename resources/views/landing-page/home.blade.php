@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <a href="https://www.sman1patianrowo.sch.id/" class="logo mr-auto"><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="" class="img-fluid"></a>
+          <a href="#" class="logo mr-auto"><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="" class="img-fluid"></a>
           <br>
           <h1 class="mb-5" style="font-size: 54px;">SMA NEGERI 1 MONTREAL</h1>
         </div>
@@ -120,74 +120,5 @@
       </div>
     </div>
   </section>
-
-  <!-- Call to Action -->
-  <section class="call-to-action text-black text-center" id="article">
-    <!-- Posts section -->
-    <div class="blog">
-     <div class="container">
-     <h1 class="text-center">Blog</h1>
-      <div class="row">
-
-      @foreach($articles as $article)
-      <div class="col-md-4 col-lg-4 col-sm-12">
-        <div class="card" style="height: 450px; border-radius: 10px;">
-         <div class="card-img">
-          <img src="{{ asset('article/'.$article->image) }}" class="img-fluid col-md-12" style="height: 180px; margin-top: 16px;">
-         </div>
-         <div class="card-body">
-           <h4 class="card-title" style="height: 60px;">{{ $article->title }}</h4>
-            <p class="card-text">
-              {!! Illuminate\Support\Str::limit($article->content, 230) !!}
-            </p>
-         </div>
-         <div class="card-footer">
-          <a href="{{ route('front.article.show', $article->slug) }}" class="card-link">Read more</a>
-         </div>
-        </div>
-      </div>
-      @endforeach
-     </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item">
-              <a href="#">About</a>
-            </li>
-            <li class="list-inline-item">&sdot;</li>
-            <li class="list-inline-item">
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-          <p class="text-muted small mb-4 mb-lg-0">Copyright &copy; <a href="https://adminlte.io">SMAN 1 PATIANROWO</a>. All Rights Reserved.</p>
-        </div>
-        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   @endsection

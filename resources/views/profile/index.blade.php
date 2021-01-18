@@ -15,21 +15,21 @@
 			{{ $user->fullname }}
 		</h3>
 		<table style="width:100%">
-		  <tr>
-		    <th>Email </th>
-		    <th> : &nbsp;</th>
-		    <td> {{ $user->email }}</td>
-		  </tr>
-		  <tr>
-		    <th>Username</th>
-		    <th> : &nbsp;</th>
-		    <td> {{ '@'.$user->username }}</td>
-		  </tr>
-		  <tr>
-		    <th>Phone</th>
-		    <th> : &nbsp;</th>
-		    <td> {{ $user->phone }}</td>
-		  </tr>
+		  	<tr>
+			    <th>Email </th>
+			    <th> : &nbsp;</th>
+			    <td> {{ $user->email }}</td>
+			</tr>
+			<tr>
+			    <th>Username</th>
+			    <th> : &nbsp;</th>
+			    <td> {{ '@'.$user->username }}</td>
+			</tr>
+			<tr>
+			    <th>Phone</th>
+			    <th> : &nbsp;</th>
+			    <td> {{ $user->phone }}</td>
+			</tr>
 		</table>
 		<br> 
 		@if($user->username != auth()->user()->username)
@@ -64,7 +64,7 @@
 							<h4 class="panel-title">{{ $feed->type }}</h4>
 						</div>
 						<div class="panel-body">
-							{{ $user->fullname }} created new comment :  {{ $feed->feedable['body'] }} on <a href="{{route('forum.show', $feed->id )}}" title=""> {{ $feed->subject }} </a>
+							{{ $user->fullname }} created new comment :  {{ $feed->feedable['body'] }}
 						</div>
 					</div>
 				@endif
@@ -72,7 +72,6 @@
 
 		@empty
 			There is no feed activity.
-
 		@endforelse
 	</div>
 @endsection

@@ -13,13 +13,12 @@
 
 Route::resource('/', 'PageController', ['only' => 'index']);
 Route::get('/galery', 'PageController@gallery');
-Route::get('/article/{slug}', 'PageController@show')->name('front.article.show');
 Route::get('/articles', 'PageController@article')->name('articles.index');
+Route::get('/article/{slug}', 'PageController@show')->name('front.article.show');
 Route::get('/articles/category', 'PageController@article')->name('categories.article.index');
 Route::post('/article/{slug}', 'CommentController@addArticleComments')->name('articlecomment.store');
 
 Auth::routes();
-
 
 Route::resource('/forum', 'ThreadController');
 Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
@@ -48,13 +47,14 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['prefix' => 'administrator','middleware' => 'auth'], function() {
 	
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 	Route::resource('/students', 'StudentController');
 	Route::resource('/profil', 'ProfileController');
 	Route::resource('/setting/front-end', 'FrontEndController');
 	Route::resource('/gallery', 'GalleryController');
 	Route::resource('/article', 'ArticleController');
 	Route::resource('/category', 'CategoryController');
+	Route::resource('/books', 'BookController');
 	
 });
 

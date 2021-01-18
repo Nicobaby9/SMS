@@ -18,10 +18,13 @@
             <strong>Apa itu Blog? Blog adalah sebuah aplikasi website yang berisi konten-konten tertentu. Dikutip dari Wikipedia, blog atau web log adalah bentuk aplikasi web yang berbentuk tulisan-tulisan atau biasa disebut posting pada sebuah sebuah halaman website. Situs website atau blog ini biasanya dapat diakses oleh semua pengguna internet sesuai dengan topik dan tujuan pengguna blog tersebut. 
             </strong>
           </p>
-          <a href="/articles" class="btn btn-outline-white btn-lg">
-            <i class="fas fa-arrow-left ml-2"> Back To Article</i>
+          <a href="/articles" class="btn btn-default btn-sm">
+            <i class="fas fa-arrow-left ml-2"> Back To Article </i>
           </a>
-
+          <hr>
+          @foreach($categories as $category)
+            <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-sm btn-primary"> {{ $category->name }} </a>
+          @endforeach
         </div>
         <!-- Content -->
       </section>

@@ -1,4 +1,4 @@
-@extends('../layouts/admin')
+@extends('layouts/admin')
 
 @section('content')
 
@@ -11,7 +11,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col-md-12">
-                @include('students/studentlist')
+                @include('admin/students/studentlist')
             </section>
             <section class="col-md-4">
                 
@@ -31,7 +31,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col">
-                @include('students/studentlist')
+                @include('admin/students/studentlist')
             </section>
             <section class="col">
                 <div class="card mb-3">
@@ -96,7 +96,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col">
-                @include('students/studentlist')
+                @include('admin/students/studentlist')
             </section>
             <section class="col">
                 <div class="card mb-3">
@@ -169,7 +169,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col-md-7">
-                @include('students/studentlist')
+                @include('admin/students/studentlist')
             </section>
             <section class="col-md-5">
                 <div class="card mb-3">

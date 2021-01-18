@@ -3,36 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title> Dashboard </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('js/app.js') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  <!-- Glyphicon -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
+  <!-- Selectize Js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
   @yield('css') 
   @yield('jav')
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
   @include('thread.partial.error')
@@ -65,8 +63,6 @@
   </nav>
   <!-- /.navbar -->
 
-    
-
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -92,19 +88,23 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ url('/administrator/dashboard') }}" class="nav-link {{ (request()->is('administrator/dashboard')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              Dashboard
+              <p>
+                Dashboard
+              </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/students') }}" class="nav-link active">
+            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
-              Student
+              <p>
+                Students
+              </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/setting/front-end')}}" class="nav-link">
+            <a href="{{ url('/administrator/setting/front-end')}}" class="nav-link {{ (request()->is('administrator/setting/front-end')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Front-End Setting
@@ -112,7 +112,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('gallery.index')}}" class="nav-link">
+            <a href="{{ url('/administrator/gallery') }}" class="nav-link {{ (request()->is('administrator/gallery')) ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery
@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('article.index')}}" class="nav-link">
+            <a href="{{ url('/administrator/article') }}" class="nav-link">
               <i class="nav-icon far fa-edit"></i>
               <p>
                 Article
@@ -128,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('category.index')}}" class="nav-link">
+            <a href="{{ url('/administrator/category') }}" class="nav-link">
               <i class="nav-icon far fa-object-group"></i>
               <p>
                 Category
@@ -138,8 +138,9 @@
           </li>
           <li class="nav-item">
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="nav-icon far fa-circle text-danger"></i>
+              <i class="nav-icon far fa-circle text-danger">
                 {{ __('Logout') }}
+              </i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
                 @csrf
@@ -158,7 +159,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer float-left">
-    <strong>Copyright &copy; 2020 <a href="https://adminlte.io">SMAN 1 PATIANROWO</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
   </footer>
 
@@ -170,14 +171,18 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.j') }}s"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $(".nav-item a").on("click", function(){  
+    $(".nav-item").find(".active").removeClass("active");  
+    $(this).addClass("active");
+  });
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
