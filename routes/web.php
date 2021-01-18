@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::resource('/forum', 'ThreadController');
 Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
+Route::get('/forum/search','SearchController@search')->name('thread.search');
 
 Route::group(['middleware' => 'auth'], function() {
 

@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\{Thread, Tag_Thread};
+use App\Model\{Thread, Tag_Thread};
 
 class Tag extends Model
 {

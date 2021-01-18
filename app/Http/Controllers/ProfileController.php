@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\{User, Thread};
+use App\Model\{User, Thread};
 use Auth;
 use File;
 

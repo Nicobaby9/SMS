@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Comment, Tag};
-use App\{User, Thread, Feed};
+use App\Model\{Comment, Tag, User, Thread, Feed};
 use File;
 
 class UserProfileController extends Controller
@@ -32,7 +31,7 @@ class UserProfileController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        	]);
 
-       	$profile = User::find($id);
+       	$profile = User::find($id); 
 
        	if ($files = $request->file('photo')) {
        		// Define upload path
@@ -48,7 +47,9 @@ class UserProfileController extends Controller
 			$imagemodel->photo="$profileImage";
 			$imagemodel->save();
 
-            $a = File::delete($destinationPath . $profile->photo); 
+            if($profile->photo != 'profile.png') {
+                $a = File::delete($destinationPath . $profile->photo); 
+            }
         }
 
         return redirect(route('user_profile', auth()->user()))->withMessage('Berhasil mengupdate data profile');
@@ -59,7 +60,7 @@ class UserProfileController extends Controller
 
     	// dd($username);
 
-    	return view('profile.edit', compact('profile'));
+    	return view('profile.edit', compact('profile', 'user'));
     }
 
     public function update(Request $request, $id) {

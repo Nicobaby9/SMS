@@ -1,12 +1,11 @@
 <div class="col-md-3">
 	<!-- SEARCH & CREATE POST -->
-	<form method="get" action="/thread/search">
+	<form method="get" action="/forum/search">
         <div class="form-group">
-            <input type="text" name="query" class="form-control" placeholder="Search">
+            <input type="text" name="search" class="form-control" placeholder="Search" value="{{ old('search') }}">
         </div>
-		<a href="{{ route('forum.create') }}" class="btn btn-success form-control ">Posting Sesuatu</a>
-		<br>
     </form>
+	<a href="{{ route('forum.create') }}" class="btn btn-success form-control ">Posting Sesuatu</a>
     <!-- TAGS -->
 	<ul class="list-group">
 		<h4> Tags </h4>

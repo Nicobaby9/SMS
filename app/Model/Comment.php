@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\{User, Feed};
+use App\Model\{User, Feed};
 use App\Traits\{CommentableTrait, LikeableTrait, ActivityFeedTrait};
 
 class Comment extends Model

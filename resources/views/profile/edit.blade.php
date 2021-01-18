@@ -4,6 +4,40 @@
 	<h2> Edit User </h2>
 @endsection
 
+@section('category')
+<div class="col-md-12">
+ <a class="btn btn-success btn-xs pull-right" href="/forum"> Forum </a> 
+    
+</div>
+    <div class="col-md-3">
+        <div class="dp text-center">
+            <img src="{{ asset('profile_images/'. $profile->photo) }}" style="border-radius: 49%;" width="200" height="200">
+            <br><br>
+            <p style="font-size: 9px; float: "> *profile created since : {{ $profile->created_at->diffForHumans() }} / {{ \Carbon\Carbon::parse($profile->created_at)->format('d-m-Y') }} </p>
+        </div>
+        <h3>
+            {{ $profile->fullname }}
+        </h3>
+        <table style="width:100%">
+            <tr>
+                <th>Email </th>
+                <th> : &nbsp;</th>
+                <td> {{ $profile->email }}</td>
+            </tr>
+            <tr>
+                <th>profilename</th>
+                <th> : &nbsp;</th>
+                <td> {{ '@'.$profile->profilename }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <th> : &nbsp;</th>
+                <td> {{ $profile->phone }}</td>
+            </tr>
+        </table>
+    </div>
+@endsection
+
 @section('content')
 
 @if($profile->username != auth()->user()->username)

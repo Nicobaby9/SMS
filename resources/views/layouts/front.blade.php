@@ -93,7 +93,7 @@
     </div>
     <div class="row">
       @section('category')
-        @include('layouts.partials.categories')
+      @include('layouts.partials.categories')
       @show
       <div class="col-md-9">
         @yield('content')

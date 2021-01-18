@@ -1,8 +1,5 @@
-@extends('layouts.front')
-
-@section('content')
 <div class="list-group">
-	@forelse($threads as $thread)
+	@forelse($threadz as $thread)
 
 	<!-- <a href="{{ route('forum.show', $thread->id) }}" class="list-group-item" style="border-radius: 14px; background-color: black; color: white;">
 		<h3 class="list-group-item-heading" style="font-weight: bold; color: #f2f2f2">{{ $thread->subject }}</h3>
@@ -36,4 +33,3 @@
 		<h5>Tidak Ada Postingan</h5>
 	@endforelse
 </div>
-@endsection

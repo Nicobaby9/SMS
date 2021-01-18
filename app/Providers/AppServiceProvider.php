@@ -4,8 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Model\{Tag, Category};
-use App\Thread;
+use App\Model\{Tag, Category, Thread};
 use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider

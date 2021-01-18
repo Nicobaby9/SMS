@@ -1,7 +1,7 @@
 <?php 
 namespace App\Traits;
 
-use App\Feed;
+use App\Model\Feed;
 
 trait ActivityFeedTrait
 {

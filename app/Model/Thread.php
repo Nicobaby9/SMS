@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\{User, Feed, Tag_Thread};
-use App\Model\{Comment, Like, Tag};
+use App\Model\{Comment, Like, Tag, User, Feed, Tag_Thread};
+use App\Traits\CommentableTrait;
 
 class Thread extends Model
 {   
-    use Traits\CommentableTrait;
+    use CommentableTrait;
 
     protected $fillable = ['subject', 'thread', 'user_id'];
 

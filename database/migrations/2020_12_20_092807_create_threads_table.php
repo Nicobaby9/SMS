@@ -17,7 +17,6 @@ class CreateThreadsTable extends Migration
             $table->bigIncrements('id');
             $table->string('subject');
             $table->text('thread');
-            $table->string('type');
             $table->timestamps();
         });
     }

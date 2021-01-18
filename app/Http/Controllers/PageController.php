@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Frontend, Gallery, Category};
-use App\Article;
+use App\Model\{Frontend, Gallery, Category, Article};
 
 class PageController extends Controller
 {

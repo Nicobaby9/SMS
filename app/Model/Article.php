@@ -1,14 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Category;
-use App\User;
+use App\Model\{Category, User};
+use App\Traits\{CommentableTrait};
 
 class Article extends Model
 {
-    use Traits\CommentableTrait;
+    use CommentableTrait;
 
     protected $fillable = ['title', 'content', 'user_id', 'image', 'slug'];
 

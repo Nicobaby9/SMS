@@ -46,7 +46,7 @@
 
 		@forelse($feeds as $feed)
 
-			@if($feed->feedable_type == 'App\Thread')
+			@if($feed->feedable_type == 'App\Model\Thread')
 				@if($feed->feedable['thread'] != null)
 					<div class="panel panel-default">
 						<div class="panel-heading">

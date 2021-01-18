@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
-use App\Model\Category;
+use App\Model\{Category, Article};
 use File;
 
 class ArticleController extends Controller

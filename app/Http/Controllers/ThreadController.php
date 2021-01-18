@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Model\{Comment, Tag};
-use App\Thread;
+use App\Model\{Comment, Tag, Thread};
 
 class ThreadController extends Controller
 {

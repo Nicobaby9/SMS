@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Comment;
-use App\{Thread, Article};
 use App\Traits\CommentableTrait;
 use App\Notifications\RepliedToThread;
+use App\Model\{Thread, Article, Comment};
 
 class CommentController extends Controller
 {

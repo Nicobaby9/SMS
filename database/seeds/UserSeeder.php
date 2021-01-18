@@ -11,10 +11,36 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'fullname' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
+        if (!\DB::table('users')->find(1)) {
+            \DB::table('users')->insert([
+                0 => [
+                    'id'             => 1,
+                    'fullname'       => 'Lando Norris',
+                    'email'          => 'admin@gmail.com',
+                    'phone'          => '081518890652',
+                    'password'       =>  Hash::make('admin'),
+                    'photo'          => 'no_profile.png',
+                    'username'       => 'landonorri_s',
+                    'role'           => 'admin',
+                    'remember_token' => 'RvlORzs8dyG8IYqssJGcuOY2F0vnjBy2PnHHTX2MoV7Hh6udjJd6hcTox3un',
+                    'created_at'     => '2016-07-29 15:13:02',
+                    'updated_at'     => '2016-08-18 14:33:50',
+                ],
+
+                1 => [
+                    'id'             => 2,
+                    'fullname'       => 'Sebastian Vettel',
+                    'email'          => 'user@gmail.com',
+                    'phone'          => '081518890652',
+                    'password'       =>  Hash::make('user'),
+                    'photo'          => 'no_profile.png',
+                    'username'       => 'seb5',
+                    'role'           => 'user',
+                    'remember_token' => 'RvlORzs8dyG8IYqssJGcuOY2F0vnjBy2PnHHTX2MoV7Hh6udjJd6hcTox3un',
+                    'created_at'     => '2016-07-29 15:13:02',
+                    'updated_at'     => '2016-08-18 14:33:50',
+                ],
+            ]);
+        }
     }
 }
