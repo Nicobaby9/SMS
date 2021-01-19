@@ -23,7 +23,7 @@
         <div class="alert alert-danger"  style="text-align: center;">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>Data NISN tidak boleh sama.</li>
+                    {{ $error }}
                 @endforeach
             </ul>
         </div>

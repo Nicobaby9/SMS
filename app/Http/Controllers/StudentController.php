@@ -44,7 +44,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nisn' => 'required|unique:students|min:8|max:10',
+            'nisn' => 'required|unique:students|min:8|max:12',
             'fullname' => 'required|max:150',
             'religion' => 'required',
             'gender' => 'required',

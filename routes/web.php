@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::group(['prefix' => 'administrator','middleware' => 'auth'], function() {
+Route::group(['prefix' => 'administrator','middleware' => ['auth', 'RoleChecker:admin']], function() {
 	
 	Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 	Route::resource('/students', 'StudentController');
