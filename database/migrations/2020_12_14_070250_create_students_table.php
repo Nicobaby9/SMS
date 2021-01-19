@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->string('speciality');
             $table->string('address');
             $table->date('start_year')->nullable();
-            $table->date('end_year');
+            $table->date('end_year')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

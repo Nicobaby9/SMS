@@ -53,7 +53,12 @@
 							<h4 class="panel-title">{{ $feed->type }}</h4>
 						</div>
 						<div class="panel-body">
-							{{ $user->fullname }} created new thread : <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }}</a>
+							@if(auth()->user()->id == $user->id)
+							You created new thread :
+							@else
+							{{ $user->fullname }} created new thread : 
+							@endif
+							" <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }} "</a>
 						</div>
 					</div>
 				@endif
@@ -64,7 +69,12 @@
 							<h4 class="panel-title">{{ $feed->type }}</h4>
 						</div>
 						<div class="panel-body">
-							{{ $user->fullname }} created new comment :  {{ $feed->feedable['body'] }}
+							@if(auth()->user()->id == $user->id)
+							You created new comment :
+							@else
+							{{ $user->fullname }} created new comment : 
+							@endif
+							" {{ $feed->feedable['body'] }} "
 						</div>
 					</div>
 				@endif

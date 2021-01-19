@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <img src="https://allea.org/wp-content/uploads/2019/06/shutterstock_520698799small-1500x430.jpg" class="card-img-top" alt="..." style="height: 200px;">
+    <img src="https://allea.org/wp-content/uploads/2019/06/shutterstock_520698799small-1500x430.jpg" class="card-img-top" alt="..." style="height: 180px;">
     <div class="card-body">
         <h2 class="card-title" style="font-weight: bold;">Daftar Siswa</h2>
         <a class="btn btn-sm btn-info active" href="{{ route('students.create') }}" style="float:right;">Tambah Data</a>

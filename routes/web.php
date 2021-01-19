@@ -56,6 +56,9 @@ Route::group(['prefix' => 'administrator','middleware' => ['auth', 'RoleChecker:
 	Route::resource('/article', 'ArticleController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/books', 'BookController');
+
+	Route::get('/export-data', 'StudentExcelController@studentexport')->name('export.student');
+	Route::post('/import-data', 'StudentExcelController@studentimport')->name('import.student');
 	
 });
 
