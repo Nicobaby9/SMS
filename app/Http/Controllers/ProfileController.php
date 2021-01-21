@@ -81,8 +81,7 @@ class ProfileController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg',
             'phone' => 'required|min:10|max:14',
         ]);
-
-        dd('ase');
+        
 
         if ($request['photo'] == null) {
             if ($request->hasFile('photo')) {

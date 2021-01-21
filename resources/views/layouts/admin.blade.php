@@ -96,10 +96,37 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-users"></i>
+            <a href="{{ url('/administrator/article') }}" class="nav-link {{ (request()->is('administrator/article')) ? 'active' : '' }}">
+              <i class="nav-icon far fa-edit"></i>
               <p>
-                Students
+                Article
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/category') }}" class="nav-link {{ (request()->is('administrator/category')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-th-large"></i>
+              <p>
+                Article Category
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/books') }}" class="nav-link {{ (request()->is('administrator/books')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Book
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/books') }}" class="nav-link {{ (request()->is('administrator/books-category')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-th-list"></i>
+              <p>
+                Book Category
+                <span class="badge badge-info right"></span>
               </p>
             </a>
           </li>
@@ -118,21 +145,12 @@
                 Gallery
               </p>
             </a>
-          </li>
+          </li>          
           <li class="nav-item">
-            <a href="{{ url('/administrator/article') }}" class="nav-link">
-              <i class="nav-icon far fa-edit"></i>
+            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Article
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/administrator/category') }}" class="nav-link">
-              <i class="nav-icon far fa-object-group"></i>
-              <p>
-                Category
-                <span class="badge badge-info right"></span>
+                Students
               </p>
             </a>
           </li>
@@ -177,10 +195,6 @@
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.j') }}s"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $(".nav-item a").on("click", function(){  
-    $(".nav-item").find(".active").removeClass("active");  
-    $(this).addClass("active");
-  });
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 4 -->
