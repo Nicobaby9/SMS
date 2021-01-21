@@ -67,7 +67,7 @@
                         <div class="form-group text-center">
                             <label>Image</label>
                             <br>
-                            <img src="{{ asset('storage/books/'.$book->image) }}" style="height: 250px; width: 400px; border-radius: 15px;">
+                            <img src="{{ asset('storage/books/'.$book->image) }}" style="height: 600px; width: 350px; border-radius: 15px;">
                         </div>
                     </form>
                 </div>
@@ -83,8 +83,7 @@
                         <div class="form-group">
                             <label>Category</label>
                             <select name="category_id" id="tags" type="text">
-                                <option> {{ $book->category->title }}</option>
-                                @foreach($categories as $category)
+                                <option value="{{ $book->category_id }}"> {{ $book->category->title }}</option>                                @foreach($categories as $category)
                                     <option value="{{ $category->id }}"> {{ $category->title }}</option>
                                 @endforeach
                             </select>
@@ -113,11 +112,12 @@
                             <label>Kode Buku</label>
                             <input name="code" type="text" class="form-control" placeholder="Kode Buku" value="{{ $book->code }}">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
                             <label>Status Buku</label>
-                            <select name="status" id="tagz" type="text">
-                                <option value="1" class="btn btn-xs btn-success"> Available </option>
-                                <option value="0" class="btn btn-xs btn-danger"> Dipinjam </option>
+                            <br>
+                            <select class="form-control" name="status" id="active">
+                                <option class="btn btn-xs btn-success" value="1" @if (old('active') == 1) selected @endif>Available</option>
+                                <option class="btn btn-xs btn-danger" value="0" @if (old('active') == 0) selected @endif>Dipinjam</option>
                             </select>
                         </div>
                         <div class="form-group">

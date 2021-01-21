@@ -32,9 +32,9 @@
             <td> {{ $book->publish_date }} </td>
             <td> {{ $book->language }} </td>
             @if($book->status == 1)
-            <td> <p class="btn btn-success btn-sm"> Available </p> </td>
+            <td> <p class=" btn-success btn-sm"> Available </p> </td>
             @elseif($book->status == 0)
-            <td> <p class="btn btn-danger btn-sm"> Dipinjam </p> </td>
+            <td> <p class=" btn-danger btn-sm"> Dipinjam </p> </td>
             @endif
             <td>
                 <a href="{{ route('books.show', [$book->id]) }}" class="btn btn-sm btn-info"> Tampilkan </a>

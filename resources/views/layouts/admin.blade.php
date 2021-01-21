@@ -122,7 +122,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/books') }}" class="nav-link {{ (request()->is('administrator/books-category')) ? 'active' : '' }}">
+            <a href="{{ url('/administrator/books-category') }}" class="nav-link {{ (request()->is('administrator/books-category')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-th-list"></i>
               <p>
                 Book Category
