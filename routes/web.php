@@ -58,8 +58,9 @@ Route::group(['prefix' => 'administrator','middleware' => ['auth', 'RoleChecker:
 	Route::resource('/books', 'BookController');
 	Route::resource('/books-category', 'BookCategoryController');
 
-	Route::get('/export-data', 'StudentExcelController@studentexport')->name('export.student');
-	Route::post('/import-data', 'StudentExcelController@studentimport')->name('import.student');
+	Route::get('/student-export-data', 'ExcelController@studentexport')->name('export.student');
+	Route::post('/student-import-data', 'ExcelController@studentimport')->name('import.student');
+	Route::get('/book-export-data', 'ExcelController@bookexport')->name('export.book');
 	
 });
 

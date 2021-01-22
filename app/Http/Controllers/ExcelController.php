@@ -8,7 +8,7 @@ use App\Model\Student;
 use App\Exports\StudentExport;
 use App\imports\StudentImport;
 
-class StudentExcelController extends Controller
+class ExcelController extends Controller
 {
     public function studentexport() {
         return Excel::download(new StudentExport, 'datastudents.xlsx');
@@ -22,5 +22,9 @@ class StudentExcelController extends Controller
         Excel::import(new StudentImport, public_path('imports/DataStudent/'.$filename));
 
         return redirect(route('admin.students.index'))->withMessage('Berhasil Menginport data,');
+    }
+
+    public function bookexport() {
+        return Excel::download(new StudentExport, 'databuku.xlsx');
     }
 }

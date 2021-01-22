@@ -48,7 +48,7 @@
             <p>Student Total</p>
           </div>
           <div class="icon">
-            <i class="fa fa-address-book"></i>
+            <i class="fa fa-child"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -63,7 +63,7 @@
             <p>Total Buku</p>
           </div>
           <div class="icon">
-            <i class="ion ion-pie-graph"></i>
+            <i class="fa fa-book"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
