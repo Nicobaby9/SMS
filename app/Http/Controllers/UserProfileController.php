@@ -10,9 +10,11 @@ class UserProfileController extends Controller
 {
     public function index(User $user) {   
         $feeds = $user->feeds;
+        $feedas = Feed::where('user_id', $user->id)->paginate(10);
+        // dd($feedas);
         $profile = User::where('id', auth()->user()->id)->first();
 
-        return view('profile.index', compact('feeds', 'user', 'profile'));
+        return view('profile.index', compact('feeds', 'user', 'profile', 'feedas'));
     }
 
     public function photo() {

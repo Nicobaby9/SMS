@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Thread, Article, Frontend, User};
+use App\Model\{Thread, Article, Frontend, User, Book, Student};
 
 class HomeController extends Controller
 {
@@ -28,9 +28,11 @@ class HomeController extends Controller
         $articles = Article::all();
         $latest_thread = Thread::orderBy('created_at', 'desc')->first();
         $all_user = User::all();
+        $books = Book::all();
+        $students = Student::all();
 
         // dd($latest_article);
 
-        return view('admin.dashboard', compact('threads', 'articles', 'latest_thread', 'all_user'));
+        return view('admin.dashboard', compact('threads', 'articles', 'latest_thread', 'all_user', 'books', 'students'));
     }
 }

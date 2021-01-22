@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form role="form" action="{{ route('category.update', $category->id) }}" method="post">
+    <form role="form" action="{{ route('article-category.update', $category->id) }}" method="post">
         @csrf
         @method('PATCH')
         <div class="form-group">

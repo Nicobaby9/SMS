@@ -2,7 +2,6 @@
 
 @section('category')
 <div class="col-md-12">
- <a class="btn btn-success btn-xs pull-right" href="/forum"> Forum </a> 
 	
 </div>
 	<div class="col-md-3">
@@ -41,10 +40,10 @@
 @endsection
 
 @section('content')
-	<div>
+	<div class="row">
 		<h3>{{ $user->fullname }}'s latest activity</h3>
 
-		@forelse($feeds as $feed)
+		@forelse($feedas as $feed)
 
 			@if($feed->feedable_type == 'App\Model\Thread')
 				@if($feed->feedable['thread'] != null)
@@ -58,7 +57,7 @@
 							@else
 							{{ $user->fullname }} created new thread : 
 							@endif
-							" <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }} "</a>
+							" <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }} </a> "
 						</div>
 					</div>
 				@endif
@@ -83,5 +82,9 @@
 		@empty
 			There is no feed activity.
 		@endforelse
+		<div class="panel panel-info text-center">
+			{{ $feedas->links() }}
+		</div>
 	</div>
+
 @endsection

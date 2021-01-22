@@ -54,7 +54,7 @@ Route::group(['prefix' => 'administrator','middleware' => ['auth', 'RoleChecker:
 	Route::resource('/setting/front-end', 'FrontEndController');
 	Route::resource('/gallery', 'GalleryController');
 	Route::resource('/article', 'ArticleController');
-	Route::resource('/category', 'CategoryController');
+	Route::resource('/article-category', 'ArticleCategoryController');
 	Route::resource('/books', 'BookController');
 	Route::resource('/books-category', 'BookCategoryController');
 

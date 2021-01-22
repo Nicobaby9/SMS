@@ -1,13 +1,10 @@
 @extends('layouts.front')
 
 @section('head')
-	<h2> Edit User </h2>
+	<h2 style="font-weight: bold;"> EDIT PROFILE </h2>
 @endsection
 
 @section('category')
-<div class="col-md-12">
- <a class="btn btn-success btn-xs pull-right" href="/forum"> Forum </a> 
-    
 </div>
     <div class="col-md-3">
         <div class="dp text-center">
@@ -27,7 +24,7 @@
             <tr>
                 <th>profilename</th>
                 <th> : &nbsp;</th>
-                <td> {{ '@'.$profile->profilename }}</td>
+                <td> {{ '@'.$profile->username }}</td>
             </tr>
             <tr>
                 <th>Phone</th>
@@ -71,27 +68,36 @@
             <br><br>
         </form>
         <br>
+        <div class="card-footer">
+          <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Change Photo</a>
+        </div>
+        <hr>
         <div class="form-group">
-        <form method="post" action="{{ route('photo.store', auth()->user()->id) }}" enctype="multipart/form-data">
-	        @csrf
-			<div class="card-body">
-			    <div class="form-group">
-			        <label for="exampleInputFile">File input</label>
-			        <div class="input-group">
-			            <div class="custom-file">
-			                <input name="photo" type="file" class="form-control" id="exampleInputFile" onchange="loadPreview(this);">
-			                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-			            </div>
-			        </div>
-			    </div>
-			    <div class="form-group" style="text-align: center;">
-			        <img id="preview_img" src="{{ asset('profile_images/'. $profile->photo) }}" class="" width="200" height="150"/>
-			    </div>
-			</div>
-			<div class="card-footer">
-			  <button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</form>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <form method="post" action="{{ route('photo.store', auth()->user()->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Choose File</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input name="photo" type="file" class="form-control" id="exampleInputFile" onchange="loadPreview(this);">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="text-align: center;">
+                                    <img id="preview_img" src="{{ asset('profile_images/'. $profile->photo) }}" style="border-radius: 49%;" width="200" height="150"/>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                              <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 		</div>
     </div>
 </div>

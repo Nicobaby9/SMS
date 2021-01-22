@@ -33,8 +33,6 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-  @include('thread.partial.error')
-  @include('thread.partial.success')
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -104,7 +102,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/category') }}" class="nav-link {{ (request()->is('administrator/category')) ? 'active' : '' }}">
+            <a href="{{ url('/administrator/article-category') }}" class="nav-link {{ (request()->is('administrator/article-category')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-th-large"></i>
               <p>
                 Article Category
@@ -173,7 +171,9 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-   @yield('content')
+    @include('thread.partial.error')
+    @include('thread.partial.success')
+    @yield('content')
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer float-left">

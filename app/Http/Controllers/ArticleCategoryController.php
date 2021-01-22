@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class ArticleCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.article-category.index', compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.article-category.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('admin.category.index'))->with(['success' => 'Product was created.']);
+        return redirect(route('article-category.index'))->with(['success' => 'Product was created.']);
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryController extends Controller
         $category = Category::where('id', $id)->first();
         // dd($category);
 
-        return view('admin.category.edit', compact('category'));
+        return view('admin.article-category.edit', compact('category'));
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('admin.category.index'))->with(['success' => 'data was updated.']);
+        return redirect(route('article-category.index'))->with(['success' => 'data was updated.']);
     }
 
     /**
