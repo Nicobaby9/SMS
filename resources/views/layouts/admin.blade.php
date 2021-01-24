@@ -78,7 +78,7 @@
           <img src="{{ asset('profile_images/'.auth()->user()->photo) }}" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->fullname }}</a>
+          <a class="d-block">{{ Auth::user()->fullname }}</a>
         </div>
       </div>
 
@@ -97,7 +97,7 @@
             <a href="{{ url('/administrator/article') }}" class="nav-link {{ (request()->is('administrator/article')) ? 'active' : '' }}">
               <i class="nav-icon far fa-edit"></i>
               <p>
-                Article
+                Artikel
               </p>
             </a>
           </li>
@@ -105,7 +105,7 @@
             <a href="{{ url('/administrator/article-category') }}" class="nav-link {{ (request()->is('administrator/article-category')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-th-large"></i>
               <p>
-                Article Category
+                Kategori Artikel
                 <span class="badge badge-info right"></span>
               </p>
             </a>
@@ -114,7 +114,7 @@
             <a href="{{ url('/administrator/books') }}" class="nav-link {{ (request()->is('administrator/books')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-book"></i>
               <p>
-                Book
+                Data Buku
                 <span class="badge badge-info right"></span>
               </p>
             </a>
@@ -123,7 +123,7 @@
             <a href="{{ url('/administrator/books-category') }}" class="nav-link {{ (request()->is('administrator/books-category')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-th-list"></i>
               <p>
-                Book Category
+                Kategori Buku
                 <span class="badge badge-info right"></span>
               </p>
             </a>
@@ -132,7 +132,7 @@
             <a href="{{ url('/administrator/setting/front-end')}}" class="nav-link {{ (request()->is('administrator/setting/front-end')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
-                Front-End Setting
+                Set Halaman Utama
               </p>
             </a>
           </li>
@@ -148,7 +148,15 @@
             <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Students
+                Data Siswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-credit-card"></i>
+              <p>
+                Pembayaran SPP
               </p>
             </a>
           </li>

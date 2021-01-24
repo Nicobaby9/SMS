@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Model\Student;
-use App\Exports\StudentExport;
+use App\Exports\{StudentExport, BookExport};
 use App\imports\StudentImport;
 
 class ExcelController extends Controller
@@ -25,6 +25,6 @@ class ExcelController extends Controller
     }
 
     public function bookexport() {
-        return Excel::download(new StudentExport, 'databuku.xlsx');
+        return Excel::download(new BookExport, 'databuku.xlsx');
     }
 }

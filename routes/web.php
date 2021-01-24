@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function() {
 		auth()->user()->unreadNotifications->markAsRead();
 	});
 
+	Route::view('/spp/checkout', 'midtrans.index');
+
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

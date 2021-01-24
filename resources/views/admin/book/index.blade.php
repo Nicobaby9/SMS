@@ -2,14 +2,14 @@
 
 @section('content')
 
-<div class="card mb-3">
+<div class="card mb-3 sm-2 xs-2">
     <div class="card-body text-center">
         <h2 style="font-weight: bold;">Daftar Buku</h2>
         <a class="btn btn-sm btn-info active" href="{{ route('books.create') }}" style="float:right;">Tambah Data</a>
         <br>
         <a href="{{ route('export.book') }}" class="btn btn-xs btn-danger" style="float:left; margin-right: 5px;">Export Data </a>
     </div>
-    <table class="table">
+    <table class="table col-md-12 col-sm-8 col-xs-2">
     <thead class="thead-dark">
         <tr>
             <th scope="col">No.</th>

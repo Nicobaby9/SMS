@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/payment/store', 'App\MidtransController@store');
+
+Route::post('/generate', 'App\MidtransController@generate');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1920c6bfbdb1bbafb19cc59a2c1ea81f",
+    "content-hash": "b0c193a648f7ff080688659b8ab83f96",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -69,46 +69,6 @@
                 "source": "https://github.com/anhskohbo/no-captcha/tree/3.3.0"
             },
             "time": "2020-09-10T02:31:52+00:00"
-        },
-        {
-            "name": "devdojo/chatter",
-            "version": "0.2.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thedevdojo/chatter.git",
-                "reference": "ca1b4d6e76dacbd77867d046f9bdcca0b6a75f61"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thedevdojo/chatter/zipball/ca1b4d6e76dacbd77867d046f9bdcca0b6a75f61",
-                "reference": "ca1b4d6e76dacbd77867d046f9bdcca0b6a75f61",
-                "shasum": ""
-            },
-            "require-dev": {
-                "illuminate/cache": "~5.1.20|5.2.*|5.3.*",
-                "illuminate/console": "~5.1.20|5.2.*|5.3.*",
-                "mockery/mockery": "^0.9.5",
-                "phpunit/phpunit": "~5.7.14"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DevDojo\\Chatter\\": "/src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Tony Lea",
-                    "email": "tony@devdojo.com"
-                }
-            ],
-            "description": "A simple forum package for your laravel app",
-            "support": {
-                "issues": "https://github.com/thedevdojo/chatter/issues",
-                "source": "https://github.com/thedevdojo/chatter/tree/master"
-            },
-            "time": "2017-03-12T21:13:57+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -568,32 +528,33 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.2.0",
+            "version": "7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79"
+                "reference": "414c24961042f6616fb43e23fa69a785f9fc053e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0aa74dfb41ae110835923ef10a9d803a22d50e79",
-                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/414c24961042f6616fb43e23fa69a785f9fc053e",
+                "reference": "414c24961042f6616fb43e23fa69a785f9fc053e",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/promises": "^1.4",
-                "guzzlehttp/psr7": "^1.7",
-                "php": "^7.2.5 || ^8.0",
+                "guzzlehttp/promises": "^1.0",
+                "guzzlehttp/psr7": "^1.6.1",
+                "php": "^7.2.5",
                 "psr/http-client": "^1.0"
             },
             "provide": {
                 "psr/http-client-implementation": "1.0"
             },
             "require-dev": {
+                "ergebnis/composer-normalize": "^2.0",
                 "ext-curl": "*",
-                "php-http/client-integration-tests": "^3.0",
-                "phpunit/phpunit": "^8.5.5 || ^9.3.5",
+                "php-http/client-integration-tests": "dev-phpunit8",
+                "phpunit/phpunit": "^8.5.5",
                 "psr/log": "^1.1"
             },
             "suggest": {
@@ -604,7 +565,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.1-dev"
+                    "dev-master": "7.0-dev"
                 }
             },
             "autoload": {
@@ -646,27 +607,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.2.0"
+                "source": "https://github.com/guzzle/guzzle/tree/master"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/Nyholm",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/alexeyshockov",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/gmponos",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-10-10T11:47:56+00:00"
+            "time": "2020-06-27T08:47:54+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1842,6 +1785,59 @@
                 "source": "https://github.com/michelf/php-markdown/tree/1.9.0"
             },
             "time": "2019-12-02T02:32:27+00:00"
+        },
+        {
+            "name": "midtrans/midtrans-php",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Midtrans/midtrans-php.git",
+                "reference": "94cdca1eba636b75ec3bdcf338e303068f14025c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Midtrans/midtrans-php/zipball/94cdca1eba636b75ec3bdcf338e303068f14025c",
+                "reference": "94cdca1eba636b75ec3bdcf338e303068f14025c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.7.*",
+                "psy/psysh": "0.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Midtrans\\": "Midtrans/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Andri Setiawan",
+                    "email": "andri.setiawan@veritrans.co.id"
+                },
+                {
+                    "name": "Alvin Litani",
+                    "email": "alvin.litani@veritrans.co.id"
+                },
+                {
+                    "name": "Ismail Faruqi",
+                    "email": "ismail.faruqi@veritrans.co.id"
+                }
+            ],
+            "description": "PHP Wrapper for Midtrans Payment API.",
+            "homepage": "https://midtrans.com",
+            "support": {
+                "issues": "https://github.com/Midtrans/midtrans-php/issues",
+                "source": "https://github.com/Midtrans/midtrans-php/tree/v2.3.2"
+            },
+            "time": "2020-07-21T06:42:34+00:00"
         },
         {
             "name": "monolog/monolog",
