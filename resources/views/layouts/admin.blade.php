@@ -65,8 +65,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="..." class="brand-image img-circle elevation-3" style="opacity: .8;">
-      <span class="brand-text font-weight-bold" style="font-size: 18px;">SMAN 1 Montreal</span>
+      <img src="{{ asset('storage/frontend/'.$frontend->logo) }}" alt="..." class="brand-image img-circle elevation-3" style="opacity: .8;">
+      <span class="brand-text font-weight-bold" style="font-size: 18px;">{{ $frontend->school_name }}</span>
       <br>
     </a>
 
@@ -185,7 +185,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer float-left">
-    <strong>Copyright &copy; 2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://adminlte.io">{{ $frontend->school_name }}</a>.</strong>
     All rights reserved.
   </footer>
 

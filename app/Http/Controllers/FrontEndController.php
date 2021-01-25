@@ -14,9 +14,7 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        $frontend = Frontend::all()->first();
-
-        return view('frontend.index', compact('frontend'));
+        return view('frontend.index');
     }
 
     /**

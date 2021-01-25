@@ -48,7 +48,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <a href="/" title=""><img src="https://www.sts-school.edu.in/wp-content/uploads/2019/10/Best-School-in-Meerut-1.png" alt="..." style="width: 50px; height: 50px;"></a>
+      <a href="/" title=""><img src="{{ asset('storage/frontend/'.$frontend->logo) }}" alt="..." style="width: 50px; height: 50px;"></a>
       <a class="navbar-brand" href="/forum">Forum</a>
       <a class="navbar-brand" href="/articles">Article</a>
       <a class="navbar-brand" href="/galery">Galery</a>
@@ -71,7 +71,7 @@
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
               <a href="#" style="color: white;">Contact</a>
-            </li><p class="text-muted small mb-4 mb-lg-0 text-dark">Copyright &copy; <a href="https://adminlte.io" style="color: black;">SMAN 1 MONTREAL</a>. All Rights Reserved.</p>
+            </li><p class="text-muted small mb-4 mb-lg-0 text-dark">Copyright &copy; <a href="https://adminlte.io" style="color: black;">{{ $frontend->school_name }}</a>. All Rights Reserved.</p>
           </ul>
         </div>
         <div class="col-lg-6 text-center text-lg-right my-auto">

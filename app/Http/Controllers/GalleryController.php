@@ -98,8 +98,6 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'subtitle' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

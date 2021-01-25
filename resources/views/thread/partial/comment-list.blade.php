@@ -1,6 +1,6 @@
 @if(!empty($thread->solution))
 	@if($thread->solution == $comment->id) 
-		<button class="btn btn-success pull-right">Jawaban Terpilih</button>
+		<button class="btn btn-success pull-right" id="choosed">Jawaban Terpilih</button>
 	@endif
 @else
 	@can('update', $thread)
@@ -27,7 +27,7 @@
 	function markAsSolution(threadId, solutionId, elem) {
         var csrfToken = '{{csrf_token()}}';
         $.post('{{route('markAsSolution')}}', {solutionId: solutionId, threadId: threadId,_token:csrfToken}, function (data) {
-            $(elem).text('Jawaban Terpilih');
+            $(elem).text('Jawaban Terpilih').addClass('btn btn-success pull-right');
         });
     }
 

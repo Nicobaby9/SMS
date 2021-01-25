@@ -16,9 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('amount');
+            $table->unsignedBigInteger('user_id');
             $table->string('order_id')->nullable();
             $table->string('status')->default('pending');
             $table->string('method');
+            $table->unsignedBigInteger('spp_id');
             $table->timestamps();
         });
     }

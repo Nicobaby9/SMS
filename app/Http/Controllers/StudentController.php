@@ -88,7 +88,7 @@ class StudentController extends Controller
         $students = Student::all();
         $layout = 'show';
 
-        return view('admin.students.index', compact('student', 'students', 'layout'));
+        return view('students.index', compact('student', 'students', 'layout'));
     }
 
     /**

@@ -10,7 +10,7 @@
 
 @section('js')
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" type="text/javascript"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js" type="text/javascript"></script>
 	<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-tYtu_Nk04rToSxt4"></script>
 	<script type="text/javascript"> 
 		var vm = new Vue({

@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function() {
 		auth()->user()->unreadNotifications->markAsRead();
 	});
 
-	Route::view('/spp/checkout', 'midtrans.index');
+	Route::get('/spp/checkout', 'App\MidtransController@create');
 
 });
 
@@ -54,6 +54,8 @@ Route::group(['prefix' => 'administrator','middleware' => ['auth', 'RoleChecker:
 	Route::resource('/students', 'StudentController');
 	Route::resource('/profil', 'ProfileController');
 	Route::resource('/setting/front-end', 'FrontEndController');
+	Route::get('/setting/images', 'FrontendImageController@settingImages')->name('frontend.image');
+	Route::patch('/setting/images/{id}', 'FrontendImageController@updateImage')->name('frontend.image.update');
 	Route::resource('/gallery', 'GalleryController');
 	Route::resource('/article', 'ArticleController');
 	Route::resource('/article-category', 'ArticleCategoryController');

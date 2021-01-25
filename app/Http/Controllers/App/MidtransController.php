@@ -2,15 +2,36 @@
 
 namespace App\Http\Controllers\App;
 
+use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Order;
 use App\Model\User;
-use {Str, Midtrans};
+use Str;
+use Midtrans;
 
 class MidtransController extends Controller
 {
+
+    public function create() {
+        
+        Midtrans\Config::$serverKey = config('app.midtrans.server_key');
+        Midtrans\Config::$isSanitized = true;
+        Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => 10000,
+            )
+        );
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return view('midtrans.payment', compact('snapToken'));
+
+    }
+
     public function store(Request $request) {
 
     	$order = Order::create([
@@ -21,7 +42,7 @@ class MidtransController extends Controller
     	$order->order_id = Str::random(4).'-'.$order->id.'-'.Str::random(5).'-'.time();
     	$order->save();
 
-    	$response_midtrans = $this->midtrans_store($order);
+        $response_midtrans = $this->midtrans_store($order);
     	
     	return response()->json([
     		'response_code' => '00',
@@ -44,9 +65,6 @@ class MidtransController extends Controller
     	];
 
     	$user = User::findOrFail(8);
-
-    	// dd($user);
-
     	switch ($order->method) {
     		case 'bca': 
     			$body = [
@@ -65,6 +83,7 @@ class MidtransController extends Controller
     					"bank" => "bca"
     				]
     			];
+
     			break;
     		case 'bri': 
     			$body = [
@@ -83,6 +102,7 @@ class MidtransController extends Controller
     					"bank" => "bri"
     				]
     			];
+
     			break;
     		case 'bni': 
     			$body = [
@@ -101,12 +121,14 @@ class MidtransController extends Controller
     					"bank" => "bni"
     				]
     			];
+                
     			break;
     		default: 
     			$body = [];
     			break;
     	}
 
+        // $snapToken = Midtrans\Snap::getSnapToken($body);
     	$res = $client->post('/v2/charge', [
     		'headers' => $headers,
     		'body' => json_encode($body)
@@ -116,11 +138,7 @@ class MidtransController extends Controller
     }
 
     public function generate(Request $request) {
-    	Midtrans\Config::$serverKey = config('app.midtrans.server_key');
-    	Midtrans\Config::$isSanitized = true;
-    	Midtrans\Config::$is3ds = true;
-
-    	$snapToken = Midtrans\Snap::getSnapToken($request->data);
+    	
     	$midtrans_transaction = Midtrans\Snap::createTransaction($request->data);
 
     	return response()->json([
@@ -128,5 +146,14 @@ class MidtransController extends Controller
     		'response_msg' => 'success',
     		'data' => $midtrans_transaction
     	]);
+    }
+
+    public function checkout(Request $request) {
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => 10000,
+            )
+        );
     }
 }
