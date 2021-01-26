@@ -141,6 +141,9 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
 
+        $destinationPath = public_path('/gallery/');
+        $a = File::delete($destinationPath . $gallery->photo); 
+
         $gallery->delete();
 
         return redirect(route('gallery.index'))->withMessage('Gallery was successfully deleted.');

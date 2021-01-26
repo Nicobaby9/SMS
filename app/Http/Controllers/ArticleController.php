@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Category, Article};
+use App\Model\{Category, Article, Comment};
 use File;
+use DB;
 
 class ArticleController extends Controller
 {
@@ -155,8 +156,11 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
-        $tags = DB::table('artcle_category')->where('thread_id', $id);
+        $tags = DB::table('article_category')->where('article_id', $id);
         $comment = Comment::where('commentable_id', $id);
+
+        $destinationPath = public_path('/article/');
+        $a = File::delete($destinationPath . $article->image); 
 
         $tags->delete();
         $comment->delete();

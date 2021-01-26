@@ -11,11 +11,7 @@
 <h5 style="margin-top: -5px; font-weight: bold;">{{ $comment->user->fullname }}</h5>
 <p style="margin-left: 50px">{{ $comment->body }}</p>
 @if(auth()->user()->id == $comment->user_id)
-  <form action="{{route('comment.destroy',$comment->id)}}" method="POST" class="inline-it pull-right">
-      @csrf
-      @method('DELETE')
-      <input class="btn btn-sm btn-danger btn-xs" type="submit" value="Delete">
-  </form>&nbsp;
+  <button class="btn btn-danger btn-flat btn-xs remove-comment pull-right" data-id="{{ $comment->id }}" data-action="{{ route('comment.destroy',$comment->id) }}"> Delete </button>
   <a href="#{{$comment->id}}" class="btn btn-primary btn-sm btn-xs pull-right" data-toggle="modal" data-target="#exampleModal{{ $comment->id }}" style="margin-right: 3px;">
 		<i class="nav-icon far fa-edit"></i>
 	</a>
@@ -51,6 +47,58 @@
     function toggleReply(commentId){
         $('.reply-form-'+commentId).toggleClass('hidden');
     }
+
+    $("body").on("click",".remove-comment",function(){
+        var current_object = $(this);
+        swal({
+            title: "Apakah anda yakin akan menghapus komentar anda?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "error",
+            showCancelButton: true,
+            dangerMode: true,
+            cancelButtonClass: '#DD6B55',
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Delete!',
+        },function (result) {
+            if (result) {
+                var action = current_object.attr('data-action');
+                var token = jQuery('meta[name="csrf-token"]').attr('content');
+                var id = current_object.attr('data-id');
+
+                $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+                $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+                $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+                $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+                $('body').find('.remove-form').submit();
+            }
+        });
+    });
+
+    $("body").on("click",".remove-reply",function(){
+      var current_object = $(this);
+      swal({
+          title: "Apakah anda yakin akan menghapus reply anda?",
+          text: "You will not be able to recover this imaginary file!",
+          type: "error",
+          showCancelButton: true,
+          dangerMode: true,
+          cancelButtonClass: '#DD6B55',
+          confirmButtonColor: '#dc3545',
+          confirmButtonText: 'Delete!',
+      },function (result) {
+          if (result) {
+              var action = current_object.attr('data-action');
+              var token = jQuery('meta[name="csrf-token"]').attr('content');
+              var id = current_object.attr('data-id');
+
+              $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+              $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+              $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+              $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+              $('body').find('.remove-form').submit();
+          }
+      });
+    });
 
 </script>
 

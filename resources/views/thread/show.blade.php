@@ -17,11 +17,7 @@
 
 	@if(auth()->user()->id == $thread->user_id)
 	<div class="action" >
-		<form action="{{ route('forum.destroy', $thread->id) }}" method="post" class="inline-it pull-right">
-			@csrf
-			@method('DELETE')
-			<input class="btn btn-danger btn-sm pull-right" type="submit" value="Delete">
-		</form>
+		<button class="btn btn-danger btn-flat btn-sm remove-thread pull-right" data-id="{{ $thread->id }}" data-action="{{ route('forum.destroy',$thread->id) }}"> Delete</button>
 		<a href="{{ route('forum.edit', $thread->id) }}" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">Edit</a>
 	</div>
 	@endif
@@ -150,6 +146,32 @@
     function toggleReply(commentId){
         $('.reply-form-'+commentId).toggleClass('hidden');
     }
+
+    $("body").on("click",".remove-thread",function(){
+        var current_object = $(this);
+        swal({
+            title: "Apakah anda yakin akan menghapus thread ini?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "error",
+            showCancelButton: true,
+            dangerMode: true,
+            cancelButtonClass: '#DD6B55',
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Delete!',
+        },function (result) {
+            if (result) {
+                var action = current_object.attr('data-action');
+                var token = jQuery('meta[name="csrf-token"]').attr('content');
+                var id = current_object.attr('data-id');
+
+                $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+                $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+                $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+                $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+                $('body').find('.remove-form').submit();
+            }
+        });
+    });
 
 </script>
 @endsection

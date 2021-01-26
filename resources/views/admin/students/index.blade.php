@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -99,7 +99,7 @@
         </div>
     </div>
 @elseif($layout == 'show')
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-3">
         <div class="row">
             <section class="col">
                 @include('admin/students/studentlist')
@@ -111,11 +111,7 @@
                         <h5 class="card-title">Detail Data Siswa - {{ $student->fullname }}</h5>
                         <br>
                         <a style="float: left; margin-right: 13px;" href="{{ route('students.edit', [$student->id]) }}" class="btn btn-sm btn-warning"> Edit </a>
-                        <form action="{{ route('students.destroy', [$student->id]) }}" method="post" accept-charset="utf-8" style="float: left;">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin akan menghapus data?')">
-                        </form>
+                        <button class="btn btn-danger btn-flat btn-sm remove-student float-left" data-id="{{ $student->id }}" data-action="{{ route('students.destroy',$student->id) }}"> Delete</button>
                     </div>
                 </div>
                 <form>
@@ -172,12 +168,12 @@
         </div>
     </div>
 @elseif($layout == 'edit')
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-3">
         <div class="row">
-            <section class="col-md-7">
+            <section class="col">
                 @include('admin/students/studentlist')
             </section>
-            <section class="col-md-5">
+            <section class="col">
                 <div class="card mb-3">
                     <img src="https://edtechreview.in/images/online-education-future-india.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -234,8 +230,8 @@
                                 <label>Tahun Lulus</label>
                                 <input value="{{ $student->end_year }}" name="end_year" type="date" class="form-control" placeholder="Tahun Lulus">
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Apakah data sudah valid?')">
-                            <input type="reset" class="btn btn-danger" value="Reset">
+                            <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Apakah data sudah valid?')" style="width: 48%;">
+                            <input type="reset" class="btn btn-danger" value="Reset" style="width: 48%;">
                         </form>
                     </div>
                 </div>
@@ -270,4 +266,34 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('js') 
+<script> 
+$("body").on("click",".remove-student",function(){
+    var current_object = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "error",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Delete!',
+    },function (result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
+</script>
 @endsection

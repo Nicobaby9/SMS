@@ -39,11 +39,7 @@
 							<td>{{ \Carbon\Carbon::parse($category->created_at)->format('d-M-Y') }}</td>
 				            <td>
 				                <a href="{{ route('books-category.edit', $category->id) }}" class="btn btn-info btn-sm" style="float: left; margin-right: 5px;">Edit</a>
-								<form action="{{ route('books-category.destroy', $category->id) }}" method="post" class="inline-it">
-									@csrf
-									@method('DELETE')
-									<input class="btn btn-danger btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
-								</form>
+								<button class="btn btn-danger btn-flat btn-sm remove-category" data-id="{{ $category->id }}" data-action="{{ route('books-category.destroy',$category->id) }}"> Delete</button>
 				            </td>
 						</tr>
 				 		@empty
@@ -55,4 +51,34 @@
  		</div>
 	 </div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+  $("body").on("click",".remove-category",function(){
+    var current_object = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "error",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Delete!',
+    },function (result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
+</script>
 @endsection

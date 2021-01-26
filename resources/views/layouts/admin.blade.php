@@ -27,6 +27,11 @@
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <!-- Selectize Js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
+
+  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @yield('css') 
   @yield('jav')
 </head>
@@ -102,19 +107,36 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/administrator/article-category') }}" class="nav-link {{ (request()->is('administrator/article-category')) ? 'active' : '' }}">
-              <i class="nav-icon fa fa-th-large"></i>
-              <p>
-                Kategori Artikel
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="{{ url('/administrator/books') }}" class="nav-link {{ (request()->is('administrator/books')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Data Buku
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+          </li>          
+          <li class="nav-item">
+            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Data Siswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/gallery') }}" class="nav-link {{ (request()->is('administrator/gallery')) ? 'active' : '' }}">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Gallery
+              </p>
+            </a>
+          </li>
+          <h5 class=" text-white">Kategori</h5>
+          <li class="nav-item">
+            <a href="{{ url('/administrator/article-category') }}" class="nav-link {{ (request()->is('administrator/article-category')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-th-large"></i>
+              <p>
+                Kategori Artikel
                 <span class="badge badge-info right"></span>
               </p>
             </a>
@@ -133,22 +155,6 @@
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Set Halaman Utama
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/administrator/gallery') }}" class="nav-link {{ (request()->is('administrator/gallery')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>          
-          <li class="nav-item">
-            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Data Siswa
               </p>
             </a>
           </li>

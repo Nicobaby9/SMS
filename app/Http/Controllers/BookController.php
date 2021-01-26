@@ -165,6 +165,9 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
+        $destinationPath = public_path('/storage/books/');
+        $a = File::delete($destinationPath . $book->image); 
+        
         $book->delete();
 
         return redirect(route('books.index'))->withMessage('Book was successfully deleted.');
