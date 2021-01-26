@@ -35,7 +35,7 @@ class FrontendImageController extends Controller
                 'logo' => $filename,
             ]);
             
-            return redirect(route('frontend.image'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('frontend.image'))->withMessage('Image was successfully uploaded.');
 
         }else if ($request->hasFile('content1_photo') || $request->hasFile('content2_photo') || $request->hasFile('content3_photo')) {
             	
@@ -60,6 +60,7 @@ class FrontendImageController extends Controller
 	                'content2_photo' => $filename2,
 	                'content3_photo' => $filename3,
 	            ]);
+
         	}else if(!$request->hasFile('content1_photo') && $request->hasFile('content2_photo') && $request->hasFile('content3_photo')) {
 
 	        	$file2 = $request->file('content2_photo');
@@ -143,7 +144,8 @@ class FrontendImageController extends Controller
 
         	}
 
-            return redirect(route('frontend.image'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('frontend.image'))->withMessage('Image was successfully uploaded.');
+            
         }else if ($request->hasFile('profile1_photo') || $request->hasFile('profile2_photo') || $request->hasFile('profile3_photo')) {
             	
             $destinationPath = public_path('/storage/frontend/');
@@ -250,7 +252,7 @@ class FrontendImageController extends Controller
 
         	}
 
-            return redirect(route('frontend.image'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('frontend.image'))->withMessage('Image was successfully uploaded.');
         }
     }
 }

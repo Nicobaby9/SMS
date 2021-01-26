@@ -21,7 +21,7 @@ class ExcelController extends Controller
 
         Excel::import(new StudentImport, public_path('imports/DataStudent/'.$filename));
 
-        return redirect(route('students.index'))->withMessage('Berhasil Menginport data,');
+        return redirect(route('students.index'))->withMessage('Berhasil Menginport data');
     }
 
     public function bookexport() {

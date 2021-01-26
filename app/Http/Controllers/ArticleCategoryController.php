@@ -48,7 +48,7 @@ class ArticleCategoryController extends Controller
             'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('article-category.index'))->with(['success' => 'Product was created.']);
+        return redirect(route('article-category.index'))->withMessage('Article Category was successfully created.');
     }
 
     /**
@@ -92,7 +92,7 @@ class ArticleCategoryController extends Controller
             'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('article-category.index'))->with(['success' => 'data was updated.']);
+        return redirect(route('article-category.index'))->withMessage('Article Category was successfully updated.');
     }
 
     /**
@@ -107,6 +107,6 @@ class ArticleCategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->back()->withMessage('Data was deleted');
+        return redirect()->back()->withMessage('Article Category was successfully deleted.');
     }
 }

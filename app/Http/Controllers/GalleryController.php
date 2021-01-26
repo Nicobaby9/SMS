@@ -60,7 +60,7 @@ class GalleryController extends Controller
                 'size' => $imageSize,
             ]);
 
-            return redirect(route('gallery.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('gallery.index'))->withMessage('Gallery was successfully created.');
         }
     }
 
@@ -122,7 +122,7 @@ class GalleryController extends Controller
             ]);
 
 
-            return redirect(route('gallery.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('gallery.index'))->withMessage('Gallery was successfully updated.');
         }else {
             $gallery->update([
                 'title' => $request->title,
@@ -143,6 +143,6 @@ class GalleryController extends Controller
 
         $gallery->delete();
 
-        return redirect(route('gallery.index'))->with(['success' => 'Data was successfully deleted.']);
+        return redirect(route('gallery.index'))->withMessage('Gallery was successfully deleted.');
     }
 }

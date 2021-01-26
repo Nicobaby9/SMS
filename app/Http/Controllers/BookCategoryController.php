@@ -45,7 +45,7 @@ class BookCategoryController extends Controller
             'title' => $request->title,
         ]);
 
-        return redirect(route('books-category.index'))->with(['success' => 'Data was successfully created.']);
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully created.');
     }
 
     /**
@@ -87,7 +87,7 @@ class BookCategoryController extends Controller
             'title' => $request->title,
         ]);
 
-        return redirect(route('books-category.index'))->with(['success' => 'data was successfully updated.']);
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully updated.');
     }
 
     /**
@@ -102,6 +102,6 @@ class BookCategoryController extends Controller
 
         $category->delete();
 
-        return redirect(route('books-category.index'))->with(['success' => 'data was successfully deleted.']);
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully deleted.');
     }
 }

@@ -68,7 +68,7 @@ class ArticleController extends Controller
 
             // dd($article);
 
-            return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('article.index'))->withMessage('Article was successfully created.');
         }
     }
 
@@ -128,7 +128,7 @@ class ArticleController extends Controller
 
             $article->categories()->sync($request->categories);
 
-            return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('article.index'))->withMessage('Article was successfully updated.');
 
         }else {
             $article = Article::findOrFail($id);
@@ -142,7 +142,7 @@ class ArticleController extends Controller
 
             $article->categories()->sync($request->categories);
 
-            return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('article.index'))->withMessage('Article was successfully updated.');
         }
     }
 
@@ -162,6 +162,6 @@ class ArticleController extends Controller
         $comment->delete();
         $article->delete();
 
-        return redirect(route('article.index'))->with(['success' => 'Data was successfully created.']);
+        return redirect(route('article.index'))->withMessage('Article was successfully deleted.');
     }
 }

@@ -73,7 +73,7 @@ class BookController extends Controller
                 'image' => $filename,
             ]);
 
-            return redirect(route('books.index'))->with(['success' => 'Data was successfully created.']);
+            return redirect(route('books.index'))->withMessage('Book was successfully created.');
         } 
     }
 
@@ -135,7 +135,7 @@ class BookController extends Controller
 
             $a = File::delete($destinationPath . $book->photo); 
 
-            return redirect(route('books.index'))->with(['success' => 'Data was successfully updated.']);
+            return redirect(route('books.index'))->withMessage('Book was successfully updated.');
         }else {
             $book = Book::findOrFail($id);
 
@@ -151,7 +151,7 @@ class BookController extends Controller
                 'status' => $request->status,
             ]);
 
-            return redirect(route('books.index'))->with(['success' => 'Data was successfully updated.']);
+            return redirect(route('books.index'))->withMessage('Book was successfully updated.');
         }
     }
 
@@ -167,6 +167,6 @@ class BookController extends Controller
 
         $book->delete();
 
-        return redirect(route('books.index'))->with(['success' => 'Data was successfully deleted.']);
+        return redirect(route('books.index'))->withMessage('Book was successfully deleted.');
     }
 }

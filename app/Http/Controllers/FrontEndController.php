@@ -72,7 +72,7 @@ class FrontEndController extends Controller
         $about = Frontend::all()->first();
         $about->update($request->all());
         
-        return redirect()->back();
+        return redirect()->back()->withMessage('Data was successfully updated');
     }
 
     /**

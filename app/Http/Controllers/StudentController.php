@@ -73,7 +73,7 @@ class StudentController extends Controller
 
         // dd($student);
 
-        return redirect('/administrator/students')->with(['success' => 'Data was successfully created.']);
+        return redirect('/administrator/students')->withMessage('Data was successfully created.');
     }
 
     /**
@@ -88,7 +88,7 @@ class StudentController extends Controller
         $students = Student::all();
         $layout = 'show';
 
-        return view('students.index', compact('student', 'students', 'layout'));
+        return view('admin.students.index', compact('student', 'students', 'layout'));
     }
 
     /**
@@ -128,7 +128,7 @@ class StudentController extends Controller
             'end_year' => $request['end_year'],
         ]);
 
-        return redirect('/administrator/students')->with(['success' => 'Student data was successfully updated.']);
+        return redirect('/administrator/students')->withMessage('Data was successfully updated.');
     }
 
     /**
@@ -141,6 +141,6 @@ class StudentController extends Controller
     {
         $student = Student::destroy($id);
 
-        return redirect('/administrator/students')->with(['success' => 'Data was successfully deleted.']);
+        return redirect('/administrator/students')->withMessage('Data was successfully deleted.');
     }
 }

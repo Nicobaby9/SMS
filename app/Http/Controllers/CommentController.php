@@ -20,7 +20,7 @@ class CommentController extends Controller
         $article->addComment($request->body);
         // $article->user->notify(new RepliedToThread($article));
 
-        return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
+        return redirect()->back()->withMessage('Berhasil Menambahkan Komentar di artikel : '.$article->title);
     }
 
     public function addThreadComments(Request $request, Thread $thread) {
@@ -36,7 +36,7 @@ class CommentController extends Controller
         $thread->addComment($request->body);
         $thread->user->notify(new RepliedToThread($thread));
 
-        return redirect()->back()->withMessage('Berhasil Menambahkan Komentar');
+        return redirect()->back()->withMessage('Berhasil Menambahkan Komentar di postingan : '.$thread->subject);
     }
 
     public function addReplyComments(Request $request, Comment $comment) {

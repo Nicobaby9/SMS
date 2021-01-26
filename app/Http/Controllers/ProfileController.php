@@ -96,7 +96,7 @@ class ProfileController extends Controller
                     'phone' => $request['phone'],
                 ]);
 
-                return redirect('/administrator/home')->with(['success' => 'Student data was successfully updated.']);
+                return redirect('/administrator/home')->withMessage('Student data was successfully updated.');
             }
         }
 
