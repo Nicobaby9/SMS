@@ -30,13 +30,11 @@
 							<th scope="col">Action</th>
 						</tr>
  					</thead>
- 						
- 					<input type="hidden" name="" value="{{ $no = 0 }}">
 
-				 	@forelse($categories as $category)
  					<tbody>
+			 		@forelse($categories as $key => $category)
  						<tr>
- 							<td>{{ $no+=1 }}</td>
+ 							<td>{{ $key+=1 }}</td>
 							<td>{{ \Illuminate\Support\Str::ucfirst($category->title) }}</td>
 							<td>{{ \Carbon\Carbon::parse($category->created_at)->format('d-M-Y') }}</td>
 				            <td>
@@ -48,10 +46,10 @@
 								</form>
 				            </td>
 						</tr>
+				 		@empty
+			 				<td>There is no data.</td>
+					 	@endforelse
  					</tbody>
-			 		@empty
-			 			<h5>There is no data.</h5>	
-				 	@endforelse
  				</table>
 	 		</div>
  		</div>

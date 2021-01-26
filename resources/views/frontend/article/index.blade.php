@@ -66,7 +66,7 @@
               <!--Card content-->
               <div class="card-body text-left" style="height: 90px;">
                 <!--Text-->
-                <p class="card-text" style="font-size: 12px;">{!! Illuminate\Support\Str::words($article->content, 21) !!}</p>
+                <p class="card-text" style="font-size: 12px;">{!! Illuminate\Support\Str::limit($article->content, 112) !!}</p>
               </div>
                 <a href="{{ route('front.article.show', $article->slug) }}" class="btn btn-info col-md-12">Lanjukan baca...</a>
 

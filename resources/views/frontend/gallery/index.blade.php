@@ -55,7 +55,9 @@
                     </div>
                 </div>
                 @empty
-                <H4>NO PHOTO</H4>
+                <div class="col-lg-12 col-md-12 col-sm-6 text-center text-white">
+                  <h3>THERE IS NO PHOTO</h3>
+                </div>
                 @endforelse
             </div>
             <!-- <div class="row">
@@ -68,13 +70,13 @@
         </div>
     </div>
 
-    <footer>
+    <!-- <footer>
         <div class="container-fluid">
             <div class="col-md-12">
                 <p>Copyright &copy; 2018 Company Name | Designed by TemplateMo</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Modal -->
     <div id="modal" class="modal">
@@ -150,10 +152,10 @@
 
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ asset('jvscript/vendor/jquery-1.11.2.min.js')}}"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="{{ asset('jvscript/vendor/jquery-1.11.2.min.js') }}"></script>')</script>
 
-    <script src="{{ asset('jvscript/vendor/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('jvscript/vendor/bootstrap.min.js') }}"></script>
     
-    <script src="{{ asset('jvscript/plugins.js')}}"></script>
-    <script src="{ asset{'jvscript/main.js'}}"></script>
+    <script src="{{ asset('jvscript/plugins.js') }}"></script>
+    <script src="{{ asset('jvscript/main.js') }}"></script>
 @endsection

@@ -64,8 +64,8 @@
                   </div>
                   <label for="image">Image Preview</label>
                   <br>
-                  <a href="#" class="thumbnail">
-                    <img id="preview_img" src="https://www.w3adda.com/wp-content/uploads/2019/09/No_Image-128.png" class="">
+                  <a href="#" class="thumbnail text-center">
+                    <img id="preview_img" src="https://www.w3adda.com/wp-content/uploads/2019/09/No_Image-128.png" class="" width="200" height="450">
                   </a>
               </div>
               <div class="form-group">
@@ -94,7 +94,7 @@
             var reader = new FileReader();
      
             reader.onload = function (e) {
-                $(id).attr('src', e.target.result).width(230).height(120);
+                $(id).attr('src', e.target.result).width(200).height(450);
             };
      
             reader.readAsDataURL(input.files[0]);

@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($books as $key => $book)
+        @forelse($books as $key => $book)
         <tr>
             <td> {{ $key+=1 }} </td>
             <td> {{ $book->category->title }} </td>
@@ -42,9 +42,13 @@
                 <a href="{{ route('books.show', [$book->id]) }}" class="btn btn-sm btn-info"> Tampilkan </a>
             </td> 
         </tr>
-        @endforeach
-        {{ $books->links() }}
+        @empty
+        <tr>
+            <td class="col-md-12 col-sm-6 col-xl-4">There is no data.</td>
+        </tr>
+        @endforelse
       </tbody>
+        {{ $books->links() }}
     </table>
 </div>
 

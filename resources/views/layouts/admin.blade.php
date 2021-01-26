@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Dashboard </title>
+  <title> Admin Page </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -43,7 +43,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('/administrator/home') }}" class="nav-link">Home</a>
+        <a href="{{ url('/') }}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/forum" class="nav-link">Forum</a>
@@ -152,14 +152,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ url('/administrator/students') }}" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link {{ (request()->is('administrator/students')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-credit-card"></i>
               <p>
                 Pembayaran SPP
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon far fa-circle text-danger">

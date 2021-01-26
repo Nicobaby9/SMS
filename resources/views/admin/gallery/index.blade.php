@@ -22,7 +22,14 @@
 	 		</div>
  		</div>
  		@empty
- 			<h5>There is no Photo</h5>	
+
+	 	<div class="col-xl-12 col-lg-12 col-md-6 col-xs-6 text-center">
+	 		<div class="card" style="margin-top: 15px;">
+	 			<div class="card-body">
+	 				<h3>There is No Photo.</h3>
+	 			</div>
+	 		</div>
+	 	</div>
 	 	@endforelse
 	 </div>
 </div>
