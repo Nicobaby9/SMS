@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-
+ 
 @if($layout == 'index')
-    <div class="row header-container justify-content-center">
+    <div class="header-container text-center">
         <div class="header">
             <h2 style="font-family: 'Gill Sans', sans-serif;">Manajemen Siswa</h2>
         </div>
@@ -16,23 +16,20 @@
         </button>
         <hr>
         <div class="row">
-            <section class="col-md-12">
+            <section class="col">
                 @include('admin/students/studentlist')
-            </section>
-            <section class="col-md-4">
-                
             </section>
         </div>
     </div>
 @elseif($layout == 'create')
     @if ($errors->any())
-        <div class="alert alert-danger"  style="text-align: center;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-            </ul>
-        </div>
+    <div class="alert alert-danger" style="text-align: center;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </ul>
+    </div>
     @endif
     <div class="container-fluid mt-4">
         <div class="row">

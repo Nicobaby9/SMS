@@ -65,6 +65,7 @@
                 <input name="phone" type="text" class="form-control" placeholder="Phone" value="{{ $profile->phone }}" >
             </div>
             <input type="submit" class="btn btn-info" value="Save">
+            <a href="{{ route('user_profile', $profile->username) }}" class="btn btn-danger" value="Cancel">Cancel</a>
             <br><br>
         </form>
         <br>

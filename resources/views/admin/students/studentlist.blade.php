@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="card mb-2">
     <img src="https://allea.org/wp-content/uploads/2019/06/shutterstock_520698799small-1500x430.jpg" class="card-img-top" alt="..." style="height: 180px;">
     <div class="card-body">
         <h2 class="card-title" style="font-weight: bold;">Daftar Siswa</h2>
@@ -8,7 +8,7 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">NISN</th>
-                <th scope="col" class="col-md-4">Nama</th>
+                <th scope="col" style="width: 30%;">Nama</th>
                 <th scope="col">JK</th>
                 <th scope="col">Handphone</th>
                 <th scope="col">Jurusan</th>

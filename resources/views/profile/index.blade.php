@@ -82,6 +82,7 @@
 		@empty
 			There is no feed activity.
 		@endforelse
+		
 		<div class="panel panel-info text-center">
 			{{ $feedas->links() }}
 		</div>

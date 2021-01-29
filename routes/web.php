@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('/reply/create/{comment}', 'CommentController@addReplyComments')->name('replycomment.store');
 	Route::post('/forum/mark-as-solution', 'ThreadController@markAsSolution')->name('markAsSolution');
 	Route::post('/comment/like', 'LikeController@toggleLike')->name('toggleLike');
+	Route::post('/comment/{id}/act', 'LikeController@actOnChirp')->name('actOnChirp');
 	Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile');
 	
 	Route::get('/user/profile/{user}/edit', 'UserProfileController@show')->name('user_profile_edit');

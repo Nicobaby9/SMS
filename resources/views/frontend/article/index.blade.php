@@ -84,7 +84,7 @@
   <!--Main layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+  <!-- <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn"> -->
 
     <!-- <hr class="my-4"> -->
 
@@ -127,11 +127,11 @@
     <!-- Social icons -->
 
     <!--Copyright-->
-    <div class="footer-copyright py-3" style="color: white;">
+    <!-- <div class="footer-copyright py-3" style="color: white;">
       <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank">© 2018 Copyright: MDBootstrap.com </a>
-    </div>
+    </div> -->
     <!--/.Copyright-->
 
-  </footer>
+  <!-- </footer> -->
   <!--/.Footer-->
 @endsection

@@ -4,7 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\{MailMessage, BroadcastMessage};
 use Illuminate\Notifications\Notification;
 use Carbon\Carbon;
 use App\Model\Comment;
@@ -34,7 +34,7 @@ class RepliedToThread extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -57,5 +57,14 @@ class RepliedToThread extends Notification
             'comment' => $this->comment,
             'user' => auth()->user(),
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'thread' => $this->thread,
+            'comment' => $this->comment,
+            'user' => auth()->user(),
+        ]);
     }
 }

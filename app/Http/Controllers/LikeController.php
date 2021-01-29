@@ -15,12 +15,17 @@ class LikeController extends Controller
 
  		if(!$comment->isLiked()){
             $comment->likeIt();
+            Comment::where('id', $commentId)->increment('likes_count');
+
             return response()->json(['status'=>'success','message'=>'liked']);
 
         }else{
             $comment->unlikeIt();
+            Comment::where('id', $commentId)->decrement('likes_count');
             return response()->json(['status'=>'success','message'=>'unliked']);
         }
+
+        broadcast(new CommenAction($id, $action))->toOthers();
 
     }
 }

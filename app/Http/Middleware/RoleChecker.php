@@ -20,6 +20,6 @@ class RoleChecker
             return $next($request);
         }
 
-        return redirect()->back()->withMessage('Halaman khusus admin.');
+        return redirect()->back()->withError('Halaman khusus admin.');
     }
 }

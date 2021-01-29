@@ -22,12 +22,6 @@ class UserProfileController extends Controller
         return view('auth.index');
     }
 
-    public function photoShow($id) {
-    	$id = User::where('id', $id)->first();
-
-    	return view('auth.photo', compact('id'));
-    }
-
     public function photoStore(Request $request, $id) {
 		$this->validate($request, [
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -59,8 +53,6 @@ class UserProfileController extends Controller
 
     public function show(Request $request, $user) {
     	$profile = User::where('username', $user)->first();
-
-    	// dd($username);
 
     	return view('profile.edit', compact('profile', 'user'));
     }
