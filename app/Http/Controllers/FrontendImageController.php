@@ -17,19 +17,15 @@ class FrontendImageController extends Controller
         ]);
 
         $about = Frontend::all()->first();
-        // $gallery = Frontend::findOrFail($id);
-
 
         $imageArray = ['logo', 'content1_photo', 'content2_photo', 'content3_photo', 'profile1_photo', 'profile2_photo', 'profile3_photo'];
 
-        // dd($request->file());
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $filename = $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension();
             $imageSize = $file->getsize();
             $destinationPath = public_path('/storage/frontend/');
             $file->move($destinationPath, $filename);
-            // $a = File::delete($destinationPath . $about->photo); 
 
             $about->update([
                 'logo' => $filename,

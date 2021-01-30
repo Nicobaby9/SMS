@@ -24,7 +24,7 @@
                         	<h3 class="h1 my-4">{{ $article->title }}</h3>
                             <hr>
                             @foreach($article->categories as $category)
-                                <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-primary" style="width: 11%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
+                                <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-info" style="width: 11%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
                             @endforeach
                     	</div>
                     </div>
@@ -403,7 +403,7 @@
 
                             <ul class="list-unstyled">
                             	@foreach($categories as $category)
-                                    <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-primary" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
+                                    <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-info" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
                                 @endforeach
                             </ul>
 

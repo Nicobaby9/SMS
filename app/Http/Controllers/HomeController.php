@@ -31,8 +31,6 @@ class HomeController extends Controller
         $books = Book::all();
         $students = Student::all();
 
-        // dd($latest_article);
-
         return view('admin.dashboard', compact('threads', 'articles', 'latest_thread', 'all_user', 'books', 'students'));
     }
 }

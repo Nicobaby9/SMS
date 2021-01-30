@@ -119,7 +119,6 @@ class BookController extends Controller
             $insert['image'] = "$filename";
 
             $book = Book::findOrFail($id);
-
             $book->update([
                 'category_id' => $request->category_id,
                 'title' => $request->title,
@@ -138,7 +137,6 @@ class BookController extends Controller
             return redirect(route('books.index'))->withMessage('Book was successfully updated.');
         }else {
             $book = Book::findOrFail($id);
-
             $book->update([
                 'category_id' => $request->category_id,
                 'title' => $request->title,
@@ -164,7 +162,6 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
-
         $destinationPath = public_path('/storage/books/');
         $a = File::delete($destinationPath . $book->image); 
         

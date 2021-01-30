@@ -11,8 +11,6 @@ class LikeController extends Controller
     	$commentId = request()->get('commentId');
     	$comment = Comment::findOrFail($commentId);
 
-    	// $userLike = $comment->likes()->where('user_id', auth()->id())->where('likeable_id', $commentId)->first();
-
  		if(!$comment->isLiked()){
             $comment->likeIt();
             Comment::where('id', $commentId)->increment('likes_count');

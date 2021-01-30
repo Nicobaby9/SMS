@@ -19,8 +19,6 @@ class StudentController extends Controller
         $students = Student::paginate(25);
         $layout = 'index';
 
-        // dd($studentst)
-
         return view('admin.students.index', compact('students', 'layout'));
     }
 
@@ -70,8 +68,6 @@ class StudentController extends Controller
             'start_year' => $request['start_year'],
             'end_year' => $request['end_year'],
         ]);
-
-        // dd($student);
 
         return redirect('/administrator/students')->withMessage('Data was successfully created.');
     }

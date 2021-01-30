@@ -11,14 +11,12 @@ class UserProfileController extends Controller
     public function index(User $user) {   
         $feeds = $user->feeds;
         $feedas = Feed::where('user_id', $user->id)->paginate(10);
-        // dd($feedas);
         $profile = User::where('id', auth()->user()->id)->first();
 
         return view('profile.index', compact('feeds', 'user', 'profile', 'feedas'));
     }
 
     public function photo() {
-
         return view('auth.index');
     }
 
@@ -30,15 +28,11 @@ class UserProfileController extends Controller
        	$profile = User::find($id); 
 
        	if ($files = $request->file('photo')) {
-       		// Define upload path
         	$destinationPath = public_path('/profile_images/');
-
-			// Upload Orginal Image           
 			$profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
 			$files->move($destinationPath, $profileImage);
 			$insert['image'] = "$profileImage";
 
-        	// Save In Database
 			$imagemodel = User::find($id);
 			$imagemodel->photo="$profileImage";
 			$imagemodel->save();
@@ -66,7 +60,6 @@ class UserProfileController extends Controller
         ]);
 
         $profile = User::findOrFail($id);
-
     	$profile->update([
         	'fullname' => $request->fullname,
             'email' => $request->email,

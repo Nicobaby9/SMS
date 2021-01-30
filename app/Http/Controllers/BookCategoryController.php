@@ -99,7 +99,6 @@ class BookCategoryController extends Controller
     public function destroy($id)
     {
         $category = BookCategory::findOrFail($id);
-
         $category->delete();
 
         return redirect(route('books-category.index'))->withMessage('Book Category was successfully deleted.');

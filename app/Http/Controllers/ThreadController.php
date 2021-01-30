@@ -23,14 +23,6 @@ class ThreadController extends Controller
     {
         $tag_thread = Tag::withCount('threads')->get();
         $threads = Thread::orderBy('created_at', 'Desc')->get();
-        // dd($tag_thread);
-
-        // if($request->has('tags')) {
-        //     $tag = Tag::where('name', $request->tags)->first();
-        //     $threads = $tag->threads;
-        // }else {
-        //     $threads = Thread::paginate(15);
-        // }
 
         return view('thread.index', compact('threads', 'tag_thread'));
     }
@@ -159,7 +151,6 @@ class ThreadController extends Controller
     }
 
     public function markAsSolution(Request $request) {
-        // dd($request->all());
         $solutionId = $request->get('solutionId');
         $threadId = $request->get('threadId');
         $thread = Thread::findOrFail($threadId);

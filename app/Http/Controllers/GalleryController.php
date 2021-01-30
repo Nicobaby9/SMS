@@ -103,8 +103,6 @@ class GalleryController extends Controller
 
         $gallery = Gallery::findOrFail($id);
 
-        // dd($gallery);
-
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -120,7 +118,6 @@ class GalleryController extends Controller
                 'photo' => $filename,
                 'size' => $imageSize,
             ]);
-
 
             return redirect(route('gallery.index'))->withMessage('Gallery was successfully updated.');
         }else {
@@ -140,7 +137,6 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $gallery = Gallery::findOrFail($id);
-
         $destinationPath = public_path('/gallery/');
         $a = File::delete($destinationPath . $gallery->photo); 
 

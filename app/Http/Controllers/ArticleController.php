@@ -54,7 +54,6 @@ class ArticleController extends Controller
             $destinationPath = public_path('/article/');
             $file->move($destinationPath, $filename);
             $insert['image'] = "$filename";
-
             $user = auth()->user();
 
             $article = Article::create([
@@ -66,8 +65,6 @@ class ArticleController extends Controller
             ]);
 
             $article->categories()->attach($request->categories);
-
-            // dd($article);
 
             return redirect(route('article.index'))->withMessage('Article was successfully created.');
         }
@@ -114,11 +111,9 @@ class ArticleController extends Controller
             $file->move($destinationPath, $filename);
             $insert['image'] = "$filename";
             $a = File::delete($destinationPath . $article->image); 
-
             $user = auth()->user();
 
             $article = Article::findOrFail($id);
-
             $article->update([
                 'user_id' => auth()->user()->id,
                 'title' => $request->title,
@@ -133,7 +128,6 @@ class ArticleController extends Controller
 
         }else {
             $article = Article::findOrFail($id);
-
             $article->update([
                 'user_id' => auth()->user()->id,
                 'title' => $request->title,

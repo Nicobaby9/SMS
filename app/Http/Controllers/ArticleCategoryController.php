@@ -71,7 +71,6 @@ class ArticleCategoryController extends Controller
     public function edit($id)
     {
         $category = Category::where('id', $id)->first();
-        // dd($category);
 
         return view('admin.article-category.edit', compact('category'));
     }
@@ -104,7 +103,6 @@ class ArticleCategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-
         $category->delete();
 
         return redirect()->back()->withMessage('Article Category was successfully deleted.');

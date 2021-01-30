@@ -16,8 +16,6 @@ class GoogleController extends Controller
  
     public function callback()
     {
- 
-        // jika user masih login lempar ke home
         if (Auth::check()) {
             return redirect('/');
         }
@@ -32,7 +30,6 @@ class GoogleController extends Controller
                 'name' => $oauthUser->name,
                 'email' => $oauthUser->email,
                 'google_id'=> $oauthUser->id,
-                // password tidak akan digunakan ;)
                 'password' => md5($oauthUser->token),
             ]);
             Auth::login($newUser);

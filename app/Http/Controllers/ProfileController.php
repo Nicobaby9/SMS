@@ -61,7 +61,6 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $profile = Auth::user()->first();
-        // $profile = User::findOrFail($id);
 
         return view('profile.edit', compact('profile'));
     }
@@ -81,7 +80,6 @@ class ProfileController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg',
             'phone' => 'required|min:10|max:14',
         ]);
-        
 
         if ($request['photo'] == null) {
             if ($request->hasFile('photo')) {
@@ -116,8 +114,6 @@ class ProfileController extends Controller
             'photo' => $filename,
             'phone' => $request['phone'],
         ]);
-
-        dd($user);
 
         return redirect('/administrator/home')->withMessage('Student data was successfully updated.');
     }
