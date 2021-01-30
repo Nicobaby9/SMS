@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\{Comment, Tag, Thread};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Model\{Comment, Tag, Thread};
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ThreadController extends Controller
 {
@@ -20,17 +22,26 @@ class ThreadController extends Controller
     public function index(Request $request)
     {
         $tag_thread = Tag::withCount('threads')->get();
-        $all_thread = Thread::all();
+        $threads = Thread::orderBy('created_at', 'Desc')->get();
         // dd($tag_thread);
 
-        if($request->has('tags')) {
-            $tag = Tag::where('name', $request->tags)->first();
-            $threads = $tag->threads;
-        }else {
-            $threads = Thread::paginate(15);
-        }
+        // if($request->has('tags')) {
+        //     $tag = Tag::where('name', $request->tags)->first();
+        //     $threads = $tag->threads;
+        // }else {
+        //     $threads = Thread::paginate(15);
+        // }
 
-        return view('thread.index', compact('threads', 'tag_thread', 'all_thread'));
+        return view('thread.index', compact('threads', 'tag_thread'));
+    }
+
+    public function categoryThread($tag) {
+        $tag = Tag::where('name', $tag)->first();
+        $threads = Thread::orderBy('created_at', 'Desc')->get();
+
+        $threads = $tag->threads->latest();
+
+        return view('thread.index', compact('threads', 'tag'));
     }
 
     /**
@@ -53,21 +64,20 @@ class ThreadController extends Controller
     {
         $this->validate($request, [
             'subject' => 'required|min:1',
+            'slug' => 'unique:threads',
             'thread' => 'required|min:10',
             'tags' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
-        $thread = auth()->user()->threads()->create($request->all());
+        $thread = Thread::create([
+            'subject' => $request['subject'],
+            'thread' => $request['thread'],
+            'slug' => Str::random(3).Carbon::now()->Format('s').'-'.\Str::slug($request->subject, '-'),
+            'user_id' => auth()->user()->id,
+        ]);
+
         $thread->tags()->attach($request->tags);
-
-        // $thread = Thread::create([
-        //     'subject' => $request['subject'],
-        //     'thread' => $request['thread'],
-        //     'type' => $request['type'],
-        // ]);
-
-        // dd($thread);
 
         return redirect('/forum')->withMessage('Berhasil Mmebuat Postingan.');
     }
@@ -80,9 +90,7 @@ class ThreadController extends Controller
      */
     public function show($thread)
     {
-        $thread = Thread::where('id', $thread)->first();
-
-        // dd($thread);
+        $thread = Thread::where('slug', $thread)->first();
 
         return view('thread.show', compact('thread'));
     }
@@ -95,7 +103,7 @@ class ThreadController extends Controller
      */
     public function edit($thread, Request $request)
     {
-        $thread = Thread::where('id', $thread)->first();
+        $thread = Thread::where('slug', $thread)->first();
         $tag_thread = DB::table('tag_thread')->where('thread_id', $thread->id)->get();
 
         return view('thread.edit', compact('thread'));
@@ -110,15 +118,15 @@ class ThreadController extends Controller
      */
     public function update(Request $request,$thread)
     {
-        $thread = Thread::where('id', $thread)->first();
-
-        $this->authorize('update', $thread);
-
         $this->validate($request, [
             'subject' => 'required|min:1',
             'thread' => 'required|min:10',
+            'slug' => 'unique:threads',
         ]);
 
+        $thread = Thread::where('slug', $thread)->first();
+
+        $this->authorize('update', $thread);
 
         $thread->update([
             'subject' => $request['subject'],
@@ -127,7 +135,7 @@ class ThreadController extends Controller
 
         $thread->tags()->sync($request->tags);
 
-        return redirect()->route('forum.show', $thread)->withMessage('Berhasil Mengupdate Postingan');
+        return redirect()->route('thread.show', $thread)->withMessage('Berhasil Mengupdate Postingan');
     }
 
     /**

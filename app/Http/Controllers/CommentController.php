@@ -15,10 +15,7 @@ class CommentController extends Controller
         ]);
 
         $article = Article::where('slug', $slug)->first();
-        // dd($article);
-
         $article->addComment($request->body);
-        // $article->user->notify(new RepliedToThread($article));
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Komentar di artikel : '.$article->title);
     }
@@ -27,11 +24,6 @@ class CommentController extends Controller
         $this->validate($request, [
             'body' => 'required',
         ]);
-
-        // $comment = new Comment;
-        // $comment->body = $request->body;
-        // $comment->user_id = auth()->user()->id;
-        // $thread->comments()->save($comment);
 
         $thread->addComment($request->body);
         $thread->user->notify(new RepliedToThread($thread));
@@ -45,7 +37,6 @@ class CommentController extends Controller
         ]);
 
         $comment->addComment($request->body);
-
 
         return redirect()->back()->withMessage('Berhasil Menambahkan Reply');
     }

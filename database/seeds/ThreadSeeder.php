@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ThreadSeeder extends Seeder
 {
@@ -60,6 +62,7 @@ class ThreadSeeder extends Seeder
             0 => [
                 'id' => 1,
                 'subject' => 'Laravel',
+                'slug' => Str::random(3).Carbon::now()->Format('s').'-'.\Str::slug('Laravel', '-'),
                 'thread' => 'Apakah Laravel merupakan framework PHP yang paling populer?',
                 'user_id' => '1',
                 'created_at'    => '2021-01-07 08:27:30',
@@ -69,6 +72,7 @@ class ThreadSeeder extends Seeder
             1 => [
                 'id' => 2,
                 'subject' => 'Tanya Pemrograman?',
+                'slug' => Str::random(3).Carbon::now()->Format('s').'-'.\Str::slug('Tanya Pemrograman?', '-'),
                 'thread' => 'Bagaimana cara agar dapat menguasai suatu bahasa dengan waktu yang singkat?',
                 'user_id' => '2',
                 'created_at'    => '2021-01-07 08:27:30',

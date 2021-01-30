@@ -19,8 +19,11 @@ Route::get('/articles/category', 'PageController@article')->name('categories.art
 Route::post('/article/{slug}', 'CommentController@addArticleComments')->name('articlecomment.store');
 
 Auth::routes();
-
-Route::resource('/forum', 'ThreadController');
+Route::get('/forum/category/{tag}', 'ThreadController@categoryThread')->name('tag.thread');
+Route::get('/forum/thread/{slug}', 'ThreadController@show')->name('thread.show');
+Route::get('/forum/thread/{slug}/edit', 'ThreadController@edit')->name('thread.edit');
+Route::patch('/forum/thread/{slug}/update', 'ThreadController@update')->name('thread.update');
+Route::resource('/forum', 'ThreadController', ['only' => ['index', 'create', 'store', 'destroy']]);
 Route::resource('/comment', 'CommentController', ['only' => ['update', 'destroy', 'edit']]);
 Route::get('/forum/search','SearchController@search')->name('thread.search');
 

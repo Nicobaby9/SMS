@@ -19,7 +19,7 @@
 
 <div class="action">
   <button class="btn btn-default btn-xs" id="{{ $comment->id }}-count">{{ $comment->likes_count }}</button>
-  <span  class="btn btn-default btn-xs  {{$comment->isLiked()?"liked":""}}" onclick="likeIt('{{$comment->id}}',this)"><span class="glyphicon glyphicon-heart"></span></span>
+  <span  class="btn btn-default btn-xs" onclick="likeIt('{{$comment->id}}',this)"><span class="glyphicon glyphicon-heart {{$comment->isLiked()?"liked":""}}"></span></span>
 </div>
 
 @section('js')
@@ -32,36 +32,18 @@
         });
     }
 
-    // function likeIt(commentId,elem){
-    //     var csrfToken = '{{csrf_token()}}';
-    //     var likesCount = parseInt($('#'+commentId+"-count").text());
-    //     $.post('{{route('toggleLike')}}', {commentId: commentId,_token:csrfToken}, function (data) {
-    //         // console.log(data);
-    //         if(data.message === 'liked'){
-    //           $("#like").html('Unlike');
-    //        		$(elem).addClass('liked');
-    //        		$('#'+commentId+"-count").text(likesCount+1);
-    //        }else{
-    //           $("#unlike").html('Like');
-    //        		$('#'+commentId+"-count").text(likesCount-1);
-    //        		$(elem).removeClass('liked');
-    //        }
-    //     });
-    // }
-
     function likeIt(commentId,elem){
         var csrfToken='{{csrf_token()}}';
         var likesCount=parseInt($('#'+commentId+"-count").text());
         $.post('{{route('toggleLike')}}', {commentId: commentId,_token:csrfToken}, function (data) {
-            console.log(data);
            if(data.message==='liked'){
-               $(elem).addClass('liked');
-               $('#'+commentId+"-count").text(likesCount+1);
-//                   $(elem).css({color:'red'});
+              $(elem).css({color:'red'});
+              $(elem).addClass('liked');
+              $('#'+commentId+"-count").text(likesCount+1);
            }else{
-//                   $(elem).css({color:'black'});
-               $('#'+commentId+"-count").text(likesCount-1);
-               $(elem).removeClass('liked');
+              $(elem).css({color:'black'});
+              $(elem).removeClass('liked');
+              $('#'+commentId+"-count").text(likesCount-1);
            }
         });
     }

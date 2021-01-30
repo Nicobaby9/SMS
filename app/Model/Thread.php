@@ -11,7 +11,7 @@ class Thread extends Model
 {   
     use CommentableTrait;
 
-    protected $fillable = ['subject', 'thread', 'user_id'];
+    protected $fillable = ['subject', 'thread', 'user_id', 'slug'];
 
     public static function boot() {
     	parent::boot();
@@ -46,5 +46,9 @@ class Thread extends Model
 
     public function tags() {
     	return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
     }
 }

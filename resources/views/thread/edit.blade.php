@@ -12,9 +12,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Post something</h5>
                     <br>
-                    <form role="form" action="{{ route('forum.update', $thread->id) }}" method="post">
+                    <form role="form" action="{{ route('thread.update', $thread->slug) }}" method="post">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
                         <div class="form-group">
                             <label>Judul Post</label>
                             <input name="subject" type="text" class="form-control" placeholder="Judul Post" value="{{ $thread->subject }}" required>

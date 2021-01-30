@@ -17,7 +17,7 @@ class LikeController extends Controller
             $comment->likeIt();
             Comment::where('id', $commentId)->increment('likes_count');
 
-            return response()->json(['status'=>'success','message'=>'liked']);
+            return response()->json(['status'=>'success','message'=>'liked', 'comment' => $comment]);
 
         }else{
             $comment->unlikeIt();

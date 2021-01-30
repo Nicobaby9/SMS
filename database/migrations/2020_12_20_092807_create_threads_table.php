@@ -16,7 +16,9 @@ class CreateThreadsTable extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('subject');
+            $table->string('slug');
             $table->text('thread');
+            $table->integer('likes_count')->default(0);
             $table->timestamps();
         });
     }

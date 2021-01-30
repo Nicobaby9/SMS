@@ -11,14 +11,14 @@
 	<br>
 	Tags :
         @foreach($thread->tags as $tag)
-    		<a href="{{ route('forum.index', ['tags' => $tag->name]) }}" class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
+    		<a href="{{ route('tag.thread', $tag->name) }}" class="btn btn-xs btn-info">  {{ \Illuminate\Support\Str::title($tag->name) }} &nbsp; </a>
     	@endforeach
     <br><br>
 
 	@if(auth()->user()->id == $thread->user_id)
 	<div class="action" >
 		<button class="btn btn-danger btn-flat btn-sm remove-thread pull-right" data-id="{{ $thread->id }}" data-action="{{ route('forum.destroy',$thread->id) }}"> Delete</button>
-		<a href="{{ route('forum.edit', $thread->id) }}" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">Edit</a>
+		<a href="{{ route('thread.edit', $thread->slug) }}" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">Edit</a>
 	</div>
 	@endif
     <hr>
