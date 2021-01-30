@@ -20,23 +20,25 @@ class PageController extends Controller
         return view('landing-page.home', compact('frontend', 'articles'));
     }
 
+    public function categoryArticle($category) {
+        $category = Category::where('name', $category)->first();
+        $articles = Article::orderBy('created_at', 'desc')->paginate(3);
+
+        $articles = $category->articles;
+
+        return view('frontend.article.categories', compact('articles'));
+    }
+
     public function gallery() {
         $galleries = Gallery::all();
 
         return view('frontend.gallery.index', compact('galleries'));
     }
 
-    public function article(Request $request) {
+    public function article(Request $request) {    
+        $articles = Article::orderBy('created_at', 'desc')->paginate(6);
 
-        if($request->has('categories')) {
-            $category = Category::where('name', $request->categories)->first();
-            $articles = $category->articles;
-            return view('frontend.article.categories', compact('articles'));
-        }else {
-            $articles = Article::orderBy('created_at', 'desc')->paginate(6);
-            return view('frontend.article.index', compact('articles'));
-        }
-
+        return view('frontend.article.index', compact('articles'));
     }
 
     /**
@@ -69,12 +71,9 @@ class PageController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        $galleries = Gallery::all();
-        $categories = Category::all();
-        $latest_article = Article::latest()->first();
-
+        $galleries = Gallery::orderBy('created_at', 'desc')->paginate(4);
         $articles = Article::whereNotIn('id', array($article->id))->get();
-        // dd($latest_article);
+        $latest_article = Article::latest()->first();
 
         return view('frontend.article.show', compact('article', 'galleries', 'articles', 'latest_article'));
     }

@@ -22,6 +22,10 @@
                 	<div class="mb-4 wow fadeIn">
                         <div class="card-body text-center">
                         	<h3 class="h1 my-4">{{ $article->title }}</h3>
+                            <hr>
+                            @foreach($article->categories as $category)
+                                <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-primary" style="width: 11%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
+                            @endforeach
                     	</div>
                     </div>
 
@@ -344,9 +348,9 @@
 
                             <p class="h5 my-4">
                                 @foreach($latest_article->categories as $category)
-                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-info" style="width: 10%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
+                                    <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-info" style="width: 11%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a>
                                 @endforeach
-                                <a href="" class="btn btn-xs btn-primary float-right">Read More...</a>
+                                <a href="" class="btn btn-sm btn-primary float-right">Lanjukan baca...</a>
                             </p>
 
                             <p>{!! Illuminate\Support\Str::words($article->content, 70) !!}</p>
@@ -398,8 +402,8 @@
                         <div class="card-body">
 
                             <ul class="list-unstyled">
-                            	@foreach($article->categories as $category)
-                                    <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-xs btn-primary" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
+                            	@foreach($categories as $category)
+                                    <a href="{{ route('category.article', $category->name) }}" class="btn btn-xs btn-primary" style="width: 100%;">  {{ \Illuminate\Support\Str::title($category->name) }} &nbsp; </a><br><br>
                                 @endforeach
                             </ul>
 

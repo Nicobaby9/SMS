@@ -14,8 +14,8 @@
 Route::resource('/', 'PageController', ['only' => 'index']);
 Route::get('/galery', 'PageController@gallery');
 Route::get('/articles', 'PageController@article')->name('articles.index');
+Route::get('/article/category/{category}', 'PageController@categoryArticle')->name('category.article');
 Route::get('/article/{slug}', 'PageController@show')->name('front.article.show');
-Route::get('/articles/category', 'PageController@article')->name('categories.article.index');
 Route::post('/article/{slug}', 'CommentController@addArticleComments')->name('articlecomment.store');
 
 Auth::routes();

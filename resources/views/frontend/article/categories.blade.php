@@ -23,7 +23,7 @@
           </a>
           <hr>
           @foreach($categories as $category)
-            <a href="{{ route('categories.article.index', ['categories' => $category->name]) }}" class="btn btn-sm btn-primary"> {{ $category->name }} </a>
+            <a href="{{ route('category.article', $category->name) }}" class="btn btn-sm btn-primary"> {{ $category->name }} </a>
           @endforeach
         </div>
         <!-- Content -->
@@ -63,7 +63,7 @@
                 <br>
               </div>
               <div class="card-footer">
-                <a href="{{ route('front.article.show', $article->slug) }}" class="btn btn-info">Read more...</a>
+                <a href="{{ route('front.article.show', $article->slug) }}" class="btn btn-info">Lanjukan baca...</a>
               </div>
 
             </div>
