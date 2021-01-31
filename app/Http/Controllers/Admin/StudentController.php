@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Model\Student;
 use App\Exports\StudentExport;
+use Illuminate\Http\Request;
+use App\Model\Student;
 
 class StudentController extends Controller
 {

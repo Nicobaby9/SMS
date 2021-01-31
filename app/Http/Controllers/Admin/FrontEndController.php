@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\Category;
-use Illuminate\Support\Str;
+use App\Model\Frontend;
 
-class ArticleCategoryController extends Controller
+class FrontEndController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class ArticleCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
-        return view('admin.article-category.index', compact('categories'));
+        return view('frontend.index');
     }
 
     /**
@@ -27,7 +25,7 @@ class ArticleCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.article-category.create');
+        //
     }
 
     /**
@@ -38,17 +36,7 @@ class ArticleCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:70',
-            'slug' => 'required',
-        ]);
-
-        $category = Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name) . '-' . $request->slug,
-        ]);
-
-        return redirect(route('article-category.index'))->withMessage('Article Category was successfully created.');
+        //
     }
 
     /**
@@ -70,9 +58,7 @@ class ArticleCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id)->first();
-
-        return view('admin.article-category.edit', compact('category'));
+        //
     }
 
     /**
@@ -84,14 +70,10 @@ class ArticleCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
-
-        $category->update([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name) . '-' . $request->slug,
-        ]);
-
-        return redirect(route('article-category.index'))->withMessage('Article Category was successfully updated.');
+        $about = Frontend::all()->first();
+        $about->update($request->all());
+        
+        return redirect()->back()->withMessage('Data was successfully updated');
     }
 
     /**
@@ -102,9 +84,6 @@ class ArticleCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-
-        return redirect()->back()->withMessage('Article Category was successfully deleted.');
+        //
     }
 }

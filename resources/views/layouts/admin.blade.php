@@ -58,8 +58,8 @@
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('profil.edit', [Auth::user()->id]) }}">
-            Edit Profil
+        <a class="nav-link" href="{{ route('user_profile', [Auth::user()->username]) }}">
+            Profil
         </a>
       </li>
     </ul>

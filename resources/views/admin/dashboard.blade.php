@@ -129,7 +129,7 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <form action="{{ route('threadcomment.store', $latest_thread->id) }}" method="post">
+            <form action="{{ route('threadcomment.store', $latest_thread->slug) }}" method="post">
             	@csrf
               	<label for="">Comment</label>
               <div class="input-group">

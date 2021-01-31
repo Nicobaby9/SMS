@@ -31,7 +31,7 @@ class ThreadController extends Controller
         $tag = Tag::where('name', $tag)->first();
         $threads = Thread::orderBy('created_at', 'Desc')->get();
 
-        $threads = $tag->threads->latest();
+        $threads = $tag->threads;
 
         return view('thread.index', compact('threads', 'tag'));
     }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\BookCategory;
+use App\Model\Category;
+use Illuminate\Support\Str;
 
-class BookCategoryController extends Controller
+class ArticleCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,9 @@ class BookCategoryController extends Controller
      */
     public function index()
     {
-        $categories = BookCategory::all();
+        $categories = Category::all();
 
-        return view('admin.book-category.index', compact('categories'));
+        return view('admin.article-category.index', compact('categories'));
     }
 
     /**
@@ -26,7 +28,7 @@ class BookCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.book-category.create');
+        return view('admin.article-category.create');
     }
 
     /**
@@ -38,14 +40,16 @@ class BookCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|min:1',
+            'name' => 'required|max:70',
+            'slug' => 'required',
         ]);
 
-        $category = BookCategory::create([
-            'title' => $request->title,
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('books-category.index'))->withMessage('Book Category was successfully created.');
+        return redirect(route('article-category.index'))->withMessage('Article Category was successfully created.');
     }
 
     /**
@@ -67,9 +71,9 @@ class BookCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = BookCategory::where('id', $id)->first();
+        $category = Category::where('id', $id)->first();
 
-        return view('admin.book-category.edit', compact('category'));
+        return view('admin.article-category.edit', compact('category'));
     }
 
     /**
@@ -81,13 +85,14 @@ class BookCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = BookCategory::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         $category->update([
-            'title' => $request->title,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . $request->slug,
         ]);
 
-        return redirect(route('books-category.index'))->withMessage('Book Category was successfully updated.');
+        return redirect(route('article-category.index'))->withMessage('Article Category was successfully updated.');
     }
 
     /**
@@ -98,9 +103,9 @@ class BookCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = BookCategory::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect(route('books-category.index'))->withMessage('Book Category was successfully deleted.');
+        return redirect()->back()->withMessage('Article Category was successfully deleted.');
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\Frontend;
+use App\Model\BookCategory;
 
-class FrontEndController extends Controller
+class BookCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $categories = BookCategory::all();
+
+        return view('admin.book-category.index', compact('categories'));
     }
 
     /**
@@ -24,7 +27,7 @@ class FrontEndController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.book-category.create');
     }
 
     /**
@@ -35,7 +38,15 @@ class FrontEndController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:1',
+        ]);
+
+        $category = BookCategory::create([
+            'title' => $request->title,
+        ]);
+
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully created.');
     }
 
     /**
@@ -57,7 +68,9 @@ class FrontEndController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = BookCategory::where('id', $id)->first();
+
+        return view('admin.book-category.edit', compact('category'));
     }
 
     /**
@@ -69,10 +82,13 @@ class FrontEndController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $about = Frontend::all()->first();
-        $about->update($request->all());
-        
-        return redirect()->back()->withMessage('Data was successfully updated');
+        $category = BookCategory::findOrFail($id);
+
+        $category->update([
+            'title' => $request->title,
+        ]);
+
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully updated.');
     }
 
     /**
@@ -83,6 +99,9 @@ class FrontEndController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = BookCategory::findOrFail($id);
+        $category->delete();
+
+        return redirect(route('books-category.index'))->withMessage('Book Category was successfully deleted.');
     }
 }

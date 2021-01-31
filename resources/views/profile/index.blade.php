@@ -57,7 +57,7 @@
 							@else
 							{{ $user->fullname }} created new thread : 
 							@endif
-							" <a href="{{route('forum.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }} </a> "
+							" <a href="{{route('thread.show', $feed->feedable['id'] )}}" title=""> {{ $feed->feedable['subject'] }} </a> "
 						</div>
 					</div>
 				@endif

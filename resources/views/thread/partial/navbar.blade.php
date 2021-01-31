@@ -35,16 +35,16 @@
 
                     <!-- NOTIFICATIONS -->
                     <li class="dropdown pull-right" id="markasread" onclick="markNotificationAsRead('{{ count(auth()->user()->unreadNotifications) }}')">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <a class="dropdown-toggle text-center" data-toggle="dropdown" href="#" aria-expanded="false">
                           <i class="far fa-bell"></i>
                           <span class="badge badge-warning navbar-badge">{{ count(auth()->user()->unreadNotifications) }}</span>
                         </a>
 
-                        <div class="dropdown-menu" role="menu" style="width: 250px; text-align: right;">
+                        <div class="dropdown-menu " role="menu" style="width: 310px; text-align: right;">
                             @forelse(auth()->user()->unreadNotifications as $notification)
                                 @include( 'layouts.partials.notification.'. \Illuminate\Support\Str::snake(class_basename($notification->type)) )
                             @empty
-                            <a href="#" class="dropdown-item" style="padding-left: 20px;">
+                            <a href="#" class="dropdown-item">
                                Tidak ada notifikasi.
                             </a>
                             @endforelse

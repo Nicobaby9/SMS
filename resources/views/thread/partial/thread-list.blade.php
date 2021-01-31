@@ -33,7 +33,11 @@
     </div>
 	
 	@empty
-		<h5>Tidak Ada Postingan</h5>
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+    		<h2>Belum Ada Postingan</h2>
+        </div>
+    </div>
 	@endforelse
 </div>
 @endsection
