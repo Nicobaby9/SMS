@@ -18,7 +18,9 @@
     <li>config .env like .env2 (pusher)</li>
     <li>delete .env2</li>
     <li>php artisan key:generate</li>
+    <li>Go to "App\Providers\AppServiceProvider.php" and then COMMAND all code inside function "boot"</li>
     <li>php artisan migrate --seed (database and data seeder)</li>
+    <li>Go to "App\Providers\AppServiceProvider.php" and then UNCOMMAND all code inside function "boot"</li>
     <li>npm install</li>
     <li>npm run dev</li>
     <li>php artisan storage:link</li>
