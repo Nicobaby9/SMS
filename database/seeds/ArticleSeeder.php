@@ -111,7 +111,7 @@ Tidak hanya berisi kisah yang akan membuat penasaran sampai akhir, buku ini dipe
 
 Untuk itulah, kita sebagai warga negara Indonesia, harus menghormasti setiap suku yang ada di nusantara. Karena bisa jadi setiap suku memiliki kebudayaan yang berebda dengan budaya suku kita, atau bahkan bertentangan dengan adat budaya kita. Namun kita harus menyadari bahwa itulah kekayaan sesungguhnya dari bangsa kita Indonesia. Kita tidak boleh mencela adat suku lain hanya karena berebeda dengan budaya kita.
 ',
-                'image'          => '1610676640.jpeg',
+                'image'          => '1610687860.jpg',
                 'slug'       	 => 'mendidik-anak-menjadi-taat',
                 'created_at'     => '2016-07-29 15:13:02',
                 'updated_at'     => '2016-08-18 14:33:50',

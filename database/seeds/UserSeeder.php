@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                     'email'          => 'admin@gmail.com',
                     'phone'          => '081518890652',
                     'password'       =>  Hash::make('admin'),
-                    'photo'          => '20210118082904.jpg',
+                    'photo'          => '20210131083524.jpg',
                     'username'       => 'landonorri_s',
                     'role'           => 'admin',
                     'remember_token' => 'RvlORzs8dyG8IYqssJGcuOY2F0vnjBy2PnHHTX2MoV7Hh6udjJd6hcTox3un',
