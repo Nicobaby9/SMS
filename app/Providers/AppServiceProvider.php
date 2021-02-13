@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('tags', Tag::all());
-        View::share('categories', Category::all());
-        View::share('tag_thread', Tag::withCount('threads')->get());
-        View::share('all_thread', Thread::all());
-        View::share('frontend', Frontend::first());
+        // View::share('tags', Tag::all());
+        // View::share('categories', Category::all());
+        // View::share('tag_thread', Tag::withCount('threads')->get());
+        // View::share('all_thread', Thread::all());
+        // View::share('frontend', Frontend::first());
     }
 }

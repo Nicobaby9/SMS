@@ -139,7 +139,7 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
         $destinationPath = public_path('/gallery/');
-        $a = File::delete($destinationPath . $gallery->photo); 
+        $img = File::delete($destinationPath . $gallery->photo); 
 
         $gallery->delete();
 
