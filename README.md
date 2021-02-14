@@ -23,7 +23,7 @@
     <li>npm install</li>
     <li>npm run dev</li>
     <li>php artisan storage:link</li>
-    <li>composer dump autoload</li>
+    <li>composer dump-autoload</li>
     <li>php artisan config:cache</li>
     <li>php artisan route:cache</li>
 </ul>
